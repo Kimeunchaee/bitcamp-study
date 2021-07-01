@@ -14,3 +14,4 @@ public class Exam0400{
 }
 
 //JVM 실행 : java -cp bin/main com.eomcs.lang.ex01.Exam0400
+// 입력하면 결과가 보임 (공백)
