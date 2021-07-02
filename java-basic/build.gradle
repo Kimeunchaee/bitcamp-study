@@ -1,0 +1,26 @@
+// gradle 도구에 추가할 작업이 있으면 플러그인을 장착하라!
+
+
+plugins {
+    //id 'application' // =자바플러그인+애플리케이션 관련 작업 
+    id 'eclipse' // 이클립스 IDE 관련 작업
+    id 'java'
+}
+
+repositories {
+    mavenCentral() // repo.maven.apache.org/maven2 사이트
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.google.guava:guava:30.1-jre'
+}
+
+
+/*
+//자바베이직은 각각 예제들이 메인메소드이기때문에 어플리케이션 플러그인(mainClass설정해줬던) 이 필요없음
+application {
+    mainClass = 'com.eomcs.pms.App'
+
+}
+*/
