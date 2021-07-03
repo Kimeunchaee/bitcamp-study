@@ -1,8 +1,5 @@
 // gradle 도구에 추가할 작업이 있으면 플러그인을 장착하라!
 
-
-
-
 plugins {
     //id 'java'   //자바 어플리케이션 빌드 관련 작업들을 추가한다
     id 'application' // =자바플러그인+애플리케이션 관련 작업 
@@ -15,20 +12,14 @@ plugins {
     // eclipseClasspath : .classpath 파일 생성
     // eclipseJDT : JDT 관련 파일 생성
     // eclipse : = eclipseProject + eclipseClasspath + eclipseJDT 파일 생성
-
     // cleanEclipseProject =  .project 파일 제거
     // cleanEclipseClasspath = .classpath 파일 제거
     // cleanEclipseJDT =  JDT 관련 파일 제거 (.setting 폴더는 없어지지 않지만 안에 내용은 다 제거됨)
     // cleanEclipse =  eclipseProject + eclipseClasspath + eclipseJDT 파일 한번에 제거
-
     // 이클립스 관련 파일은 각자 개발환경(툴)에 맞춰서 필요한걸 생성해야하기때문에 공유x = 백업x
     // .gitignore 에 관련 파일 백업하지 않도록 추가해주기
 
 }
-
-
-
-
 
 // 이클립스는 .project 가 생성될때 build.gradle를 가진 폴더를 프로젝트 이름으로 인식해서 자동 생성시킨다
 // 프로젝트 이름과 파일이름을 다르게 만들어주기위해 eclipse 프로젝트 이름을 설정하는 명령어를 작성해준다
@@ -38,9 +29,6 @@ eclipse {
         name = 'study-project'
     }   
 }
-
-
-
 
 //repositories : 프로젝트에서 외부의 라이브러리를 사용한다면 그 라이브러리 파일(.jar)을 다운로드 받을 서버 정보를 설정해라
 repositories {
@@ -54,7 +42,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.guava:guava:30.1-jre'
 }
-
 
 // 'application' 플러그인에서 run 작업을 수행할때 사용할 클래스 이름을 지정한다
 application {
