@@ -2,7 +2,9 @@
 
 ## 1일차
 2021.06.28 월
+
 - 교육의 목표 : 웹 개발자 역량 습득
+
 - 소프트웨어 개요
     - System S/W , Application S?W
     - Standalone, Client/Server
@@ -13,8 +15,6 @@
     - Front-end (Client언어)
         - HTML/CSS/JavaScript 기술 개요
         - Web Browser 실행
-
- 
 
 - 프로그래밍 준비
     - git : 온라인저장소, 원격 저장소
