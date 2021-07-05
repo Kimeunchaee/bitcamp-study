@@ -5,43 +5,47 @@ package com.eomcs.lang.ex99;
 public class Exam0120 {
   public static void main(String[] args) {
 
-    //형식을 지정하지 않으면 print()와 같다. 
-    System.out.printf("Hello!\n");
+    System.out.print(01);
+    System.out.println();
+    System.out.println(01);
+    System.out.print("01\n");
 
-    // %s : 지정한 자리에 문자열을 삽입한다.
-    //      삽입할 값은 오른쪽에 설정한다.
-    System.out.printf("이름: %s\n", "홍길동");
-    System.out.printf("안녕하세요! %s입니다.\n", "임꺽정");
+    // printf("출력 서식" , 출력할 내용)
+    // \n 줄바꿈
+    // %s : 문자열 삽입 (삽입할 문자열은 오른쪽에 작성)
+    System.out.printf("이름 : %s\n", "홍길동");
+    System.out.printf("나이 : %s\n", "만 21세");
 
-    // %d : 정수 값을 10진수 문자열로 만들어 삽입한다.
-    // %x : 정수 값을 16진수 문자열로 만들어 삽입한다.
-    // %c : 정수 값을 문자로 만들어 삽입한다.
-    // %b : true/false 값을 문자열로 만들어 삽입한다.
-    System.out.printf("%d %x %c %b\n", 65, 65, 65, true);
+    System.out.printf("%d\n", 65);  // %d : 정수를 10진수 문자열로 삽입
+    System.out.printf("%x\n", 65);  // %x : 정수를 16진수 문자열로 삽입
+    System.out.printf("%c\n", 65);  // %c : 정수를 문자로 삽입
+    System.out.printf("%b\n", true);  // %b : true/false 값을 문자열로 삽입
+    System.out.println();
+    // 한번에 작성할수 있다 (출력할 내용은 순서대로 적용됨)
+    System.out.printf("%d %x %c %b\n", 65,90,65,true);
 
-    // 한 개의 값을 여러 곳에 삽입할 수 있다.
-    // %[n$]s : n은 문자열에 삽입될 값의 순서이다. 순서는 1부터 증가한다.
-    // 1$ => 65, 2$ => 66, 3$ => 67
-    System.out.printf("%2$d %2$x %2$c\n", 65, 66, 67);
+    // 값의 순서 지정 %[n$]s
+    System.out.printf("%2$d %1$x %1$c %3$b\n", 164, 65, false);
 
-    // 값을 삽입할 때 사용할 공간을 지정할 수 있다.
-    // 문자열을 삽입할 때: 
-    //   %[-][사용할공간너비]s : -는 왼쪽 정렬이다. 안 붙이면 기본 오른쪽 정렬이다.
-    System.out.printf("'%-10s' '%10s'\n", "홍길동", "임꺽정");
-    System.out.printf("'%-10d' '%10d'\n", 12345, 12345);
+    // 사용할 공간 지정 0으로 시작 
+    System.out.printf("'%05d' '%09d'\n", 88, 564);  // 0이 없고 공백으로 처리됨
+    System.out.printf("'%+05d' '%09d'\n", 88, 88);
 
-    // %-10s : 왼쪽정렬 후 전체10자리를 확보하고 지정한자리에 문자열을 삽입하라 그 후 줄바꿈 하라
+    // 자리수 지정은 기본으로 오른쪽정렬 (0이 없으면 공백으로 처리됨)
+    System.out.printf("%4d\n",1);
+    System.out.printf("%4d\n",10);
+    System.out.printf("%4d\n",100);
+    System.out.printf("%4d\n",1000);
+
+    // 자리수 지정 후 -를 붙히면 왼쪽정렬
+    System.out.printf("%-4d\n",1);
+    System.out.printf("%-4d\n",10);
+    System.out.printf("%-4d\n",100);
+    System.out.printf("%-4d\n",1000);
 
 
-    // 정수를 삽입할 때:
-    //   %[0][사용할공간너비]d : 앞의 빈자리는 0으로 채운다.
-    //   %[+][0][사용할공간너비]d : +는 숫자 앞에 부호를 붙인다.
-    System.out.printf("'%010d' '%07d'\n", 12345, 12345);
-    System.out.printf("'%+010d' '%+07d'\n", 12345, -12345);
 
-    // %010d : 오른쪽정렬(기본)이고 전체 10자리를 확보하고 빈자리는 0으로 채우고
-    // 정수 값을 10진수 문자열로 만들어 삽입하라
-    // 
+
   }
 }
 
