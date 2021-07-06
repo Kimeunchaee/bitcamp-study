@@ -18,15 +18,27 @@ public class Exam0700 {
     System.out.println("Hello,\nworld!"); // 줄바꿈 문자
     System.out.println("Hello,\rabc"); // 커서(cursor)를 처음으로 돌리는 문자
     // 커서란? 문자를 출력할 위치를 가리키는 것.
+    // 실행결과 abclo
+    // 이클립스에서는 \r 명령어가 표현되지 않기 때문에 콘솔창에서 확인
+    // java-basic>java -cp bin/main com.eomcs.lang.ex03.Exam0700
 
     System.out.println("Hello,\b\b\bworld!"); // 커서를 뒤로 한 칸 이동시키는 문자
+    // 실행결과 Helworld! (콤마도 포함 3번뒤로)
+
+
     System.out.println("Hello,\tworld!"); // 탭 공간을 추가시키는 문자
     System.out.println("Hello,\fworld!"); // 
+
     System.out.println("Hello,\"w\"orld!"); // " 문자를 출력시키는 문자
     System.out.println("Hello,'w'orld!"); //"" 안에서 ' 문자는 그냥 적는다.
+
     System.out.println('\''); // ' 문자를 출력시키는 문자
     System.out.println('"'); // '' 안에서 " 문자는 그냥 적는다.
     System.out.println("c:\\Users\\user\\git"); // \ 문자를 출력시키는 문자
+
+    //  (" ") 안에서 "큰따옴표를 출력하고 싶을때    " 앞에     \ 역슬래시를 한개 써주기
+    // ' 를 출력하고 싶을땐,    ' 앞에 \     역슬래시를 한개 써주기
+    // 역슬래시를 그대로 출력하고 싶을땐  역슬래시 앞에       \ 역슬래시를 한개 써주기
   }
 }
 

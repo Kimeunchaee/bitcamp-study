@@ -1,0 +1,21 @@
+*Carrage Return 줄바꿈코드
+
+
+<내용>
+ABC
+abc
+가각간
+
+
+<코드값>
+41 42 43 OD OA 61 62 63 .....
+41 = A
+42 = B
+43 = C
+OD = Carrage Return 커서를 처음으로
+OA = Line Feed 한줄 위로
+61 = a
+62 = b 
+.
+.
+.
