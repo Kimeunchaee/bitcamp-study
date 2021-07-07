@@ -3,6 +3,7 @@ package com.eomcs.pms;
 //Mini-PMS를 이용하는 회원 정보를 출력, 일단 한 명의 정보만 출력
 public class App {
   public static void main(String[] args) {
+
     System.out.println("[회원]");
     System.out.println("번호: 101");
     System.out.println("이름: 홍길동");
