@@ -603,8 +603,9 @@
 
 ## 8일차
 2021.07.07
-- git 블로그 만들기
-
+- github.com 에서 개인홈페이지 만들기
+    - 아이디.github.io 이름의 저장소 생성
+    - setting/pages/choose theme 선택
 - 변수선언
     - 개념
         - 변수(variables) : 값을 저장하는 메모리
@@ -726,9 +727,8 @@
 
         - * 4 byte 크기를 벗어나는 정수를 표기할 때는 반드시 숫자 뒤에 L 또는 l을 붙여서 표기한다.
 
-        0411까지 정리함
-
-
+- 변수와 리터럴의 크기
+    - Exam0412 ~ Exam0426 까지 내용너무 많아서 파일에 정리 (주말에 복습하기!)
 
 
 - JAVA 키보드 입력 받기
@@ -752,7 +752,7 @@
 
     - `Scanner - nextLine();`
         - 3. System.out.print("팀명? ");
-            - 팀명? 창을 출력함
+            - '팀명?' 창을 출력함
 
         - 4. String str = keyScan.nextLine();
             - reference인 키스캔에게 nextLine()을 요청함
@@ -793,11 +793,20 @@
                              // 예) aaa    bbb cc ==> aaa, bbb, cc
                              // 사용자가 입려할때 중간에 여러 개의 공백이 들어가더라도 한 개의 공백으로 간주한다.
             - 요청된 값을 정수 데이터타입(int)인 i 으로 입력한다.
+            - keyboard.nextInt(); 뒤에 keyboard.nextLine();
+                - 사용자가 내용을 입력하고 엔터를 치면 내용+공백 한칸이 생기는데 nextInt();명령어는 토큰만 인식을 하고
+                  다음 명령어를 바로 실행해서 줄바꿈이 일어나거나 내용이 넘어가버린다. 이를 방지하기 위해
+                  공백 한칸(빈 문자열)을 실행시켜서 버리기 위해 nextInt(); 뒤에 변수명.nextLine(); 을 작성해준다.
+    - 현재 일시 알아내기
+        - java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
+            - 메소드 java.sql.Date , 변수명 now
+            - System.currentTimeMillis() : 1970년 1월 1일 0시 0분 0초부터 현재까지 경과된 시간을 밀리초로 리턴한다.
+            - new java.sql.Date(밀리초) : 넘겨 받은 밀리초를 가지고 년,월,일,시,분,초를 계산한다.
+        - 출력문 : Date 메소드 변수명 = 변수명.valueOf(실행문);
+            - Date startDate = Date.valueOf(keyScan.nextLine());
+            - 2021-07-07 형태의 입력만 가능
 
-
-nextInt(); > 결과입력 띄어쓰고 결과입력 후 엔터 > 토큰 2개와 공백 1bit 발생(엔터때문애 공백이 생김),혹시 맨앞에 공백이 있을경우 맨앞 공백은 무시됨 >  결과가 리턴됨 > 뒤어 nextLinr(); 명령어가 오면 > 맨 뒤에 공백을 인식해서 줄바꿈이 바로 실행됨 //의도와 다른 결과가 나옴
-
-keyboard.nextInt(); 뒤에 keyboard.nextLine(); 명령어를 넣어주면 남아 있는 빈 문자열(공백)의 한 줄(LF 코드)을 읽어서 버려준다.
-
-- 남아 있는 빈 문자열의 한 줄(LF 코드)을 읽어서 버린다.
-
+    - 실습
+        - App1.java 를 App1_1.java로 복사하고 System.in 파일로 코드 작성하기 
+        - App2.java 를 App2_1.java로 복사하고 System.in 파일로 코드 작성하기 
+        - App3.java 를 App3_1.java로 복사하고 System.in 파일로 코드 작성하기 
