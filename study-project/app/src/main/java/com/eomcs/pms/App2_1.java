@@ -1,33 +1,32 @@
 package com.eomcs.pms;
+import java.sql.Date;
 
 public class App2_1 {
-
   public static void main(String[] args) {
 
     java.util.Scanner keyScan = new java.util.Scanner(System.in);
-
     System.out.println("[프로젝트]");
 
-    //번호는 int 변수
+    // int 변수
+    // 숫자만 입력 가능, 다른 형태 입력하면 오류!
     System.out.print("번호? ");
     int num = keyScan.nextInt();
-    keyScan.nextLine(); 
-    // System.out.print(keyScan.nextLine());
+    keyScan.nextLine(); // System.out.print(keyScan.nextLine());
     // int 엔터쳤을때 생긴 공백(남은 문자열) 한 줄을 실행시켜서 버린다.
 
     System.out.print("프로젝트명? ");
     String project = keyScan.nextLine();
-    System.out.print(project);
 
     System.out.print("내용? ");
     String cont = keyScan.nextLine();
 
-    // 시작일과 종료일은 java.sql.Date 변수
     System.out.print("시작일? ");
-    String startDate = keyScan.nextLine();
+    // java.sql.Date 변수 : 2021-07-07 형태의 입력만 가능, 다른 형태입력하면 오류!
+    // Date 메소드 변수명 = 변수명.valueOf(실행문);
+    Date startDate = Date.valueOf(keyScan.nextLine());
 
     System.out.print("종료일? ");
-    String endDate = keyScan.nextLine();
+    Date endDate = Date.valueOf(keyScan.nextLine());
 
     System.out.print("만든이? ");
     String made = keyScan.nextLine();
@@ -45,7 +44,5 @@ public class App2_1 {
     System.out.printf("종료일? %s\n",endDate);
     System.out.printf("만든이? %s\n",made);
     System.out.printf("팀원? %s\n",team);
-
   }
-
 }

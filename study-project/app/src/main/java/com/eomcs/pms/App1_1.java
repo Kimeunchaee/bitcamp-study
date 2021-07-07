@@ -1,10 +1,8 @@
 package com.eomcs.pms;
-import java.sql.Date;
-
 //Mini-PMS를 이용하는 회원 정보를 출력, 일단 한 명의 정보만 출력
+
 public class App1_1 {
   public static void main(String[] args) {
-
     // 입력창
     java.io.InputStream keyboard = System.in;
     java.util.Scanner keyScan = new java.util.Scanner(keyboard);
@@ -33,19 +31,17 @@ public class App1_1 {
     // 현재 일시 알아내기
     java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
 
+    // 키보드창 닫기
     keyScan.close();
-
-
-
-
 
     // 출력창
     System.out.println("------------------------------");
     System.out.println("[회원]");
 
     // 형식을 갖는 값을 출력할때 : printf
-    // `%d` 는 오른쪽에 정수값 자체가 있어야 하는데 여기서는 변수명을 넣어줬기떄문에 %s를 사용
     System.out.printf("번호: %s\n" , str1);   // System.out.println("번호: " + str1);
+    // %d 는 정수값형식인데 int가 아닌 String으로 변수선언을 해주었기때문에
+    // %d를 사용하면 오류,  %s를 사용해야한다
 
     // 형식 : `%s` 지정한 자리에 오른쪽 문자열을 삽입한다.
     System.out.printf("이름: %s\n" , str2);
@@ -54,18 +50,5 @@ public class App1_1 {
     System.out.printf("사진: %s\n" , str5);
     System.out.printf("전화: %s\n" , str6);
     System.out.printf("가입일: %s\n", now);
-
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
