@@ -21,7 +21,8 @@ public class Exam0220 {
     // 재직여부? y
     // y
     System.out.print("이름? ");
-    System.out.println(keyScan.nextLine());
+    System.out.println(keyScan.nextLine());  // 실행순서 : keyScan.nextLine() 괄호안 명령어가 먼저
+    //                                          실행된 후 println 줄바꿈이 실행된다
     System.out.print("전화? ");
     System.out.println(keyScan.nextLine());
     System.out.print("이메일? ");
