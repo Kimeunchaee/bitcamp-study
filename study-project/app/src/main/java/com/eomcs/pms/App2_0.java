@@ -1,6 +1,6 @@
 package com.eomcs.pms;
 
-public class App2 {
+public class App2_0 {
 
   public static void main(String[] args) {
     System.out.print("[");

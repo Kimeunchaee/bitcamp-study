@@ -1,10 +1,13 @@
 package com.eomcs.pms;
-import java.sql.Date;
+
+import java.sql.Date; //데이트가 어느 패키지에 있는지 미리 알려줌
+import java.util.Scanner; //스캐너가 어느 패키지에 있는지 미리 알려줌
 
 public class App2_1 {
   public static void main(String[] args) {
 
-    java.util.Scanner keyScan = new java.util.Scanner(System.in);
+    Scanner keyScan = new Scanner(System.in);
+    // java.util.Scanner 를 import 해줬기때문에 패키지명 안써줘도됨
     System.out.println("[프로젝트]");
 
     // int 변수
@@ -22,7 +25,9 @@ public class App2_1 {
 
     System.out.print("시작일? ");
     // java.sql.Date 변수 : 2021-07-07 형태의 입력만 가능, 다른 형태입력하면 오류!
+    // import 해줬기때문에 패키지명 작성x
     // Date 메소드 변수명 = 변수명.valueOf(실행문);
+    // java.sql.Date.valueOf(날짜문자열)
     Date startDate = Date.valueOf(keyScan.nextLine());
 
     System.out.print("종료일? ");
