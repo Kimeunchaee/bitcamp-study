@@ -58,9 +58,7 @@ public class App1_copy7 {
 
     // 쌓인 데이터(size)만큼 됐을때 출력하라
     for (int i = 0; i < size; i=i+1) {
-      System.out.printf("%d, %s, %s, %s, %5$tY-%5$tm-%5$td\n", 
-
-          no[i], name[i], email[i],tel[i],registeredDate[i]);
+      System.out.printf("%d, %s, %s, %s, %5$tY-%5$tm-%5$td\n", no[i], name[i], email[i],tel[i],registeredDate[i]);
       System.out.println();
 
     }
