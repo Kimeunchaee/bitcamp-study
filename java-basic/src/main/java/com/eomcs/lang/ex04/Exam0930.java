@@ -15,7 +15,7 @@ public class Exam0930 {
     //
     // float ==> int 
     float f = 3.14f;
-    int i = (int)f;  // 소수점 이하가 제거된다.
+    int i = (int)f;  // ()괄호를 입력하면 소수점 이하가 제거된다 //강제로 값을 넣을수있다
     System.out.println(i);
 
     // double ==> long

@@ -3,7 +3,7 @@ package com.eomcs.pms;
 import java.sql.Date;
 import java.util.Scanner;
 
-public class App3_practice {
+public class App3_2 {
 
   public static void main(String[] args) {
     System.out.println("[작업]");
