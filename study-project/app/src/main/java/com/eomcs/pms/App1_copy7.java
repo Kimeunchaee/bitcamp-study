@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class App1_copy7 {
   public static void main(String[] args) {
 
-    // 7. 날짜의 출력형식을 "yyyy-mm-dd"로 변경한다
+    // 7. 날짜의 출력형식을 "yyyy-mm-dd"로 변경한다 (%5$tY-%5$tm-%5$td)
     final int MAX_LENGTH = 100;
 
     int[] no = new int[MAX_LENGTH];
@@ -17,18 +17,21 @@ public class App1_copy7 {
     String[] tel = new String[MAX_LENGTH];
     Date[] registeredDate = new Date[MAX_LENGTH];
 
-
+    Date now = new Date(System.currentTimeMillis());
     Scanner keyboardScan = new Scanner(System.in);
 
-    int size = 0;
+    int size = 0; //변수 선언 및 초기화
+    // for문 밖에서 변수를 선언해줘야 각각의 for문에서 사용할수있음 
 
     System.out.println("[회원]");
 
     for (int i = 0; i < MAX_LENGTH; i = i + 1) {
-      size = size + 1;
+      size = size + 1; //사용자 한명이 입력한 데이터들의 갯수
+      // 한명한명 입력할수록 데이터가 쌓이고  MAX_LENGTH 값으로 설정해놓은
+      // 100전까지만 데이터를 저장하도록 size라는 이름의 변수를 만들어줌
 
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboardScan.nextLine());   // 숫자만 문자열로 바꿔주는 명령어 사용
+      no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
       name[i] = keyboardScan.nextLine();
       System.out.print("이메일? ");
@@ -53,9 +56,9 @@ public class App1_copy7 {
     // 출력창
     System.out.println("--------------------------------");
 
-
+    // 쌓인 데이터(size)만큼 됐을때 출력하라
     for (int i = 0; i < size; i=i+1) {
-      System.out.printf("%d, %s, %s, %s, %5$tY-%5$tm-%5$td\\n", 
+      System.out.printf("%d, %s, %s, %s, %5$tY-%5$tm-%5$td\n", 
 
           no[i], name[i], email[i],tel[i],registeredDate[i]);
       System.out.println();

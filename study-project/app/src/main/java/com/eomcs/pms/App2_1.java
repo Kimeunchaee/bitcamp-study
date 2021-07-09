@@ -28,6 +28,7 @@ public class App2_1 {
     // import 해줬기때문에 패키지명 작성x
     // Date 메소드 변수명 = 변수명.valueOf(실행문);
     // java.sql.Date.valueOf(날짜문자열)
+    // valueOf() : ()괄호 안의 해당 객체를 String 객체(문자열 그 자체)로 변환
     Date startDate = Date.valueOf(keyScan.nextLine());
 
     System.out.print("종료일? ");

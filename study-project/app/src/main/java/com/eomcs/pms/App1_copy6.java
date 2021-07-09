@@ -17,7 +17,7 @@ public class App1_copy6 {
     String[] tel = new String[MAX_LENGTH];
     Date[] registeredDate = new Date[MAX_LENGTH];
 
-
+    Date now = new Date(System.currentTimeMillis());
     Scanner keyboardScan = new Scanner(System.in);
 
     int size = 0;
@@ -28,7 +28,7 @@ public class App1_copy6 {
       size = size + 1;
 
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboardScan.nextLine());   // 숫자만 문자열로 바꿔주는 명령어 사용
+      no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
       name[i] = keyboardScan.nextLine();
       System.out.print("이메일? ");

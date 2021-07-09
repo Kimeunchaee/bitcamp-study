@@ -24,7 +24,7 @@ public class App1_copy4 {
 
     for(int i=0; i<5; i=i+1) {
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboardScan.nextLine());   // 숫자만 문자열로 바꿔주는 명령어 사용
+      no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
       name[i] = keyboardScan.nextLine();
       System.out.print("이메일? ");
@@ -44,7 +44,7 @@ public class App1_copy4 {
     // 출력창
     System.out.println("--------------------------------");
 
-    for(int i=1;i<5; i=i+i){
+    for(int i=0; i < 5; i = i + 1){
       System.out.println("번호: " + no[i]);
       System.out.println("이름: " + name[i]);
       System.out.println("이메일: " + email[i]);
@@ -54,7 +54,6 @@ public class App1_copy4 {
       System.out.printf("가입일: %s\n", registeredDate[i]);
       System.out.println();
 
-      i = i +1;
     }
   }
 }

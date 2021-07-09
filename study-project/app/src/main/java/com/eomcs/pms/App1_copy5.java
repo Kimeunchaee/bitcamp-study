@@ -26,7 +26,7 @@ public class App1_copy5 {
     for (int i = 0; i < MAX_LENGTH; i = i + 1) {
 
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboardScan.nextLine());   // 숫자만 문자열로 바꿔주는 명령어 사용
+      no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
       name[i] = keyboardScan.nextLine();
       System.out.print("이메일? ");

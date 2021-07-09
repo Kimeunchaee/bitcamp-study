@@ -20,7 +20,7 @@ public class App1_copy2 {
     Scanner keyboardScan = new Scanner(System.in);
     // 번호 0부터 시작
     System.out.print("번호? ");
-    no[0] = Integer.parseInt(keyboardScan.nextLine());   // 숫자만 문자열로 바꿔주는 명령어 사용
+    no[0] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
     System.out.print("이름? ");
     name[0] = keyboardScan.nextLine();
     System.out.print("이메일? ");
