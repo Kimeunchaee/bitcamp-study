@@ -24,9 +24,6 @@ public class App1_1 {
       System.out.println(input);     //코드 작성 순서에 따라 출력결과가 달라짐
 
     }
-
-
-
     keyboardScan.close();
   }
 }
