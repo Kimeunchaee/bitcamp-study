@@ -3,11 +3,10 @@ package com.eomcs.pms0709;
 import java.util.Date;
 import java.util.Scanner;
 
-public class App1_copy4 {
+public class App1_5 {
   public static void main(String[] args) {
 
-    // 4. 배열과 반복문 적용 (for 반복문)
-    // 여러문장에서 반복해서 사용하는 값은 변수에 담아서 사용한다.
+    // 5. 조회용으로만 사용할 변수라면 상수로 사용
     int[] no = new int[5];
     String[] name = new String[5];
     String[] email = new String[5];
@@ -16,13 +15,16 @@ public class App1_copy4 {
     String[] tel = new String[5];
     Date[] registeredDate = new Date[5];
 
+
     Scanner keyboardScan = new Scanner(System.in);
     java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
 
-
     System.out.println("[회원]");
 
-    for(int i=0; i<5; i=i+1) {
+    final int MAX_LENGTH = 3;
+
+    for (int i = 0; i < MAX_LENGTH; i = i + 1) {
+
       System.out.print("번호? ");
       no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
@@ -44,7 +46,8 @@ public class App1_copy4 {
     // 출력창
     System.out.println("--------------------------------");
 
-    for(int i=0; i < 5; i = i + 1){
+
+    for (int i = 0; i < MAX_LENGTH; i=i+1) {
       System.out.println("번호: " + no[i]);
       System.out.println("이름: " + name[i]);
       System.out.println("이메일: " + email[i]);

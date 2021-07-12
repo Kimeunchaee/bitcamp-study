@@ -3,7 +3,7 @@ package com.eomcs.pms0709;
 import java.util.Date;
 import java.util.Scanner;
 
-public class App1_copy3 {
+public class App1_3 {
   public static void main(String[] args) {
 
     // 3. 배열과 반복문 적용 (while 반복문)

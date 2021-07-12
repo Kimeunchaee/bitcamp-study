@@ -3,7 +3,7 @@ package com.eomcs.pms0709;
 import java.util.Date;
 import java.util.Scanner;
 
-public class App1_copy2 {
+public class App1_2 {
   public static void main(String[] args) {
     System.out.println("[회원]");
 

@@ -1,54 +1,148 @@
 package com.eomcs.pms0709;
-//Mini-PMS를 이용하는 회원 정보를 출력, 일단 한 명의 정보만 출력
+
+import java.util.Date;
+import java.util.Scanner;
 
 public class App1_1 {
+  // 1. 배열 사용전
   public static void main(String[] args) {
-    // 입력창
-    java.io.InputStream keyboard = System.in;
-    java.util.Scanner keyScan = new java.util.Scanner(keyboard);
-
     System.out.println("[회원]");
+
+    // 선언
+    int no1, no2, no3, no4, no5;
+    String name1, name2, name3, name4, name5;
+    String email1, email2, email3, email4, email5;
+    String password1, password2, password3, password4, password5;
+    String photo1, photo2, photo3, photo4, photo5;
+    String tel1, tel2, tel3, tel4, tel5;
+    Date registeredDate1, registeredDate2, registeredDate3, registeredDate4, registeredDate5;
+    // 입력창
+    Scanner keyboardScan = new Scanner(System.in);
 
     System.out.print("번호? ");
-    String str1 = keyScan.nextLine();
-    // 변수명은 알아볼수있도록 의미있는 이름으로 만들기 no, name, tel, registeredDate ...
-
-    System.out.print("이름? "); // println 으로 하면 입력한 내용이 아래로 줄바꿈됨
-    String str2 = keyScan.nextLine();
-
+    no1 = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
+    System.out.print("이름? ");
+    name1 = keyboardScan.nextLine();
     System.out.print("이메일? ");
-    String str3 = keyScan.nextLine();
-
+    email1 = keyboardScan.nextLine();
     System.out.print("암호? ");
-    String str4 = keyScan.nextLine();
-
+    password1 = keyboardScan.nextLine();
     System.out.print("사진? ");
-    String str5 = keyScan.nextLine();
-
+    photo1 = keyboardScan.nextLine();
     System.out.print("전화? ");
-    String str6 = keyScan.nextLine();
+    tel1 = keyboardScan.nextLine();
+    registeredDate1 = new Date();
+    System.out.println();
 
-    // 현재 일시 알아내기
+    System.out.print("번호? ");
+    no2 = Integer.parseInt(keyboardScan.nextLine());
+    System.out.print("이름? ");
+    name2 = keyboardScan.nextLine();
+    System.out.print("이메일? ");
+    email2 = keyboardScan.nextLine();
+    System.out.print("암호? ");
+    password2 = keyboardScan.nextLine();
+    System.out.print("사진? ");
+    photo2 = keyboardScan.nextLine();
+    System.out.print("전화? ");
+    tel2 = keyboardScan.nextLine();
+    registeredDate2 = new Date();
+    System.out.println();
+
+    System.out.print("번호? ");
+    no3 = Integer.parseInt(keyboardScan.nextLine());
+    System.out.print("이름? ");
+    name3 = keyboardScan.nextLine();
+    System.out.print("이메일? ");
+    email3 = keyboardScan.nextLine();
+    System.out.print("암호? ");
+    password3 = keyboardScan.nextLine();
+    System.out.print("사진? ");
+    photo3 = keyboardScan.nextLine();
+    System.out.print("전화? ");
+    tel3 = keyboardScan.nextLine();
+    registeredDate3 = new Date();
+    System.out.println();
+
+    System.out.print("번호? ");
+    no4 = Integer.parseInt(keyboardScan.nextLine());
+    System.out.print("이름? ");
+    name4 = keyboardScan.nextLine();
+    System.out.print("이메일? ");
+    email4 = keyboardScan.nextLine();
+    System.out.print("암호? ");
+    password4 = keyboardScan.nextLine();
+    System.out.print("사진? ");
+    photo4 = keyboardScan.nextLine();
+    System.out.print("전화? ");
+    tel4 = keyboardScan.nextLine();
+    registeredDate4 = new Date();
+    System.out.println();
+
+    System.out.print("번호? ");
+    no5 = Integer.parseInt(keyboardScan.nextLine());
+    System.out.print("이름? ");
+    name5 = keyboardScan.nextLine();
+    System.out.print("이메일? ");
+    email5 = keyboardScan.nextLine();
+    System.out.print("암호? ");
+    password5 = keyboardScan.nextLine();
+    System.out.print("사진? ");
+    photo5 = keyboardScan.nextLine();
+    System.out.print("전화? ");
+    tel5 = keyboardScan.nextLine();
+    registeredDate5 = new Date();
+    System.out.println();
+
+    keyboardScan.close();
     java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
 
-    // 키보드창 닫기
-    keyScan.close();
-
     // 출력창
-    System.out.println("------------------------------");
-    System.out.println("[회원]");
+    System.out.println("--------------------------------");
 
-    // 형식을 갖는 값을 출력할때 : printf
-    System.out.printf("번호: %s\n" , str1);   // System.out.println("번호: " + str1);
-    // %d 는 정수값형식인데 int가 아닌 String으로 변수선언을 해주었기때문에
-    // %d를 사용하면 오류,  %s를 사용해야한다
+    System.out.println("번호: " + no1);
+    System.out.println("이름: " + name1);
+    System.out.println("이메일: " + email1);
+    System.out.printf("암호: %s\n", password1);
+    System.out.printf("사진: %s\n", photo1);
+    System.out.printf("전화: %s\n", tel1);
+    System.out.printf("가입일: %s\n", registeredDate1);
+    System.out.println();
 
-    // 형식 : `%s` 지정한 자리에 오른쪽 문자열을 삽입한다.
-    System.out.printf("이름: %s\n" , str2);
-    System.out.printf("이메일: %s\n" , str3);
-    System.out.printf("암호: %s\n" , str4);
-    System.out.printf("사진: %s\n" , str5);
-    System.out.printf("전화: %s\n" , str6);
-    System.out.printf("가입일: %s\n", now);
+    System.out.println("번호: " + no2);
+    System.out.println("이름: " + name2);
+    System.out.println("이메일: " + email2);
+    System.out.printf("암호: %s\n", password2);
+    System.out.printf("사진: %s\n", photo2);
+    System.out.printf("전화: %s\n", tel2);
+    System.out.printf("가입일: %s\n", registeredDate2);
+    System.out.println();
+
+    System.out.println("번호: " + no3);
+    System.out.println("이름: " + name3);
+    System.out.println("이메일: " + email3);
+    System.out.printf("암호: %s\n", password3);
+    System.out.printf("사진: %s\n", photo3);
+    System.out.printf("전화: %s\n", tel3);
+    System.out.printf("가입일: %s\n", registeredDate3);
+    System.out.println();
+
+    System.out.println("번호: " + no4);
+    System.out.println("이름: " + name4);
+    System.out.println("이메일: " + email4);
+    System.out.printf("암호: %s\n", password4);
+    System.out.printf("사진: %s\n", photo1);
+    System.out.printf("전화: %s\n", tel4);
+    System.out.printf("가입일: %s\n", registeredDate4);
+    System.out.println();
+
+    System.out.println("번호: " + no5);
+    System.out.println("이름: " + name5);
+    System.out.println("이메일: " + email5);
+    System.out.printf("암호: %s\n", password5);
+    System.out.printf("사진: %s\n", photo5);
+    System.out.printf("전화: %s\n", tel5);
+    System.out.printf("가입일: %s\n", registeredDate5);
+    System.out.println();
   }
 }

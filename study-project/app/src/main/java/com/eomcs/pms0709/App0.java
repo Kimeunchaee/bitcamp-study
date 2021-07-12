@@ -1,7 +1,7 @@
 package com.eomcs.pms0709;
 
 //Mini-PMS를 이용하는 회원 정보를 출력, 일단 한 명의 정보만 출력
-public class App1_0 {
+public class App0 {
   public static void main(String[] args) {
 
     System.out.println("[회원]");
