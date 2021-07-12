@@ -1,26 +1,32 @@
-package com.eomcs.pms;
+package com.eomcs.pms0709;
 
 import java.util.Date;
 import java.util.Scanner;
 
-public class App1_copy3 {
+public class App1_copy6 {
   public static void main(String[] args) {
 
-    // 3. 배열과 반복문 적용 (while 반복문)
-    int[] no = new int[5];
-    String[] name = new String[5];
-    String[] email = new String[5];
-    String[] password = new String[5];
-    String[] photo = new String[5];
-    String[] tel = new String[5];
-    Date[] registeredDate = new Date[5];
+    // 6. 특정조건문에 따라 반복을 멈춘다
+    final int MAX_LENGTH = 100;
 
+    int[] no = new int[MAX_LENGTH];
+    String[] name = new String[MAX_LENGTH];
+    String[] email = new String[MAX_LENGTH];
+    String[] password = new String[MAX_LENGTH];
+    String[] photo = new String[MAX_LENGTH];
+    String[] tel = new String[MAX_LENGTH];
+    Date[] registeredDate = new Date[MAX_LENGTH];
+
+    Date now = new Date(System.currentTimeMillis());
     Scanner keyboardScan = new Scanner(System.in);
-    java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
+
+    int size = 0;
 
     System.out.println("[회원]");
-    int i = 0;
-    while (i<5) {
+
+    for (int i = 0; i < MAX_LENGTH; i = i + 1) {
+      size = size + 1;
+
       System.out.print("번호? ");
       no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
@@ -35,17 +41,22 @@ public class App1_copy3 {
       tel[i] = keyboardScan.nextLine();
       registeredDate[i] = new Date();
       System.out.println();
-
-      i = i + 1;
+      System.out.println("계속 입력하시겠습니까? (y/N)");
+      String input = keyboardScan.nextLine();
+      if (input.equalsIgnoreCase("N") || input.equals("")) {
+        break; //현재 반복한걸 멈추개=ㅔ
+      }
     }
+
+    //.equalsIgnoreCase 대소문자 상관없이 사용자가 입력한 값이랑 같은지 비교
 
     keyboardScan.close();
 
     // 출력창
     System.out.println("--------------------------------");
 
-    i = 0; // 위에 i변수가 이미 5이기때문에 변수 초기화를 해줌 (다른이름의 변수를 써도 되지만 굳이..?)
-    while (i<5) {
+
+    for (int i = 0; i < size; i=i+1) {
       System.out.println("번호: " + no[i]);
       System.out.println("이름: " + name[i]);
       System.out.println("이메일: " + email[i]);
@@ -55,7 +66,6 @@ public class App1_copy3 {
       System.out.printf("가입일: %s\n", registeredDate[i]);
       System.out.println();
 
-      i = i +1;
     }
   }
 }

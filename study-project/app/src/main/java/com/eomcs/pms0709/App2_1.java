@@ -1,4 +1,4 @@
-package com.eomcs.pms;
+package com.eomcs.pms0709;
 
 import java.sql.Date; //데이트가 어느 패키지에 있는지 미리 알려줌
 import java.util.Scanner; //스캐너가 어느 패키지에 있는지 미리 알려줌

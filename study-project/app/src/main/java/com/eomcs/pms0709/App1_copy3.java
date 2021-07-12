@@ -1,13 +1,12 @@
-package com.eomcs.pms;
+package com.eomcs.pms0709;
 
 import java.util.Date;
 import java.util.Scanner;
 
-public class App1_copy4 {
+public class App1_copy3 {
   public static void main(String[] args) {
 
-    // 4. 배열과 반복문 적용 (for 반복문)
-    // 여러문장에서 반복해서 사용하는 값은 변수에 담아서 사용한다.
+    // 3. 배열과 반복문 적용 (while 반복문)
     int[] no = new int[5];
     String[] name = new String[5];
     String[] email = new String[5];
@@ -19,10 +18,9 @@ public class App1_copy4 {
     Scanner keyboardScan = new Scanner(System.in);
     java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
 
-
     System.out.println("[회원]");
-
-    for(int i=0; i<5; i=i+1) {
+    int i = 0;
+    while (i<5) {
       System.out.print("번호? ");
       no[i] = Integer.parseInt(keyboardScan.nextLine());   //문자열을 숫자로 바꿔줌
       System.out.print("이름? ");
@@ -37,6 +35,8 @@ public class App1_copy4 {
       tel[i] = keyboardScan.nextLine();
       registeredDate[i] = new Date();
       System.out.println();
+
+      i = i + 1;
     }
 
     keyboardScan.close();
@@ -44,7 +44,8 @@ public class App1_copy4 {
     // 출력창
     System.out.println("--------------------------------");
 
-    for(int i=0; i < 5; i = i + 1){
+    i = 0; // 위에 i변수가 이미 5이기때문에 변수 초기화를 해줌 (다른이름의 변수를 써도 되지만 굳이..?)
+    while (i<5) {
       System.out.println("번호: " + no[i]);
       System.out.println("이름: " + name[i]);
       System.out.println("이메일: " + email[i]);
@@ -54,6 +55,7 @@ public class App1_copy4 {
       System.out.printf("가입일: %s\n", registeredDate[i]);
       System.out.println();
 
+      i = i +1;
     }
   }
 }
