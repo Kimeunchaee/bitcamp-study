@@ -15,6 +15,8 @@ public class Exam0321 {
     while (count < 100) {
       count++;
       if ((count & 0x01) == 0) { // count & 0x01 ==> count % 2
+        // 카운트에서 맨끝에 비트를 추출해서 2로 나눴을때 나머지가 0이면 추출해라
+        // ((count & 0x01) == 0    는   ((count & 1) == 0 와 같은
         sum += count;
       }
     }

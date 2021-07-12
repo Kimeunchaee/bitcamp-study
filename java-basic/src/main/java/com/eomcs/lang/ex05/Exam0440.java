@@ -23,7 +23,7 @@ public class Exam0440 {
     //  [00100111_10100001_00110000_11111111] => 27a130ff
     //  [00000000_00000000_00100111_10100001]_00110000_11111111
     //   00000000_00000000_00100111_10100001  => 0x000027a1
-    // & 00000000_00000000_00000000_11111111  => 0x000000ff
+    // & 00000000_00000000_00000000_11111111  => 0x000000ff   // & and 연산자를 사용(둘다 1일때만1)해서 맨 끝에 8자리(8비트)만 남김
     // --------------------------------------
     //   00000000_00000000_00000000_10100001
 
@@ -43,7 +43,7 @@ public class Exam0440 {
     // --------------------------------------
     //   00000000_00000000_00000000_11111111
 
-    System.out.println(Integer.toHexString(a));
+    System.out.println(Integer.toHexString(a)); //Integer인티저라는 클래스에.toHexString() 를 사용하면 값이 16진수로 추출됨
     System.out.println(Integer.toHexString(b));
     System.out.println(Integer.toHexString(c));
     System.out.println(Integer.toHexString(d));
