@@ -49,6 +49,8 @@ public class App09 {
   static int[] tStatus = new int[TASK_LENGTH];
   static int tSize = 0;
 
+
+
   public static void main(String[] args) {
 
     while (true) {

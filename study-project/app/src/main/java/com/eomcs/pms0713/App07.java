@@ -59,6 +59,7 @@ public class App07 {
 
   // 사용자가 입력한 값을 보관하는 변수
   static String input;
+
   public static void main(String[] args) {
 
     System.out.print("프로젝트? ");
