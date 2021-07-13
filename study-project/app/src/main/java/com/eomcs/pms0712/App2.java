@@ -2,9 +2,9 @@ package com.eomcs.pms0712;
 
 import java.sql.Date;
 import java.util.Scanner;
+// 명령어에 따라서 입력받을수 있도록 바꿔보자
 
 public class App2 {
-
   public static void main(String[] args) {
     System.out.println("[프로젝트]");
 
@@ -13,6 +13,8 @@ public class App2 {
     // 최대 100개의 프로젝트 정보를 저장할 메모리 준비
     // => 배열의 크기를 미리 변수에 저장하여 사용한다.
     // => 나중에 배열의 크기를 바꾸기 쉽다.
+    
+ // 프로젝트 저장과 관련된 메모리
     final int LENGTH = 100;
 
     int[] no = new int[LENGTH];

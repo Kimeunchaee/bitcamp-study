@@ -3,7 +3,7 @@ package com.eomcs.pms0712;
 import java.sql.Date;
 import java.util.Scanner;
 
-public class App1_0 {
+public class App1 {
 
   public static void main(String[] args) {
     System.out.println("[회원]");

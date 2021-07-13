@@ -8,7 +8,7 @@ import java.util.Scanner;
 // 7) `/member/add 명령 처리
 // 8) `/member/list` 명령을 처리
 
-public class App1_2 {
+public class App_project1_2 {
   public static void main(String[] args) {
 
     Scanner keyboardScan = new Scanner(System.in);

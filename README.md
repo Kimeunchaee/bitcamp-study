@@ -607,6 +607,7 @@
 - github.com 에서 개인홈페이지 만들기
     - 아이디.github.io 이름의 저장소 생성
     - setting/pages/choose theme 선택
+    
 - 변수선언
     - 개념
         - 변수(variables) : 값을 저장하는 메모리

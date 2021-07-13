@@ -1,6 +1,7 @@
 package com.eomcs.pms0712;
 import java.util.Scanner;
 
+// app1,2,3 를 하나의 파일로 합치기
 // 01~05단계 작성해보기
 
 // 1) 변경 준비(이미 입력된 내용 주석처리)
@@ -10,7 +11,7 @@ import java.util.Scanner;
 // 5) exit나 quit 명령을 입력하면 반복 실행 중지
 
 
-public class App1_1 {
+public class App_project1_1 {
   public static void main(String[] args) {
 
     Scanner keyboardScan = new Scanner(System.in);
