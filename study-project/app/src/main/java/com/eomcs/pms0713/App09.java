@@ -49,12 +49,12 @@ public class App09 {
   static int[] tStatus = new int[TASK_LENGTH];
   static int tSize = 0;
 
-
+  //static String input; //호출자에게 인풋값을 리턴하기위해 지워줌
 
   public static void main(String[] args) {
 
     while (true) {
-      String input = prompt("명령> ");
+      String input = prompt("명령> "); //메소드에 리턴값 넣어주면서 호출자로 리턴해준다
 
       if (input.equals("exit") || input.equals("quit")) {
         System.out.println("안녕!");

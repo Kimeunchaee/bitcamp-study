@@ -103,6 +103,8 @@ public class App08 {
     keyboardScan.close();
   }
 
+  // input = keyboardScan.nextLine()
+  // keyboardScan.nextLine() 부분을 input으로 변경해주기
 
   static void addMember() {   //다른 메소드가 같은 변수명을 공유할수 없다
     System.out.println("[회원등록]");

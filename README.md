@@ -1460,9 +1460,26 @@
 - 클래스 메서드 (스태틱 메서드)     
     - static 을 맨앞에 붙혀줘야한다
     - static void main 바깥에 위치해야한다.
+    - main 메서드와 로컬메서드에서 둘다 사용할수있다
     - 메서드로 분리한 코드를 실행하기(메서드 호출) : addMember();
     - 메서드명 : 동사구형태 (addMember(); , updateMember(); ...)
     - 메소드 자동생성 : 소스코드 선택 후 우클릭 > refactor > extract method
                         > package 클릭 > 메소드가 자동생성되고 그 빈자리에 메소드호출까지 한번에 됨
     - 호출된 메소드에서  소스코드로 이동 : 메소드명에 ctrl + 마우스 올려놓기
+
+- prompt();
+    - 사용자로부터 문자열을 입력 받는 기능을 수행한다.
+    - static void prompt (String title)
+    - 파라미터 : title - 프롬프트의 메시지
+    - 리턴 값 : String - 사용자가 입력한 문자열
+    - prompt()의 기능 세분화
+        - promptString() : 사용자로부터 문자열을 입력 받아 리턴한다.
+        - promptInt() : 사용자로부터 숫자를 입력 받아 리턴한다.
+        - promptDate() : 사용자로부터 날짜를 입력 받아 리턴한다.
+        - promtString(), promptInt(), promptDate() 메서드의 코드를 정리한다.
+        - ex) static String promptString(String title) {
+                System.out.print(title);
+                return keyboardScan.nextLine();
+            }
+
 
