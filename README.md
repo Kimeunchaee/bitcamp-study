@@ -1636,151 +1636,125 @@
             - 메서드 호출 시 사용되는 인자 값의 메모리에 저장되어있는 주소(Address)를 복사하여 보낸다.
             - 배열로 만드는 방법
             - 클래스로 만드는 방법
+        
+        - 메서드 중첩 호출
+            - package com.eomcs.lang.ex07 Exam0280 참고
     
     - 자세한 개념 참고
         - https://re-build.tistory.com/3
         - https://wikidocs.net/265
         
-
-
-
-
-
-
 ## 14일차
 2021.07.15
 
-call by value
-call by reference
-복습
+- 복습
+    - call by value
+    - call by reference
+    - JVM 메모리
+    - Heap 메모리 영역
+        - 1. jvm stack영역에 메모리(로컬변수)가 제거되고 종료됨
+        - 2. Method area 영역에 메모리(메소드)가 종료되고 프로그램 끝남
+        - 3. 메모리가 부족할 경우 가비지가 heap영역의 인스턴스메모리를 청소함
+        - 4. 메모리가 충분할 경우 가비지는 청소하지 않지만, OS가 JVM이 사용한 모든 메모리(Method Area, JVM Stack, Heap 등)을 회수함
+    - 메모리 구조
+        - 예제 보면서 그림으로 과정 그려보기!
+        - package com.eomcs.lang.ex07 Exam0430
+        - package com.eomcs.lang.ex07 Exam0440
 
-JVM 메모리
-복습
+- 메서드 : JVM Stack 메모리의 사용
+    - package com.eomcs.lang.ex07 Exam0440 예제 참고 
+        - 0) 시작
+        - 1) main()
+        - 2) main() => m1()
+        - 3) main() => m1() => m2()
+        - 4) main() => m1()
+        - 5) main() => m1() => m3()
+        - 6) main() => m1()
+        - 7) main()
+        - 8) 종료!
 
-Heap 메모리 영역
-jvm stack영역에 메모리(로컬변수)가 제거되고 종료됨
-> Method area 영역에 메모리(메소드)가 종료되고 프로그램 끝남
-> 메모리가 부족할 경우 가비지가 heap영역의 인스턴스메모리를 청소함
-> 메모리가 충분할 경우 가비지는 청소하지 않지만, OS가 JVM이 사용한 모든 메모리(Method Area, JVM Stack, Heap 등)을 회수함
+- 메서드 : JVM Stack 메모리의 사용
+    - 재귀호출 (package com.eomcs.lang.ex07 Exam0450 예제 참고)
+        - 0) 시작
+        - 1) main()
+        - 2) main() => sum(5) 
+        -            => 5 + sum(4) 
+        -                   => 4 + sum(3)
+        -                          => 3 + sum(2)
+        -                                 => 2 + sum(1)
+        -                                        => 1
+        - 3) main()
+        - 4) 종료!
 
-430 이해안감
+        - 재귀호출(recursive call)
+            - 다른 메소드가 호출되면 스택에 그 메소드가 사용할 변수가 생성된다
+            - 수학식을 코드를 표현하기가 편하고 코드가 간결하다.
+            - 그러나 반복문을 사용하는 경우보다 메모리를 많이 사용한다.
+            - 멈춰야 할 조건을 빠뜨리면 스택 메모리가 극한으로 증가하여 메모리가 부족한 사태에 빠진다.
+            - 이런 사태를 "stackoverflow"라 부른다.
+            - 그래서 큰 수(즉 많이 호출되는 경우)에 대해서 재귀호출을 할 때 스택오버플로우가 자주 발생한다.
+            - 메서드 호출이 너무 깊게 들어가지 않는 상황에서 재귀호출을 사용하라.
 
+        - 스택 오버플로우
+            - JVM 스택 메모리가 꽉 차서 더이상 메서드 실행을 위해 로컬 변수를 만들 수 없는 상태이다.
+            - 큰 수를 계산할 때는 재귀호출의 수가 높아져서 쉽게 스택 메모리가 부족해지는 문제가 발생한다.
+            - ex) sum(int value) > sum메소드의 값의 크기를 임의로 키워줌 > sum(long value) 으로 수정
+            - 호출하는 메서드의 로컬 변수 값이 클 때는 스택 메모리가 빨리 찬다.
+            - 즉 스택 오버플로우는 메서드 호출 회수에 영향을 받는 것이 아니라,
+            - 메서드에서 생성하는 로컬 변수의 크기에 영향을 받는다.
 
-440
-# 메서드 : 스택 메모리 응용 I
-JVM Stack 메모리의 사용
-0) 시작
-1) main()
-2) main() => m1()
-3) main() => m1() => m2()
-4) main() => m1()
-5) main() => m1() => m3()
-6) main() => m1()
-7) main()
-8) 종료!
+- 메서드 : main() 메서드
+    - JVM이 클래스를 실행할 때 main() 메서드를 호출
+    - public static void main(String[] 변수명)
 
+- 프로그램 아규먼트
+    - package com.eomcs.lang.ex07; (Exam0520)
+    - 프로그램 아규먼트는 스트링 배열에 담겨서 main()를 호출할 때 넘어온다. (public static void main(String[] args))
+    - jvm을 실행할 때 프로그램에 전달하는 값
+    - $ java 클래스명 값1 값2 값3
+    - 예) java -cp bin Exam0520 aaa bbb cccc
+    - aaa bbb cccc 가 프로그램 아규먼트이다.
+    - 공백을 기준으로 문자열을 잘라서 String[]배열을 만든다. (aaa bb ccccc)
+    - = 아규먼트는 공백으로 구분한다.
+    - 아규먼트가 없으면 빈 배열이 넘어온다.
+    - 그런후 main()을 호출할 때 그 배열의 주소를 넘겨준다.
+        
+    - 응용 I
+        - $ java -cp ./bin/main com.eomcs.lang.ex07.Exam0530 200 43 56 일때
+            - 0번 변수에 200
+            - 1번 변수에 43
+            - 2번 변수에 56 이 저장되고
+            - 공백은 다 버려짐
 
-450
-메서드 : 스택 메모리 응용 II - 재귀호출
-JVM Stack 메모리의 사용
-0) 시작
-1) main()
-2) main() => sum(5) 
-           => 5 + sum(4) 
-                  => 4 + sum(3)
-                         => 3 + sum(2)
-                                => 2 + sum(1)
-                                       => 1
-3) main()
-4) 종료!
+- JVM 아규먼트 / 프로그램 아큐먼트와 다름
+    - package com.eomcs.lang.ex07; (Exam0610)
+    - JVM에게 전달하는 값
+    - $java -cp ./bin/main -D이름=값 -D이름=값 -D이름=값 com.eomcs.basic.ex07.Exam0610
+    - JVM 아규먼트의 값 꺼내기
+        - : System.getProperty("이름");
+        - 값마다 이름을 부여할수 있음
+    - JVM에 기본으로 설정되어 있는 프로퍼티를 모두 출력
+        - JVM의 전체 프로퍼티 목록 가져오기
 
-재귀호출(recursive call)
-- 쫄지 마라!
-- 그냥 다른 메소드를 호출했다고 생각해라.
-- 메서드가 호출되면? 스택에 그 메소드가 사용할 변수가 생성된다. 이것만 기억하라!
-- 수학식을 코드를 표현하기가 편하다.
-- 코드가 간결하다.
-- 그러나 반복문을 사용하는 경우보다 메모리를 많이 사용한다.
-- 멈춰야 할 조건을 빠뜨리면 스택 메모리가 극한으로 증가하여 메모리가 부족한 사태에 빠진다. 이런 사태를 "stackoverflow"라 부른다.
-- 그래서 큰 수(즉 많이 호출되는 경우)에 대해서 재귀호출을 할 때 스택오버플로우가 자주 발생한다.
-- 메서드 호출이 너무 깊게 들어가지 않는 상황에서 재귀호출을 사용하라.
+        - ex )  java.util.Properties props = System.getProperties();
+                java.util.Set keySet = props.keySet();
 
-스택 오버플로우(stack overflow)?
-=> JVM 스택 메모리가 꽉 차서 더이상 메서드 실행을 위해 로컬 변수를 만들 수 없는 상태이다.
-예) 
-다음과 같이 큰 수를 계산할 때는 
-재귀호출의 수가 높아져서 쉽게 스택 메모리가 부족해지는 문제가 발생한다.
-따라서 호출 단계가 깊지 않은 작은 수를 다룰 경우에는 
-재귀호출을 써도 되지만,
-호출 단계가 많은 큰 수를 다룰 때는 재귀호출 대신 반복문을 사용하라!
-메소드 호출이 너무 깊어지는 경우는 재귀호출 대신 다른 방법을 사용하라.
+                for (Object key : keySet) {
+                    props.getProperty((String) key);
+                    System.out.printf("%s = %s\n", key, value);
+                }
+        - 해석
+            - System.getProperties(); : JVM을 실행하면 OS로부터 정보를 수집하여 보관해둔다 (사용자의 홈폴더 경로 등등)
+            - props.keySet(); : Properties 객체에 저장되어 있는 값의 이름(key)을 알아낸다. keySet()이 리턴하는것은 이름이 들어있는 집합이다.
+            - (Object key : keySet) : 이름이 들어있는 집합에서 한 개의 이름을 가져와서 그 이름으로 저장된 값을 꺼낸다.
+                - 이름집합에서 꺼낸 값이 실제는 STring이지만,
+                - 문법 상에서는 object로 되어 있어서 변수를 선언할때 object타입으로 변수를 선언해야 한다.
+            - props.getProperty((String) key) : getProperty 에 이름을 전달할때는 String으로 전달해야한다
+                - key에 들어 있는것은 String이 맞지만 문법 상으로는 key변수가 object로 되어 있다
+                - 따라서 getPropert()에 key변수가 들어있는 값을 전달할때
+                - String 타입이라고 컴파일에게 알려줘야 한다.
 
-
-
-
-sum(int value) > sum메소드의 값의 크기를 임의로 키워줌 > sum(long value) 으로 수정
-
-
-값의 크기가 크면 클수록 메모리가 빨리 참
-호출하는 메서드의 로컬 변수가 클 때는 스택 메모리가 빨리 찬다.
-=> 즉 스택 오버플로우는 메서드 호출 회수에 영향을 받는 것이 아니라,
-메서드에서 생성하는 로컬 변수의 크기에 영향을 받는다.
-
-
-# 메서드 : main() 메서드
-VM이 클래스를 실행할 때 main() 메서드를 호출
-public static void main(String[] 변수명)
-
-메서드 : main() 메서드 - 프로그램 아규먼트 
-프로그램 아규먼트
-- jvm을 실행할 때 프로그램에 전달하는 값
-- 예) java -cp bin Exam0520 aaa bbb cccc
-- aaa bbb cccc 가 프로그램 아규먼트이다.
-
-ublic static void main(String[] args)
-프로그램 아규먼트는 스트링 배열에 담겨서 main()를 호출할 때 넘어온다.
-프로그램 아규먼트는 공백을 기준으로 문자열을 잘라서 String[]배열을 만든다. (aaa bb ccccc)
-아규먼트가 없으면 빈 배열이 넘어온다.
-
-
-메서드 : main() 메서드 - 프로그램 아규먼트 응용 I
-$ java -cp ./bin/main com.eomcs.lang.ex07.Exam0530 200 43 56
-일때
-0번 변수에 200
-1번 변수에 43
-2번 변수에 56 이 저장된
-공백은 다 버려짐
-
-결론
-프로그램 아규먼트(arguments)
-- 프로그램을 실행할 때 넘겨주는 값.
-- $ java 클래스명 값1 값2 값3
-- 아규먼트는 공백으로 구분한다.
-- JVM은 아규먼트의 개수만큼 문자열 배열을 만들어 저장한다.
-- 아규먼트가 없으면 빈 배열을 만든다.
-- 그런후 main()을 호출할 때 그 배열의 주소를 넘겨준다.
-
-540 해석 안됨
-
-
-
-610
-JVM 아규먼트 / 프로그램 아큐먼트와 다름
-
-- JVM에게 전달하는 값
-- 형식
-- =>$java -cp ./bin/main -D이름=값 -D이름=값 -D이름=값 com.eomcs.basic.ex07.Exam0610
-- JVM 아규먼트의 값 꺼내기
-- => System.getProperty("이름");
-- 값마다 이름을 부여할수 있음
-
--JVM에 기본으로 설정되어 있는 프로퍼티를 모두 출력
-
-    - JVM의 전체 프로퍼티 목록 가져오기
-    - java.util.Properties props = System.getProperties();
-
-    - java.util.Set keySet = props.keySet();
-
-    for (Object key : keySet) {
-      String value = System.getProperty((String) key);
-      System.out.printf("%s = %s\n", key, value);
+- 알고리즘 테스트
+    - algorithm.quiz.stu_quiz
+    - Test1 /  Test2 / Test3 / Test4 / Test5
+    - 5개 풀어보고 해석했음 (예제참고)

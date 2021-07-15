@@ -10,7 +10,7 @@ public class Exam0630 {
     // JVM의 전체 프로퍼티 목록 가져오기
     java.util.Properties props = System.getProperties();
 
-    // System.getProperties(); : JVM을 실행하면 OS로부터 정보를 수집하여 보관해둔다 (사용자의 홈폴더 경로,
+    // System.getProperties(); : JVM을 실행하면 OS로부터 정보를 수집하여 보관해둔다 (사용자의 홈폴더 경로 등등)
 
     // 1) Properties 객체에 저장되어 있는 값의 이름(key)을 알아낸다.
     // keySet()이 리컨하는것은 이름이 들어있는 집합이다.
