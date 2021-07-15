@@ -1482,7 +1482,7 @@
                 return keyboardScan.nextLine();
             }
 
-## 13일차
+## 13일
 2021.07.14
 
 - 메서드 = 함수(function)
@@ -1586,6 +1586,8 @@
                 - static void x2(String[] names, int a) {}
 
 - 메모리 구조
+    - 운영체제로부터 할당받은 메모리 > Method area > JVM stack > Heap
+
     - JVM 메모리 실행 순서
         - 1) java -classpath bin com.eomcs.basic.ex07.Exam0410
             - JVM은 클래스 정보를 Method Area 영역에 로드한다.
@@ -1638,3 +1640,147 @@
     - 자세한 개념 참고
         - https://re-build.tistory.com/3
         - https://wikidocs.net/265
+        
+
+
+
+
+
+
+## 14일차
+2021.07.15
+
+call by value
+call by reference
+복습
+
+JVM 메모리
+복습
+
+Heap 메모리 영역
+jvm stack영역에 메모리(로컬변수)가 제거되고 종료됨
+> Method area 영역에 메모리(메소드)가 종료되고 프로그램 끝남
+> 메모리가 부족할 경우 가비지가 heap영역의 인스턴스메모리를 청소함
+> 메모리가 충분할 경우 가비지는 청소하지 않지만, OS가 JVM이 사용한 모든 메모리(Method Area, JVM Stack, Heap 등)을 회수함
+
+430 이해안감
+
+
+440
+# 메서드 : 스택 메모리 응용 I
+JVM Stack 메모리의 사용
+0) 시작
+1) main()
+2) main() => m1()
+3) main() => m1() => m2()
+4) main() => m1()
+5) main() => m1() => m3()
+6) main() => m1()
+7) main()
+8) 종료!
+
+
+450
+메서드 : 스택 메모리 응용 II - 재귀호출
+JVM Stack 메모리의 사용
+0) 시작
+1) main()
+2) main() => sum(5) 
+           => 5 + sum(4) 
+                  => 4 + sum(3)
+                         => 3 + sum(2)
+                                => 2 + sum(1)
+                                       => 1
+3) main()
+4) 종료!
+
+재귀호출(recursive call)
+- 쫄지 마라!
+- 그냥 다른 메소드를 호출했다고 생각해라.
+- 메서드가 호출되면? 스택에 그 메소드가 사용할 변수가 생성된다. 이것만 기억하라!
+- 수학식을 코드를 표현하기가 편하다.
+- 코드가 간결하다.
+- 그러나 반복문을 사용하는 경우보다 메모리를 많이 사용한다.
+- 멈춰야 할 조건을 빠뜨리면 스택 메모리가 극한으로 증가하여 메모리가 부족한 사태에 빠진다. 이런 사태를 "stackoverflow"라 부른다.
+- 그래서 큰 수(즉 많이 호출되는 경우)에 대해서 재귀호출을 할 때 스택오버플로우가 자주 발생한다.
+- 메서드 호출이 너무 깊게 들어가지 않는 상황에서 재귀호출을 사용하라.
+
+스택 오버플로우(stack overflow)?
+=> JVM 스택 메모리가 꽉 차서 더이상 메서드 실행을 위해 로컬 변수를 만들 수 없는 상태이다.
+예) 
+다음과 같이 큰 수를 계산할 때는 
+재귀호출의 수가 높아져서 쉽게 스택 메모리가 부족해지는 문제가 발생한다.
+따라서 호출 단계가 깊지 않은 작은 수를 다룰 경우에는 
+재귀호출을 써도 되지만,
+호출 단계가 많은 큰 수를 다룰 때는 재귀호출 대신 반복문을 사용하라!
+메소드 호출이 너무 깊어지는 경우는 재귀호출 대신 다른 방법을 사용하라.
+
+
+
+
+sum(int value) > sum메소드의 값의 크기를 임의로 키워줌 > sum(long value) 으로 수정
+
+
+값의 크기가 크면 클수록 메모리가 빨리 참
+호출하는 메서드의 로컬 변수가 클 때는 스택 메모리가 빨리 찬다.
+=> 즉 스택 오버플로우는 메서드 호출 회수에 영향을 받는 것이 아니라,
+메서드에서 생성하는 로컬 변수의 크기에 영향을 받는다.
+
+
+# 메서드 : main() 메서드
+VM이 클래스를 실행할 때 main() 메서드를 호출
+public static void main(String[] 변수명)
+
+메서드 : main() 메서드 - 프로그램 아규먼트 
+프로그램 아규먼트
+- jvm을 실행할 때 프로그램에 전달하는 값
+- 예) java -cp bin Exam0520 aaa bbb cccc
+- aaa bbb cccc 가 프로그램 아규먼트이다.
+
+ublic static void main(String[] args)
+프로그램 아규먼트는 스트링 배열에 담겨서 main()를 호출할 때 넘어온다.
+프로그램 아규먼트는 공백을 기준으로 문자열을 잘라서 String[]배열을 만든다. (aaa bb ccccc)
+아규먼트가 없으면 빈 배열이 넘어온다.
+
+
+메서드 : main() 메서드 - 프로그램 아규먼트 응용 I
+$ java -cp ./bin/main com.eomcs.lang.ex07.Exam0530 200 43 56
+일때
+0번 변수에 200
+1번 변수에 43
+2번 변수에 56 이 저장된
+공백은 다 버려짐
+
+결론
+프로그램 아규먼트(arguments)
+- 프로그램을 실행할 때 넘겨주는 값.
+- $ java 클래스명 값1 값2 값3
+- 아규먼트는 공백으로 구분한다.
+- JVM은 아규먼트의 개수만큼 문자열 배열을 만들어 저장한다.
+- 아규먼트가 없으면 빈 배열을 만든다.
+- 그런후 main()을 호출할 때 그 배열의 주소를 넘겨준다.
+
+540 해석 안됨
+
+
+
+610
+JVM 아규먼트 / 프로그램 아큐먼트와 다름
+
+- JVM에게 전달하는 값
+- 형식
+- =>$java -cp ./bin/main -D이름=값 -D이름=값 -D이름=값 com.eomcs.basic.ex07.Exam0610
+- JVM 아규먼트의 값 꺼내기
+- => System.getProperty("이름");
+- 값마다 이름을 부여할수 있음
+
+-JVM에 기본으로 설정되어 있는 프로퍼티를 모두 출력
+
+    - JVM의 전체 프로퍼티 목록 가져오기
+    - java.util.Properties props = System.getProperties();
+
+    - java.util.Set keySet = props.keySet();
+
+    for (Object key : keySet) {
+      String value = System.getProperty((String) key);
+      System.out.printf("%s = %s\n", key, value);

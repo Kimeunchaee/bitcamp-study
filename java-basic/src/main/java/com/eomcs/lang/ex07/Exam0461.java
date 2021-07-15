@@ -4,16 +4,18 @@ package com.eomcs.lang.ex07;
 //
 public class Exam0461 {
 
-  static long sum(long value) {
+  static long sum(long value) { //8바이트
     if (value == 1)
       return 1;
 
-    long v1 = value + 10L;
-    long v2 = value + 10L;
-    long v3 = value + 10L;
-    long v4 = value + 10L;
+    long v1 = value + 10L; //8바이트
+    long v2 = value + 10L; //8바이트
+    long v3 = value + 10L; //8바이트
+    long v4 = value + 10L; //8바이트 
+    // 8바이트 5번 = 40바이트 , 한번 실행할때 40바이트가 생성되어서 메모리가 빨리 차게됨 
 
     System.out.println(v1);
+
 
 
     return value + sum(value - 1);

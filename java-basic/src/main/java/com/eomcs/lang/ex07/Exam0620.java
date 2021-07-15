@@ -14,7 +14,8 @@ public class Exam0620 {
     String name = System.getProperty("name");
     String s1 = System.getProperty("kor");
     String s2 = System.getProperty("eng");
-    String s3 = System.getProperty("math");
+    String s3 = System.getProperty("math"); // 값마다 이름을 부여할수 있음
+
 
     if (name == null || s1 == null || s2 == null || s3 == null) {
       System.out.println(

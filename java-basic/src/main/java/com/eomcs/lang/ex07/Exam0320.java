@@ -18,6 +18,7 @@ public class Exam0320 {
     // 주소를 넘기는 것이다.(주소를 찾아서 주소자체를 가지고옴)
     // 그래서 "call by reference" 라 부른다.
     System.out.printf("main(): arr[0]=%d, arr[1]=%d\n", arr[0], arr[1]);
-    // new 로 만들어진 값은 heep에 저장됨
+    // new 로 만들어진 값은 heap에 저장됨
+    // 메소드 호출(swap())이 끝났을때 사라지는 변수는 JVM에 있는 로컬변수(temp,arr[0],arr[1])이다
   }
 }

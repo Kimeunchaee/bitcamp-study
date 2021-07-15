@@ -20,10 +20,10 @@ public class Exam0340 {
   }
 
   public static void main(String[] args) {
-    int a = 100;
+    int a = 100;  //main의 int a 변수명과 swap의 int a는 이름만 같을뿐 다른 변수이다!
     int b = 200;
 
-    MyObject ref = swap(a, b);
+    MyObject ref = swap(a, b);  //a,b변수의 값을 주겠다 (변수 자체를 전달하는것이 아님)
 
     System.out.printf("main(): ref.a=%d, ref.b=%d\n", ref.a, ref.b);
   }

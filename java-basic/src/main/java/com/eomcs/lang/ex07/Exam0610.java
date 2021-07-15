@@ -21,7 +21,11 @@ public class Exam0610 {
     System.out.println(value1);
     System.out.println(value2);
     System.out.println(value3);
+
+    // $java -cp ./bin/main -Da=ok -Db=hello -Dc=bye com.eomcs.basic.ex07.Exam0610
+
   }
+
 }
 
 
