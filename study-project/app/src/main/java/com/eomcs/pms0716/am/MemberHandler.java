@@ -1,12 +1,9 @@
-package com.eomcs.pms0716;
+package com.eomcs.pms0716.am;
 
 import java.sql.Date;
 
+
 public class MemberHandler {
-
-
-  static final int LENGTH = 100;
-
   /*
   static int[] no = new int[LENGTH];
   static String[] name = new String[LENGTH];
@@ -26,11 +23,11 @@ public class MemberHandler {
   static Member[] members = new Member[100];
   static int size = 0;
 
-  // Member 인스턴스의 주소를 저장할 레퍼런스를 3개 생성한다.
+  // Member 인스턴스의 주소를 저장할 레퍼런스를 5개 생성한다.
   static final int MAX_LENGTH = 5;
 
 
-  static void add() {   //변수명에 member을 빼줌
+  public static void add() {   //변수명에 member을 빼줌
     System.out.println("[회원 등록]");
 
     // 새 회원 정보를 담을 변수를 준비한다.
@@ -55,10 +52,7 @@ public class MemberHandler {
   }
 
 
-
-
-
-  static void list() {  //변수명에 member을 빼줌
+  public static void list() {  //변수명에 member을 빼줌
     System.out.println("[회원 목록]");
     for (int i = 0; i < size; i++) {
       System.out.printf("%d, %s, %s, %s, %s\n", 

@@ -1,11 +1,11 @@
-package com.eomcs.pms0716;
+package com.eomcs.pms0716.am;
 import java.sql.Date;
-import java.util.Scanner;
+
+//1. 사용자의 입력을 받는 프롬프트 메서드를 별도의 클래스로 분리한다. (Prompt 클래스를 생성)
 
 
-public class App {
+public class App01 {
 
-  static Scanner keyboardScan = new Scanner(System.in);
 
   // 회원 정보
   static final int LENGTH = 100;
@@ -41,7 +41,9 @@ public class App {
   public static void main(String[] args) {
 
     while (true) {
-      String input = promptString("명령> ");
+      // String input = promptString("명령> ");
+      // 아래 코드로 변경해줌
+      String input = Prompt.inputString("명령> ");
 
       if (input.equals("exit") || input.equals("quit")) {
         System.out.println("안녕!");
@@ -70,18 +72,22 @@ public class App {
       System.out.println();
     }
 
-    keyboardScan.close();
+    // keyboardScan.close();
+    // 아래코드로 바꿔줌
+    Prompt.keyboardScan.close();
   }
 
   static void addMember() {
     System.out.println("[회원 등록]");
 
-    no[size] = promptInt("번호? ");
-    name[size] = promptString("이름? ");
-    email[size] = promptString("이메일? ");
-    password[size] = promptString("암호? ");
-    photo[size] = promptString("사진? ");
-    tel[size] = promptString("전화? ");
+    // Integer.valueOf(promptInt) 를 Prompt.inputInt 으로 바꿔줌
+    // promptString 을 Prompt.inputString 으로 바꿔줌
+    no[size] = Prompt.inputInt("번호? ");
+    name[size] = Prompt.inputString("이름? ");
+    email[size] = Prompt.inputString("이메일? ");
+    password[size] = Prompt.inputString("암호? ");
+    photo[size] = Prompt.inputString("사진? ");
+    tel[size] = Prompt.inputString("전화? ");
     registeredDate[size] = new Date(System.currentTimeMillis());
 
     size++;
@@ -98,13 +104,13 @@ public class App {
   static void addProject() {
     System.out.println("[프로젝트 등록]");
 
-    pNo[pSize] = Integer.valueOf(promptInt("번호? "));
-    pTitle[pSize] = promptString("프로젝트명? ");
-    pContent[pSize] = promptString("내용? ");
-    pStartDate[pSize] = promptDate("시작일? ");
-    pEndDate[pSize] = promptDate("종료일? ");
-    pOwner[pSize] = promptString("만든이? ");
-    pMembers[pSize] = promptString("팀원? ");
+    pNo[pSize] = Prompt.inputInt("번호? ");
+    pTitle[pSize] = Prompt.inputString("프로젝트명? ");
+    pContent[pSize] = Prompt.inputString("내용? ");
+    pStartDate[pSize] = Prompt.inputDate("시작일? ");
+    pEndDate[pSize] = Prompt.inputDate("종료일? ");
+    pOwner[pSize] = Prompt.inputString("만든이? ");
+    pMembers[pSize] = Prompt.inputString("팀원? ");
 
     pSize++;
   }
@@ -121,16 +127,16 @@ public class App {
   static void addTask() {
     System.out.println("[작업 등록]");
 
-    tNo[tSize] = promptInt("번호? ");
-    tContent[tSize] = promptString("내용? ");
-    tDeadline[tSize] = promptDate ("마감일? ");
+    tNo[tSize] = Prompt.inputInt("번호? ");
+    tContent[tSize] = Prompt.inputString("내용? ");
+    tDeadline[tSize] = Prompt.inputDate("마감일? ");
 
     System.out.println("상태?");
     System.out.println("0: 신규");
     System.out.println("1: 진행중");
     System.out.println("2: 완료");
-    tStatus[tSize] = promptInt("> ");
-    tOwner[tSize] = promptString("담당자? ");
+    tStatus[tSize] = Prompt.inputInt("> ");
+    tOwner[tSize] = Prompt.inputString("담당자? ");
 
     tSize++;
   }
@@ -154,22 +160,4 @@ public class App {
           tNo[i], tContent[i], tDeadline[i], stateLabel, tOwner[i]);
     }
   }
-
-  // 사용자로부터 문자열을 입력받아 리턴 
-  static String promptString(String title) {
-    System.out.print(title);
-    return keyboardScan.nextLine();
-  }
-
-  //사용자로부터 정수값을 입력받아 리턴 
-  static int promptInt(String title) {
-    return Integer.parseInt(promptString(title));  
-
-  }
-
-  //사용자로부터 날짜를 입력받아 리턴 
-  static Date promptDate(String title) {
-    return Date.valueOf(promptString(title));
-  }
-
 }

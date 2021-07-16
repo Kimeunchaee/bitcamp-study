@@ -1,4 +1,4 @@
-package com.eomcs.pms0716;
+package com.eomcs.pms0716.am;
 import java.sql.Date;
 
 //1. 사용자의 입력을 받는 프롬프트 메서드를 별도의 클래스로 분리한다. (Prompt 클래스를 생성)

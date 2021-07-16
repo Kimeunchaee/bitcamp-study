@@ -1,38 +1,45 @@
-package com.eomcs.pms0716;
+package com.eomcs.pms0716.am;
 
 //1. 사용자의 입력을 받는 프롬프트 메서드를 별도의 클래스로 분리한다. (Prompt 클래스를 생성)
 //2. 회원 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다. (MemberHandelr 클래스 생성)
 //3. 프로젝트 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다 (ProjectHandelr 클래스 생성)
 //4. 작업 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다 (TaskHandler 클래스 생성)
-//5. 키보드 스캐너를 닫는 기능을 스캐너를 가진 클래스에서 수행시킨다. 
 
 
-public class App05 {
+public class App04 {
 
   public static void main(String[] args) {
 
     while (true) {
+      // String input = promptString("명령> ");
+      // 아래 코드로 변경해줌
       String input = Prompt.inputString("명령> ");
 
       if (input.equals("exit") || input.equals("quit")) {
         System.out.println("안녕!");
         break;
       } else if (input.equals("/member/add")) {
+        // addMember(); 을 변경해줌
         MemberHandler.add();
 
       } else if (input.equals("/member/list")) {
+        //listMembers();
         MemberHandler.list();
 
       }  else if (input.equals("/project/add")) {
+        //addProject();
         ProjectHandler.add();
 
       }  else if (input.equals("/project/list")) {
+        //listProjects();
         ProjectHandler.list();
 
       }  else if (input.equals("/task/add")) {
+        //addTask();
         TaskHandler.add();
 
       }  else if (input.equals("/task/list")) {
+        //listTasks();
         TaskHandler.list();
 
       } else {
@@ -41,8 +48,6 @@ public class App05 {
       System.out.println();
     }
 
-    // Prompt 클래스에서 .close 를 수행하도록 함
-    // prompt가 가진 자원이기때문에 그 클래스에서 시행되게 한다.
-    Prompt.close();
+    Prompt.keyboardScan.close();
   }
 }

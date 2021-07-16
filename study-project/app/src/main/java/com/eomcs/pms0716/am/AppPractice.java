@@ -1,4 +1,4 @@
-package com.eomcs.pms0716.practice;
+package com.eomcs.pms0716.am;
 
 public class AppPractice {
 

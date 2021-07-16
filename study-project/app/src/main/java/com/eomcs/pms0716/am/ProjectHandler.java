@@ -1,4 +1,4 @@
-package com.eomcs.pms0716;
+package com.eomcs.pms0716.am;
 
 public class ProjectHandler {
 
@@ -22,7 +22,7 @@ public class ProjectHandler {
   static final int MAX_LENGTH = 7;
 
 
-  static void add() {   //변수명에 project 빼줌
+  public static void add() {   //변수명에 project 빼줌
 
     Project project = new Project();
 
@@ -38,11 +38,11 @@ public class ProjectHandler {
     projects [size++] = project;
   }
 
-  static void list() {  //변수명에 project 빼줌
+  public static void list() {  //변수명에 project 빼줌
     System.out.println("[프로젝트 목록]");
     for (int i = 0; i < size; i++) {
       System.out.printf("%d, %s, %s, %s, %s\n",
-          projects[i].no,
+          projects[i].no,  //projects[i] 로 수정
           projects[i].title,
           projects[i].content,
           projects[i].startDate,
