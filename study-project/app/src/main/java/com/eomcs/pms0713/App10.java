@@ -179,13 +179,12 @@ public class App10 {
 
   //사용자로부터 정수값을 입력받아 리턴 
   static int promptInt(String title) {
-    System.out.print(title);
     return Integer.parseInt(keyboardScan.nextLine());
+    // return 은 출력한다 의미이기 때문에 print 지움!
   }
 
   //사용자로부터 날짜를 입력받아 리턴 
   static Date promptDate(String title) {
-    System.out.print(title);
     return Date.valueOf(keyboardScan.nextLine());
   }
 

@@ -16,10 +16,10 @@ package com.eomcs.algorithm.quiz.stu_quiz;
 public class Test5_0 {
 
   static int countWaysToChangeDigit(int value) {
-    int answer = 0;  
+    int answer = 1;  
     while (value > 0) {       // value > 0 가장 큰 수 까지 실행시킴
-      answer += 9 - value % 10;  //*이 아니라 +으로 수정 // 9-입력값의 자릿수
-      value /= 10;
+      answer *= 9 - value % 10;  // 9-입력값의 자릿수
+      value /= 10;      //입력값을 10으로 나눠서 자릿수 올려줌
     }
 
     // value % 10 : 자기자신의 자릿수
@@ -30,7 +30,7 @@ public class Test5_0 {
 
 
   public static void main(String[] args) {
-    System.out.println(countWaysToChangeDigit(81));
+    System.out.println(countWaysToChangeDigit(15));
 
   }
 
