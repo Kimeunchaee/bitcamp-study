@@ -13,7 +13,7 @@ public class MemberHandler {
   static String[] tel = new String[LENGTH];
   static Date[] registeredDate = new Date[LENGTH];
    */
-  //위에 코드를 바꿔줌 (1,2번)
+  //위에 변수를 Member클래스로 옮겨줌 (public)
 
   // 1. Member 인스턴스의 주소를 저장할 레퍼런스를 5개 생성한다. 이름은 m1,m2... 이다.
   //static Member m1, m2, m3, m4, m5;
@@ -31,7 +31,7 @@ public class MemberHandler {
     System.out.println("[회원 등록]");
 
     // 새 회원 정보를 담을 변수를 준비한다.
-    // 낱개의 변수가 아니라 Member에 정의된 그대로 묶음 변수를 만든다.
+    // 낱개의 변수가 아니라 Meber에 정의된 그대로 묶음 변수를 만든다.
     Member member = new Member();
 
     // Integer.valueOf(promptInt) 를 Prompt.inputInt 으로 바꿔줌

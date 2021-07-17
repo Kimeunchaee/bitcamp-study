@@ -15,7 +15,9 @@ public class ProjectHandler {
   // static int size = 0; 지워줌
    */
 
-  // 위의 코드를 이렇게 바꿔줌
+  // 위의 코드를 Project 클래스로 옮겨줌 (public)
+
+
   static final int LENGTH = 100;
   static Project[] projects = new Project[100];
   static int size = 0;
