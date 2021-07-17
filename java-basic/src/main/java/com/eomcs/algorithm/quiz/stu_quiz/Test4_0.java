@@ -16,7 +16,7 @@ public class Test4_0 {
     int result = 0; //나누어 0이 되는 수 결과값을 카운트해주는 변수
 
     for (int i = 0; i < sequence.length; i++) {
-      for (int j = 1; j < sequence.length; j++) {   // j = i를 j = 1로 바꿔줌, i번째는 여러줄일때 사용 
+      for (int j = 1; j < sequence.length; j++) {   // @정답 j = i를 j = 1로 바꿔줌, i번째는 여러줄일때 사용 
         if (sequence[i] % sequence[j] == 0 || sequence[j] % sequence[i] == 0) {
           result++;
         }
@@ -29,7 +29,5 @@ public class Test4_0 {
   public static void main(String[] args) {
     int[] values = {2, 4, 8};
     System.out.println(divisorsPairs(values));
-
   }
-
 }

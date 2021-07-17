@@ -2,7 +2,7 @@ package com.eomcs.pms0709;
 import java.util.Date;
 import java.util.Scanner;
 
-// app 연습 회원 3명의 정보를 입력 받아 출력
+// app 연습 : 회원 3명의 정보를 입력 받아 출력
 
 public class App1_practice {
 

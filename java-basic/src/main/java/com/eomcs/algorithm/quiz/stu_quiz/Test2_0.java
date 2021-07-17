@@ -19,7 +19,7 @@ public class Test2_0 {
 
 
       if (Math.abs(values[i] - values[i - 1]) > answer) {   // answer = 1 1보다 뺸간격차이가 크면 참
-        //Math.abs : 절댓값으로 바꿔줌 (음수>양수)
+        //@정답 Math.abs 추가 : 절댓값으로 바꿔줌 (음수를 > 양수로)
         answer = Math.abs(values[i] - values[i-1]);
       }
     }
@@ -33,7 +33,5 @@ public class Test2_0 {
     // int result = mavDiff(arr)
     // System.out.prontln(result);
     // 이걸 한줄로 표현
-
   }
-
 }

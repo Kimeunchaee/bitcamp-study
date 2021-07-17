@@ -13,7 +13,7 @@ public class Test3_0 {
   static void changeValuePosition(int[] values) {
     int tmp;
     for (int i = 0; i < values.length / 2; i++) {   // values.length >>1 ;  비트연산자로도 표현 가능 같은 의미 
-      tmp = values[i];  
+      tmp = values[i];  // @정답 values[i] 로 수정
 
       //values[i] 는 앞에 4개 숫자
       //values[i + values.length / 2]는 절반, values[i]와 대응되는것 뒤에 4개 숫자
@@ -31,5 +31,5 @@ public class Test3_0 {
       System.out.print(v + ",");
     }
   }
-
 }
+

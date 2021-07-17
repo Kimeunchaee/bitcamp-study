@@ -14,11 +14,13 @@ public class Test1_0 {
   static int countEvenNumber(int value) {
     int result = 0; //몇개인지 카운트 하는 변수
     int n = value;
-    while(n != 0) {  // n이 0일떄
-      if ((n % 2) == 0) { //n을 2로 나눈 나머지가 0일때 (짝수일때)
+
+    while(n != 0) {  // n이 0일때 (= n>0 도 가능)
+      if ((n % 2) == 0) { //n을 2로 나눈 나머지가 0일때 (짝수일때)    (= (n&1)==0 도 가능)
         result++;   // 참이면 계속 실행
       }
-      n /= 10; //1238694636숫자를 10단위씩 나누면 뒷자리 숫자가 날라감 > 순서대로 짝수의 갯수를 알아냄
+      n /= 10; // @정답 %= 를 /= 로 수정 
+      // 1238694636숫자를 10단위씩 나누면 뒷자리 숫자가 날라감 > 순서대로 짝수의 갯수를 알아냄
     }
     return result; //n값이 짝수면 int result = 0;이 하나씩 증가됨
 
@@ -28,5 +30,4 @@ public class Test1_0 {
     System.out.println(countEvenNumber(1238694636));
 
   }
-
 }
