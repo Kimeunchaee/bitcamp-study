@@ -91,9 +91,10 @@ public class App09 {
   static void addMember() {
     System.out.println("[회원 등록]");
 
-    //    String input = prompt("번호? ");
+    //    input = prompt("번호? ");
     //    no[size] = Integer.parseInt(input);
     //    한줄로 작성
+    //    input 에 prompt("내용 ") 넣어주기
 
     no[size] = Integer.parseInt(prompt("번호? "));
     name[size] = prompt("이름? ");
