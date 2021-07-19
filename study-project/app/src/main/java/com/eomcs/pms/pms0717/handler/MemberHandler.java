@@ -15,7 +15,7 @@ public class MemberHandler {
 
   public static void add() {
     Member member = new Member();
-
+    members[size++] = member;
     while(true) {
       System.out.println("[회원 등록]");
       member.no = Prompt.inputInt("번호? ");  
@@ -32,7 +32,7 @@ public class MemberHandler {
         break;
       }
       System.out.println();
-      members[size++] = member;
+
     }
   }
 

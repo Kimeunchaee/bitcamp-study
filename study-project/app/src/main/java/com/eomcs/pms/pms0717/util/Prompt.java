@@ -19,4 +19,9 @@ public class Prompt {
   public static Date inputDate(String title) {
     return Date.valueOf(inputString(title));
   }
+
+  public static void close() {
+    keyboardScan.close();
+  }
+
 }

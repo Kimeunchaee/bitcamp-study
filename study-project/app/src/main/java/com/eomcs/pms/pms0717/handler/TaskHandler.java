@@ -16,7 +16,7 @@ public class TaskHandler {
 
   public static void add() {
     Task task = new Task();
-
+    tasks[size++] = task;
     while(true) {
       System.out.println("[작업 등록]");
       task.no = Prompt.inputInt("번호? ");
@@ -50,7 +50,7 @@ public class TaskHandler {
         break;
       }
       System.out.println();
-      tasks[size++] = task;
+
     }
   }
 

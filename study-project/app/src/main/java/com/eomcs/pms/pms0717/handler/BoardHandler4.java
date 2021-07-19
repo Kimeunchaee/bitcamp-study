@@ -4,7 +4,7 @@ import java.sql.Date;
 import com.eomcs.pms.pms0717.domain.Board;
 import com.eomcs.pms.pms0717.util.Prompt;
 
-public class BoardHandler {
+public class BoardHandler4 {
   static Board[] boards = new Board[100];
   static int size = 0;
 
@@ -13,7 +13,7 @@ public class BoardHandler {
     boards[size++] = board;
 
     while(true) {
-      System.out.println("[새 게시글]");
+      System.out.println("[게시글 목록4]");
       board.no = Prompt.inputInt("번호? ");  
       board.title =  Prompt.inputString("제목? ");    
       board.content = Prompt.inputString("내용? ");    
@@ -43,8 +43,4 @@ public class BoardHandler {
           boards[i].viewCount, boards[i].like);
     }
   }
-
-
-
-
 }

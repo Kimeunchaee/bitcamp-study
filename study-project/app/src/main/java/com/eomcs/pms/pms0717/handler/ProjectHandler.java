@@ -20,6 +20,7 @@ public class ProjectHandler {
 
   public static void add() {
     Project project = new Project();
+    projects[size++] = project;
 
     while(true) {
       System.out.println("[프로젝트 등록]");
@@ -64,6 +65,10 @@ public class ProjectHandler {
       System.out.println();
     }
   }
+
+
+
+
   public static void list() {
     System.out.println("-------------출력------------");
     for(int i = 0; i < size; i++) {

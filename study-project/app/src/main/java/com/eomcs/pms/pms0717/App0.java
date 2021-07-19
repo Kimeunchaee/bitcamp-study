@@ -1,6 +1,10 @@
 package com.eomcs.pms.pms0717;
 
 import com.eomcs.pms.pms0717.handler.BoardHandler;
+import com.eomcs.pms.pms0717.handler.BoardHandler2;
+import com.eomcs.pms.pms0717.handler.BoardHandler3;
+import com.eomcs.pms.pms0717.handler.BoardHandler4;
+import com.eomcs.pms.pms0717.handler.BoardHandler5;
 import com.eomcs.pms.pms0717.handler.MemberHandler;
 import com.eomcs.pms.pms0717.handler.ProjectHandler;
 import com.eomcs.pms.pms0717.handler.TaskHandler;
@@ -39,6 +43,28 @@ public class App0 {
 
       } else if (str.equals("/board/list")) {
         BoardHandler.list();
+
+
+      } else if (str.equals("/board2/add")) {
+        BoardHandler2.add();
+      } else if (str.equals("/board2/list")) {
+        BoardHandler2.list();
+
+      } else if (str.equals("/board3/add")) {
+        BoardHandler3.add();
+      } else if (str.equals("/board3/list")) {
+        BoardHandler3.list();
+
+      } else if (str.equals("/board4/add")) {
+        BoardHandler4.add();
+      } else if (str.equals("/board4/list")) {
+        BoardHandler4.list();
+
+      } else if (str.equals("/board5/add")) {
+        BoardHandler5.add();
+
+      } else if (str.equals("/board5/list")) {
+        BoardHandler5.list();
 
 
       } else {
