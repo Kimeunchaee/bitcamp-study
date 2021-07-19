@@ -1,8 +1,9 @@
-package com.eomcs.pms.pms0717;
+package com.eomcs.pms.pms0717.domain;
 
 import java.sql.Date;
 
 public class Member {
+  public static String members;
   //회원 정보입력
   public int no;
   public String name;

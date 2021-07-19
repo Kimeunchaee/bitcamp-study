@@ -1,10 +1,20 @@
-package com.eomcs.pms.pms0717;
+package com.eomcs.pms.pms0717.handler;
+
+import com.eomcs.pms.pms0717.domain.Task;
+import com.eomcs.pms.pms0717.util.Prompt;
+import com.eomcs.pms0719.handler.MemberHandler;
+
+// `TaskHandler.add()`에서 `MemberHandler.exist()` 메서드를 사용하여
+// 이름의 유효 여부를 검사한다.
+// 1. 이름이 유효할 경우에는 다음 입력으로 넘어간다.
+// 2. 담당자의 이름이 무효할 경우에는 오류를 알리고 다시 입력 받는다.
+// 3. 담당자의 이름이 빈 문자열일 경우에는 등록을 취소한다.
 
 public class TaskHandler {
   static Task[] tasks = new Task[100];
   static int size = 0;
 
-  static void add() {
+  public static void add() {
     Task task = new Task();
 
     while(true) {
@@ -14,8 +24,25 @@ public class TaskHandler {
       task.deadLine = Prompt.inputDate("시작일? ");
       task.owner = Prompt.inputString("작성자? ");
       System.out.println("상태? ");
-      System.out.println(" 0: 신규\n 1: 진행중\n 2: 완료");
-      System.out.print("> ");
+      System.out.println(" 0: 신규\n 1: 진행중\n 2: 완료\n>");
+
+
+
+      while (true) {
+        String name = Prompt.inputString("담당자?(취소: 빈 문자열) ");
+        if (name.length() == 0) {
+          System.out.println("작업 등록을 취소합니다.");
+          return;
+        } else if (MemberHandler.exist(name)) {
+          task.owner = name;
+          break;
+        } else {
+          System.out.println("등록된 회원이 아닙니다.");
+        }
+      }
+
+
+
 
       System.out.print("계속 입력하시겠습니까?(y/N) ");
       String str = Prompt.keyboardScan.nextLine();
@@ -27,7 +54,7 @@ public class TaskHandler {
     }
   }
 
-  static void list() {
+  public static void list() {
     System.out.println("-------------출력------------");
     for(int i = 0; i < size; i++) {
       String statusinput = null;

@@ -1,12 +1,19 @@
-package com.eomcs.pms.pms0717;
+package com.eomcs.pms.pms0717.handler;
 
 import java.sql.Date;
+import com.eomcs.pms.pms0717.domain.Member;
+import com.eomcs.pms.pms0717.util.Prompt;
+
+
+//`MemberHandler`에 이름으로 회원 정보를 찾는 exist() 메서드를 추가한다.
+//: static boolean exist(String name)
+
 
 public class MemberHandler {
   static Member[] members = new Member[100];
   static int size = 0;
 
-  static void add() {
+  public static void add() {
     Member member = new Member();
 
     while(true) {
@@ -29,11 +36,31 @@ public class MemberHandler {
     }
   }
 
-  static void list() {
+
+
+
+
+  public static void list() {
     System.out.println("----------------출력----------------");
     for(int i = 0; i < size; i++) {
       System.out.printf("%d, %s, %s, %s, %5$tY-%5$tm-%5$td\n", 
           members[i].no, members[i].name, members[i].email,members[i].tel,members[i].registeredDate);
     }
   }
+
+
+
+
+
+  static boolean exist(String name) {
+    for(int i = 0; i < size; i++) {
+      if(name.equals(members[i].name)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+
 }

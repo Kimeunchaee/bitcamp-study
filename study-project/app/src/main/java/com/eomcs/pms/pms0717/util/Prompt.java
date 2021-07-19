@@ -1,11 +1,11 @@
-package com.eomcs.pms.pms0717;
+package com.eomcs.pms.pms0717.util;
 
 import java.sql.Date;
 import java.util.Scanner;
 
 public class Prompt {
 
-  static Scanner keyboardScan = new Scanner(System.in);
+  public static Scanner keyboardScan = new Scanner(System.in);
 
   public static String inputString(String title) {
     System.out.print(title);
