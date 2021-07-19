@@ -1,8 +1,8 @@
-package com.eomcs.pms.pms0717.handler;
+package com.eomcs.pms.pms0719.handler;
 
-import com.eomcs.pms.pms0717.domain.Member;
-import com.eomcs.pms.pms0717.domain.Project;
-import com.eomcs.pms.pms0717.util.Prompt;
+import com.eomcs.pms.pms0719.domain.Member;
+import com.eomcs.pms.pms0719.domain.Project;
+import com.eomcs.pms.pms0719.util.Prompt;
 
 //`ProjectHandler.add()`에서 `MemberHandler.exist()` 메서드를 사용하여
 //이름의 유효 여부를 검사한다.
@@ -14,8 +14,8 @@ import com.eomcs.pms.pms0717.util.Prompt;
 
 public class ProjectHandler {
 
-
-  static Project[] projects = new Project[100];
+  static final int MAX_LENGTH = 5;
+  static Project[] projects = new Project[MAX_LENGTH];
   static int size = 0;
 
   public static void add() {

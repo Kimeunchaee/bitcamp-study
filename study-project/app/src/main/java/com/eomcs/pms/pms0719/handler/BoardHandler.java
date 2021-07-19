@@ -1,16 +1,17 @@
-package com.eomcs.pms.pms0717.handler;
+package com.eomcs.pms.pms0719.handler;
 
 import java.sql.Date;
-import com.eomcs.pms.pms0717.domain.Board;
-import com.eomcs.pms.pms0717.util.Prompt;
+import com.eomcs.pms.pms0719.domain.Board;
+import com.eomcs.pms.pms0719.util.Prompt;
 
 public class BoardHandler {
-  static Board[] boards = new Board[100];
-  static int size = 0;
+  static final int MAX_LENGTH = 5; //static 메소드area에 만들어짐 딱 하나
+  Board[] boards = new Board[MAX_LENGTH]; // //static없는 변수는 여러개 만들수있음 heap(?)
+  int size = 0;
 
-  public static void add() {
+  public static void add(BoardHandler that) {  //static 없으면 공유할수 없기때문에 that 인스턴스 주소가 있어야한다
     Board board = new Board();
-    boards[size++] = board;
+    that.boards[that.size++] = board;
 
     while(true) {
       System.out.println("[새 게시글]");
@@ -34,13 +35,13 @@ public class BoardHandler {
   }
 
 
-  public static void list() {
+  public static void list(BoardHandler that) {
     System.out.println("----------------출력----------------");
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < that.size; i++) {
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
-          boards[i].no, boards[i].title,
-          boards[i].writer, boards[i].registeredDate,
-          boards[i].viewCount, boards[i].like);
+          that.boards[i].no, that.boards[i].title,
+          that.boards[i].writer, that.boards[i].registeredDate,
+          that.boards[i].viewCount, that.boards[i].like);
     }
   }
 

@@ -1,8 +1,8 @@
-package com.eomcs.pms.pms0717.handler;
+package com.eomcs.pms.pms0719.handler;
 
-import com.eomcs.pms.pms0717.domain.Task;
-import com.eomcs.pms.pms0717.util.Prompt;
-import com.eomcs.pms0719.handler.MemberHandler;
+import com.eomcs.pms.pms0719.domain.Task;
+import com.eomcs.pms.pms0719.util.Prompt;
+
 
 // `TaskHandler.add()`에서 `MemberHandler.exist()` 메서드를 사용하여
 // 이름의 유효 여부를 검사한다.
@@ -11,7 +11,8 @@ import com.eomcs.pms0719.handler.MemberHandler;
 // 3. 담당자의 이름이 빈 문자열일 경우에는 등록을 취소한다.
 
 public class TaskHandler {
-  static Task[] tasks = new Task[100];
+  static final int MAX_LENGTH = 5;
+  static Task[] tasks = new Task[MAX_LENGTH];
   static int size = 0;
 
   public static void add() {
@@ -69,12 +70,4 @@ public class TaskHandler {
           tasks[i].no, tasks[i].content, tasks[i].deadLine, tasks[i].owner, statusinput);
     }
   }
-
-
-
-
-
-
-
-
 }

@@ -1,19 +1,23 @@
-package com.eomcs.pms.pms0717;
+package com.eomcs.pms.pms0719;
 
-import com.eomcs.pms.pms0717.handler.BoardHandler;
-import com.eomcs.pms.pms0717.handler.BoardHandler2;
-import com.eomcs.pms.pms0717.handler.BoardHandler3;
-import com.eomcs.pms.pms0717.handler.BoardHandler4;
-import com.eomcs.pms.pms0717.handler.BoardHandler5;
-import com.eomcs.pms.pms0717.handler.MemberHandler;
-import com.eomcs.pms.pms0717.handler.ProjectHandler;
-import com.eomcs.pms.pms0717.handler.TaskHandler;
-import com.eomcs.pms.pms0717.util.Prompt;
+import com.eomcs.pms.pms0719.handler.BoardHandler;
+import com.eomcs.pms.pms0719.handler.MemberHandler;
+import com.eomcs.pms.pms0719.handler.ProjectHandler;
+import com.eomcs.pms.pms0719.handler.TaskHandler;
+import com.eomcs.pms.pms0719.util.Prompt;
 
 
 public class App0 {
 
   public static void main(String[] args) {
+
+    // 각 게시판에 게시글을 담을 메모리(bosrds레퍼런스배열과 size)를 준비한다
+    BoardHandler boardHandler = new BoardHandler();
+    BoardHandler boardHandler2 = new BoardHandler();
+    BoardHandler boardHandler3 = new BoardHandler();
+    BoardHandler boardHandler4 = new BoardHandler();
+    BoardHandler boardHandler5 = new BoardHandler();
+
     while(true) {
       String str = Prompt.inputString("명령 > ");
 
@@ -38,33 +42,35 @@ public class App0 {
       } else if (str.equals("/task/list")) {
         TaskHandler.list();
 
+
+
       } else if (str.equals("/board/add")) {
-        BoardHandler.add();
+        BoardHandler.add(boardHandler);
 
       } else if (str.equals("/board/list")) {
-        BoardHandler.list();
+        BoardHandler.list(boardHandler);
 
 
       } else if (str.equals("/board2/add")) {
-        BoardHandler2.add();
+        BoardHandler.add(boardHandler);
       } else if (str.equals("/board2/list")) {
-        BoardHandler2.list();
+        BoardHandler.list(boardHandler);
 
       } else if (str.equals("/board3/add")) {
-        BoardHandler3.add();
+        BoardHandler.add(boardHandler);
       } else if (str.equals("/board3/list")) {
-        BoardHandler3.list();
+        BoardHandler.list(boardHandler);
 
       } else if (str.equals("/board4/add")) {
-        BoardHandler4.add();
+        BoardHandler.add(boardHandler);
       } else if (str.equals("/board4/list")) {
-        BoardHandler4.list();
+        BoardHandler.list(boardHandler);
 
       } else if (str.equals("/board5/add")) {
-        BoardHandler5.add();
+        BoardHandler.add(boardHandler);
 
       } else if (str.equals("/board5/list")) {
-        BoardHandler5.list();
+        BoardHandler.list(boardHandler);
 
 
       } else {

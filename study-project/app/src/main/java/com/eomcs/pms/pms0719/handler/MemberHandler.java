@@ -1,8 +1,8 @@
-package com.eomcs.pms.pms0717.handler;
+package com.eomcs.pms.pms0719.handler;
 
 import java.sql.Date;
-import com.eomcs.pms.pms0717.domain.Member;
-import com.eomcs.pms.pms0717.util.Prompt;
+import com.eomcs.pms.pms0719.domain.Member;
+import com.eomcs.pms.pms0719.util.Prompt;
 
 
 //`MemberHandler`에 이름으로 회원 정보를 찾는 exist() 메서드를 추가한다.
@@ -10,7 +10,8 @@ import com.eomcs.pms.pms0717.util.Prompt;
 
 
 public class MemberHandler {
-  static Member[] members = new Member[100];
+  static final int MAX_LENGTH = 5;
+  static Member[] members = new Member[MAX_LENGTH];
   static int size = 0;
 
   public static void add() {
