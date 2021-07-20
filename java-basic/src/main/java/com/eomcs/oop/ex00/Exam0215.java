@@ -6,23 +6,24 @@ public class Exam0215 {
   static class Calculate {
 
 
-    static int result = 0;  
+    int result = 0;  
 
-    // 13. obj 변수명 대신 taht을 사용해준다
-    static void plus(Calculate taht, int value) {   
-      result += value;
+    // 14. 파라미터 이름 : obj 변수명 대신 taht 변수명을 사용해준다
+    // 의미 없음 (obj와 that 둘다 단순히 변수명임) 예제 연습일뿐
+    void plus(Calculate taht, int value) {   
+      taht.result += value;  //obj를 that으로 수정
     }
 
-    static void minus(Calculate taht, int value) {
-      result -= value;
+    void minus(Calculate taht, int value) {
+      taht.result -= value;
     }
 
-    static void multiple(Calculate taht, int value) {
-      result *= value;
+    void multiple(Calculate taht, int value) {
+      taht.result *= value;
     }
 
-    static void divide(Calculate taht, int value) {
-      result /= value;
+    void divide(Calculate taht, int value) {
+      taht.result /= value;
     }
   }
 
@@ -33,13 +34,13 @@ public class Exam0215 {
     Calculate c1 = new Calculate();
     Calculate c2 = new Calculate();
 
-    Calculate.plus(c1, 2);
-    Calculate.plus(c2, 3);
-    Calculate.minus(c1, 1);
-    Calculate.multiple(c1, 7);
-    Calculate.divide(c1,3);
+    c1.plus(c1, 2);
+    c2.plus(c2, 3);
+    c2.minus(c1, 1);
+    c1.multiple(c1, 7);
+    c1.divide(c1,3);
 
-    System.out.printf("result = %d\n", Calculate.result);
+    System.out.printf("result = %d\n", c1.result);
   }
 }
 

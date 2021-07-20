@@ -1,6 +1,6 @@
 package com.eomcs.oop.ex00;
 
-//2. static 변수
+//2. static 변수(클래스 메서드)
 
 
 public class Exam0212 {
@@ -8,6 +8,7 @@ public class Exam0212 {
   static class Calculate {
 
     static int result = 0;   //2. main()메서드에서 사용하기 위해 static을 붙혀줌 
+    // 특정 인스턴스가 아닌 모든 인스턴스에 대해 작업을 수행함
 
     static int plus(int a, int b) {  
       return a + b;

@@ -1,13 +1,16 @@
 package com.eomcs.oop.ex00;
 
-// 3. instant 변수 선언
+// 3. static 변수(클래스 메서드) - 2
 public class Exam0213 {
 
   static class Calculate {
 
     static int result = 0;  
 
-    static void plus(int value) {   // 8. plus, minus ..메소드 모두 main에서 사용하기 위해 static을 붙혀준다
+    // 8. plus, minus ..메소드 모두 main에서 사용하기 위해 static을 붙혀준다.
+    // 메소드 타입을 int > void 로 변경한다
+
+    static void plus(int value) {   
       result += value;
     }
 
