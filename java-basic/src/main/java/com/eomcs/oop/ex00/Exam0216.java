@@ -16,7 +16,7 @@ public class Exam0216 {
     // 15. that > this 로 변경
 
     // that을 this로 바꿔준다. 자기자신을 가리키고 있기때문에
-    // 따로 선언을 해 줄 필요도 없다(Calculate this, int value) > ( int value) 로 변경
+    // 따로 선언을 해 줄 필요도 없다(Calculate this, int value) > (int value) 로 변경
 
     void plus(int value) {  
       this.result += value;     //that을 this로 변경

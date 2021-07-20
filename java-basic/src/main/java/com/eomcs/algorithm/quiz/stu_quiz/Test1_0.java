@@ -15,7 +15,7 @@ public class Test1_0 {
     int result = 0; //몇개인지 카운트 하는 변수
     int n = value;
 
-    while(n != 0) {  // n이 0일때 (= n>0 도 가능)
+    while(n != 0) {  // n이 0아닐때 (= n>0 도 가능)
       if ((n % 2) == 0) { //n을 2로 나눈 나머지가 0일때 (짝수일때)    (= (n&1)==0 도 가능)
         result++;   // 참이면 계속 실행
       }
