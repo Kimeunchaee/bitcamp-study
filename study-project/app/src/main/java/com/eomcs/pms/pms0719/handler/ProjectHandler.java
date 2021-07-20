@@ -30,6 +30,8 @@ public class ProjectHandler {
       project.startDate = Prompt.inputDate("시작일? ");
       project.endDate = Prompt.inputDate("종료일? ");
 
+
+
       //회원 정보를 조회하여 등록
       while(true) {
         String owner = Prompt.inputString("만든이? (취소:엔터)");

@@ -6,7 +6,8 @@ import com.eomcs.pms.pms0719.util.Prompt;
 
 public class BoardHandler {
   static final int MAX_LENGTH = 5; //static 메소드area에 만들어짐 딱 하나
-  Board[] boards = new Board[MAX_LENGTH]; // //static없는 변수는 여러개 만들수있음 heap(?)
+
+  Board[] boards = new Board[MAX_LENGTH]; //static없는 변수는 여러개 만들수있음 heap(?)
   int size = 0;
 
   public static void add(BoardHandler that) {  //static 없으면 공유할수 없기때문에 that 인스턴스 주소가 있어야한다
