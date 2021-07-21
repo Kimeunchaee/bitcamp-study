@@ -1,13 +1,13 @@
-package com.eomcs.pms.pms0719;
+package com.eomcs.pms.pms0721;
 
-import com.eomcs.pms.pms0719.handler.BoardHandler;
-import com.eomcs.pms.pms0719.handler.MemberHandler;
-import com.eomcs.pms.pms0719.handler.ProjectHandler;
-import com.eomcs.pms.pms0719.handler.TaskHandler;
-import com.eomcs.pms.pms0719.util.Prompt;
+import com.eomcs.pms.pms0721.handler.BoardHandler;
+import com.eomcs.pms.pms0721.handler.MemberHandler;
+import com.eomcs.pms.pms0721.handler.ProjectHandler;
+import com.eomcs.pms.pms0721.handler.TaskHandler;
+import com.eomcs.pms.pms0721.util.Prompt;
 
 
-public class App0 {
+public class App1 {
 
   public static void main(String[] args) {
 
@@ -17,6 +17,10 @@ public class App0 {
     BoardHandler boardHandler3 = new BoardHandler();
     BoardHandler boardHandler4 = new BoardHandler();
     BoardHandler boardHandler5 = new BoardHandler();
+    MemberHandler memberHandler = new MemberHandler();  // memberHandler 인스턴스 주소명
+    ProjectHandler projectHandler = new ProjectHandler();
+    TaskHandler taskHandler = new TaskHandler();
+
 
     while(true) {
       String str = Prompt.inputString("명령 > ");
@@ -25,52 +29,53 @@ public class App0 {
         break;
 
       } else if (str.equals("/member/add")) {
-        MemberHandler.add();
+        memberHandler.add();
 
       } else if(str.equals("/member/list")) {
-        MemberHandler.list();
+        memberHandler.list();
 
+        // app1 에서 MemberHandler클래스메소드의 내용을 받아와서
+        // new로 새로운 인스턴스를 생성함 (인스턴스 이름 : memberHandler)
+        // 인스턴스변수명을 add()에 넣어줌
       } else if(str.equals("/project/add")) { 
-        ProjectHandler.add();
+        projectHandler.add(memberHandler); 
 
       } else if (str.equals("/project/list")) {
-        ProjectHandler.list();
+        projectHandler.list();
 
       } else if (str.equals("/task/add")) {
-        TaskHandler.add();
+        taskHandler.add(memberHandler);
 
       } else if (str.equals("/task/list")) {
-        TaskHandler.list();
+        taskHandler.list();
 
 
 
       } else if (str.equals("/board/add")) {
-        BoardHandler.add(boardHandler);
-
+        //BoardHandler.add(boardHandler);
+        boardHandler.add();
       } else if (str.equals("/board/list")) {
-        BoardHandler.list(boardHandler);
-
+        boardHandler.list();
 
       } else if (str.equals("/board2/add")) {
-        BoardHandler.add(boardHandler2);
+        boardHandler2.add();
       } else if (str.equals("/board2/list")) {
-        BoardHandler.list(boardHandler2);
+        boardHandler2.list();
 
       } else if (str.equals("/board3/add")) {
-        BoardHandler.add(boardHandler3);
+        boardHandler3.add();
       } else if (str.equals("/board3/list")) {
-        BoardHandler.list(boardHandler3);
+        boardHandler3.list();
 
       } else if (str.equals("/board4/add")) {
-        BoardHandler.add(boardHandler4);
+        boardHandler4.add();
       } else if (str.equals("/board4/list")) {
-        BoardHandler.list(boardHandler4);
+        boardHandler4.list();
 
       } else if (str.equals("/board5/add")) {
-        BoardHandler.add(boardHandler5);
-
+        boardHandler5.add();
       } else if (str.equals("/board5/list")) {
-        BoardHandler.list(boardHandler5);
+        boardHandler5.list();
 
 
       } else {

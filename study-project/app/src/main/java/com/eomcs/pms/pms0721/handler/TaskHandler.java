@@ -1,25 +1,24 @@
-package com.eomcs.pms.pms0719.handler;
+package com.eomcs.pms.pms0721.handler;
 
-import com.eomcs.pms.pms0719.domain.Task;
-import com.eomcs.pms.pms0719.util.Prompt;
+import com.eomcs.pms.pms0721.domain.Task;
+import com.eomcs.pms.pms0721.util.Prompt;
 
 
-// `TaskHandler.add()`에서 `MemberHandler.exist()` 메서드를 사용하여
-// 이름의 유효 여부를 검사한다.
-// 1. 이름이 유효할 경우에는 다음 입력으로 넘어간다.
-// 2. 담당자의 이름이 무효할 경우에는 오류를 알리고 다시 입력 받는다.
-// 3. 담당자의 이름이 빈 문자열일 경우에는 등록을 취소한다.
 
 public class TaskHandler {
+
   static final int MAX_LENGTH = 5;
-  static Task[] tasks = new Task[MAX_LENGTH];
-  static int size = 0;
 
+  Task[] tasks = new Task[MAX_LENGTH];
+  int size = 0;
 
-  public static void add() {
+  // add()에 if문에서 exist()를 사용하기 위해
+  // mh 라는 이름을 가진 파라미터에
+  // add(),list(),exist()를 가진 MemberHandler(주소값)을 볼러옴
+
+  public void add (MemberHandler mh) {
     Task task = new Task();
-    tasks[size++] = task;
-
+    this.tasks[this.size++] = task;
     while(true) {
       System.out.println("[작업 등록]");
       task.no = Prompt.inputInt("번호? ");
@@ -36,7 +35,7 @@ public class TaskHandler {
         if (name.length() == 0) {
           System.out.println("작업 등록을 취소합니다.");
           return;
-        } else if (MemberHandler.exist(name)) {
+        } else if (mh.exist(name)) {
           task.owner = name;
           break;
         } else {
@@ -57,19 +56,19 @@ public class TaskHandler {
     }
   }
 
-  public static void list() {
+  public void list() {
     System.out.println("-------------출력------------");
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < this.size; i++) {
       String statusinput = null;
-      if(tasks[i].status == 0) {
+      if(this.tasks[i].status == 0) {
         statusinput = "신규";
-      } else if (tasks[i].status == 1) {
+      } else if (this.tasks[i].status == 1) {
         statusinput = "진행중";
-      } else if (tasks[i].status == 2) {
+      } else if (this.tasks[i].status == 2) {
         statusinput = "완료";
       }
       System.out.printf("%d %s %s %s %s\n", 
-          tasks[i].no, tasks[i].content, tasks[i].deadLine, tasks[i].owner, statusinput);
+          this.tasks[i].no, this.tasks[i].content, this.tasks[i].deadLine, this.tasks[i].owner, statusinput);
     }
   }
 }
