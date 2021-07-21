@@ -1,10 +1,8 @@
-package com.eomcs.pms.pms0721.domain;
+package com.eomcs.pms.p0721.domain;
 
 import java.sql.Date;
 
 public class Board {
-  public static String boards;
-  //회원 정보입력
   public int no;
   public String title;
   public String content;
@@ -12,5 +10,4 @@ public class Board {
   public Date registeredDate;
   public int viewCount;
   public int like;
-
 }

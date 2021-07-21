@@ -1,4 +1,4 @@
-package com.eomcs.pms.pms0721.handler;
+package com.eomcs.pms0721.handler;
 
 import java.sql.Date;
 import com.eomcs.pms.pms0719.domain.Board;
