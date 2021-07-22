@@ -116,9 +116,13 @@ public class BoardHandler3 {
     }
 
     String label = String.format("제목(%s)? ", board.title);
+    // String 클래스의 format은 printf와 비슷하지만 문자열을 만들고 리턴(값을 반환)한다.
+    // format을 사용하면 label값을 변경하기 위해 따로 리턴할 필요없음
     String title = Prompt.inputString(label);
 
-    label = String.format("내용(%s)? ", board.content);
+
+    // label 타입과 내용을 위에서 지정해주었기 때문에 변수명만 불러와서 사용
+    label = String.format("내용(%s)? ", board.content);   //문자열을 입력받아서 label에 리턴함
     String content = Prompt.inputString(label);
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
@@ -126,8 +130,8 @@ public class BoardHandler3 {
       System.out.println("게시글 변경을 취소하였습니다.");
       return; // 메소드의 모든 실행을 종료시킴
     }
-
-    board.title = title;
+    // 위에 input에서 y를 입력하면 실행되는 코드
+    board.title = title;    //기존 title 을 lable입력값(사용자가 입력한) title로 변경
     board.content = content;
     System.out.println("게시글을 변경하였습니다.");
   }
@@ -142,21 +146,23 @@ public class BoardHandler3 {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    int boardIndex = -1;
-    Board board = null;
+    int boardIndex = -1;    // -1은 유효하지 않는 배열임 (0미만)
 
     for (int i = 0; i < this.size; i++) { 
       if (this.boards[i].no == no) {  
-        boardIndex = i; 
+        boardIndex = i;     //인덱스(배열이 i일때=유효할때)
         break;
       }
-    } 
-    System.out.println("해당 번호의 게시글이 없습니다.");
-    return;
+    }
+    if(boardIndex == -1) {   // -1은 없는 배열이므로 일치하는 값을 찾지 못할때
+      System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
+    }
 
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-    if (input.equalsIgnoreCase("n")) {
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
       System.out.println("게시글 삭제를 취소하였습니다.");
+      return;
     }
 
 
@@ -169,7 +175,7 @@ public class BoardHandler3 {
     // this.boards[i] = this.boards[i + 1];
     // this.boards[this.size - 1] = null;
 
-    for(int i = boardIndex + 1; < this.size; i++ ) { 
+    for(int i = boardIndex + 1; i < this.size; i++ ) { 
       // 1번째껄 지우고싶을때 1번째 데이터가 있는 배열 번호는 0이기 때문에 boardIndex + 1 를 해서 내가 원하는 배열칸으로 지정해줄수있음
       this.boards[i - 1] = this.boards[i];
     } //this.boards[this.size - 1] = null;
@@ -177,8 +183,14 @@ public class BoardHandler3 {
     // size 자체가 하나 줄어야 하는걸 간단하게 표현하기 위해 전위연산자를 사용해서 --으로 바꿔줌
 
     System.out.println("게시글을 삭제하였습니다.");
-    return;
   }
 
 }
+
+
+
+
+
+
+
 

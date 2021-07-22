@@ -1,6 +1,6 @@
 package com.eomcs.pms.pms0722;
 
-import com.eomcs.pms.pms0722.handler.BoardHandler;
+import com.eomcs.pms.pms0722.handler.BoardHandler1;
 import com.eomcs.pms.pms0722.handler.MemberHandler;
 import com.eomcs.pms.pms0722.handler.ProjectHandler;
 import com.eomcs.pms.pms0722.handler.TaskHandler;
@@ -10,7 +10,7 @@ public class App {
 
   public static void main(String[] args) {
 
-    BoardHandler boardHandler = new BoardHandler();
+    BoardHandler1 boardHandler = new BoardHandler1();
     MemberHandler memberHandler = new MemberHandler();
     ProjectHandler projectHandler = new ProjectHandler();
     TaskHandler taskHandler = new TaskHandler();
@@ -27,11 +27,23 @@ public class App {
       } else if (input.equals("/member/list")) {
         memberHandler.list();
 
+      } else if (input.equals("/member/detail")) {
+        memberHandler.detail();
+
+      } else if (input.equals("/member/update")) {
+        memberHandler.update();
+
       }  else if (input.equals("/project/add")) {
         projectHandler.add(memberHandler);
 
       }  else if (input.equals("/project/list")) {
         projectHandler.list();
+
+      } else if (input.equals("/project/detail")) {
+        projectHandler.detail();
+
+      } else if (input.equals("/project/update")) {
+        projectHandler.update();
 
       }  else if (input.equals("/task/add")) {
         taskHandler.add(memberHandler);

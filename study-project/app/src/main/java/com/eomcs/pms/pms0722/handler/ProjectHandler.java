@@ -1,5 +1,6 @@
 package com.eomcs.pms.pms0722.handler;
 
+import java.sql.Date;
 import com.eomcs.pms.pms0722.domain.Project;
 import com.eomcs.pms.pms0722.util.Prompt;
 
@@ -56,15 +57,99 @@ public class ProjectHandler {
   public void list() {
     System.out.println("[프로젝트 목록]");
     for (int i = 0; i < this.size; i++) {
-      System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
+      System.out.printf("%d, %s, %s, %s, %s, %s, %s\n",
           this.projects[i].no, 
           this.projects[i].title, 
+          this.projects[i].content,
           this.projects[i].startDate, 
           this.projects[i].endDate, 
           this.projects[i].owner,
-          this.projects[i].members);
+          this.projects[i].members
+          );
     }
   }
+
+  public void detail() {
+    System.out.println("[프로젝트 상세보기]");
+    int no = Prompt.inputInt("번호? ");
+
+    Project ppp = null;
+
+    for(int i = 0; i < this.size; i++) {
+      if (this.projects[i].no == no) {
+        ppp = this.projects[i];
+        break;
+      }
+    }
+
+    if (ppp == null) {
+      System.out.println("해당 번호의 프로젝트가 없습니다.");
+      return;
+    }
+
+    System.out.printf("번호 : %s\n" , ppp.title);
+    System.out.printf("번호 : %s\n" , ppp.startDate);
+    System.out.printf("번호 : %s\n" , ppp.endDate);
+    System.out.printf("번호 : %s\n" , ppp.owner);
+    System.out.printf("번호 : %s\n" , ppp.members);
+  }
+
+
+  public void update() {
+    System.out.println("[프로젝트 변경]");
+    int no = Prompt.inputInt("번호? ");
+
+    Project project = null;
+
+    for(int i = 0; i < this.size; i++) {
+      if(this.projects[i].no == no) {
+
+        project = this.projects[i];
+        break;
+      }
+    }
+
+    if(project == null) {
+      System.out.println("해당 번호의 프로젝트가 없습니다.");
+      return;
+    }
+
+    String label = String.format("프로젝트명(%s)? ", project.title);
+    String title = Prompt.inputString(label);
+
+    label = String.format("내용(%s)? ", project.content);
+    String content = Prompt.inputString(label);
+
+    label = String.format("시작일(%s)? ", project.startDate);
+    Date startDate = Prompt.inputDate(label);
+
+    label = String.format("종료일(%s)? ", project.endDate);
+    Date endDate = Prompt.inputDate(label);
+
+    label = String.format("만든이(%s)? ", project.owner);
+    String owner = Prompt.inputString(label);
+
+    label = String.format("팀원(%s)? ", project.members);
+    String members = Prompt.inputString(label);
+
+    String input = Prompt.inputString("정말 변경하시겠습니까?");
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+      System.out.println("프로젝트 변경을 취소하였습니다.");
+      return;
+    }
+    project.title = title;
+    project.content = content;
+    project.startDate = startDate;
+    project.endDate = endDate;
+    project.owner = owner;
+    project.members = members;
+    System.out.println("프로젝트를 변경하였습니다.");
+  }
+
+
+
+
+
 
 
 }

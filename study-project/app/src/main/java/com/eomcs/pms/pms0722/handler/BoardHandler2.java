@@ -140,7 +140,6 @@ public class BoardHandler2 {
     int no = Prompt.inputInt("번호? ");
 
     int boardIndex = -1;
-    Board board = null;
 
     for (int i = 0; i < this.size; i++) { //i는 삭제하려는 번호 부터 시작해서
       // size 배열의 크기 전 까지 실행하고
@@ -149,13 +148,16 @@ public class BoardHandler2 {
         boardIndex = i;  // 보드 인덱스=배열 , i번째 배열 
         break;
       }
-
+    }
+    if(boardIndex == -1) {
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
+
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-    if (input.equalsIgnoreCase("n")) {
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
       System.out.println("게시글 삭제를 취소하였습니다.");
+      return;
     }
 
 
@@ -164,11 +166,12 @@ public class BoardHandler2 {
     // 그리고 마지막 항복은 null로 초기화시킴
     for(int i = boardIndex; i < this.size - 1; i++ ) {
       this.boards[i] = this.boards[i + 1];
-    } this.boards[this.size - 1] = null;    // 앞으로 당긴 후 맨 뒤의 항목은 null로 설정한다.
+    } 
+    this.boards[this.size - 1] = null;    // 앞으로 당긴 후 맨 뒤의 항목은 null로 설정한다.
     // size (배열의 크기) 가 7일때 배열은 0~6까지이기때문에 size-1이 배열의 마지막항목을 의미함
 
     System.out.println("게시글을 삭제하였습니다.");
-    return;
   }
 }
+
 

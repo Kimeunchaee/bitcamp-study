@@ -4,7 +4,7 @@ import java.sql.Date;
 import com.eomcs.pms.pms0722.domain.Board;
 import com.eomcs.pms.pms0722.util.Prompt;
 
-public class BoardHandler4 {
+public class BoardHandler1 {
 
 
   //메소드끼리 공유하는 변수 MAX_LENGTH / boards / size
@@ -133,39 +133,27 @@ public class BoardHandler4 {
   }
 
 
-  // 2 에서는 반복문을 2번사용해야했는데
-  // 배열의 시작점을 다른방법으로 지정해줘서
-  // 작성하는방법
 
   //-----------------------------------------------------------------------
+
   public void delete() {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    int boardIndex = -1;
-    Board board = null;
-
     for (int i = 0; i < this.size; i++) { 
       if (this.boards[i].no == no) {  
-        boardIndex = i; 
         break;
       }
-    } 
-    System.out.println("해당 번호의 게시글이 없습니다.");
-    return;
-
-    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-    if (input.equalsIgnoreCase("n")) {
-      System.out.println("게시글 삭제를 취소하였습니다.");
+      System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
     }
 
-    for(int i = boardIndex + 1; < this.size; i++ ) { 
-      this.boards[i - 1] = this.boards[i];
-    } this.boards[--this.size] = null; 
-
-    System.out.println("게시글을 삭제하였습니다.");
-    return;
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+      System.out.println("게시글 삭제를 취소하였습니다.");
+      return;
+    }
   }
-
 }
+
 
