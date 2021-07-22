@@ -9,6 +9,7 @@ public class Exam0213 {
 
     // 8. plus, minus ..메소드 모두 main에서 사용하기 위해 static을 붙혀준다.
     // 메소드 타입을 int > void 로 변경한다
+    // (return 되는 타입이 없을때 void 사용)
 
     static void plus(int value) {   
       result += value;

@@ -68,26 +68,27 @@ public class BoardHandler {
     int no = Prompt.inputInt("번호? ");
 
     Board board = null;
+    // 디테일 메소드에서 board 변수를 만들어서
+    // 실행결과들을 저장
+    // 변수 사용전 null 비워주기
 
     for (int i = 0; i < this.size; i++) {    //BoardHandler클래스의 size 인스턴스 변수
       if (this.boards[i].no == no) {
         board = this.boards[i];
-        board.viewCount++;
-        System.out.printf("제목: %s\n", board.title);
-        System.out.printf("내용: %s\n", board.content);
-        System.out.printf("작성자: %s\n", board.writer);
-        System.out.printf("등록일: %s\n", board.registeredDate);
-        System.out.printf("조회수: %d\n", ++board.viewCount);
-        return;
+        break; // if문이 중단되고 for문을 빠져나간다
       }
-
-      if (board == null) {
-        System.out.println("해당 번호의 게시글이 없습니다.");
-        return;
-      }
-
-
     }
+
+    if (board == null) {
+      System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
+    }
+
+    System.out.printf("제목: %s\n", board.title);
+    System.out.printf("내용: %s\n", board.content);
+    System.out.printf("작성자: %s\n", board.writer);
+    System.out.printf("등록일: %s\n", board.registeredDate);
+    System.out.printf("조회수: %d\n", ++board.viewCount);
   }
 
 
