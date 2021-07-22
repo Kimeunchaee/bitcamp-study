@@ -36,6 +36,7 @@ public class Exam0214 {
     // 2 + 3 - 1 * 7 / 3 = ?
 
     // 10. instant 변수를 선언해준다 (두가지 식)
+    // static이 붙지 않은 변수만 만들어진다
     Calculate c1 = new Calculate();
     Calculate c2 = new Calculate();
 
@@ -45,11 +46,10 @@ public class Exam0214 {
     // Calculate.plus(2); > c1.plus(c1, 2);
 
     c1.plus(c1, 2);
-    c2.plus(c2, 3);
+    c2.plus(c1, 3);
     c2.minus(c1, 1);
     c1.multiple(c1, 7);
     c1.divide(c1,3);
-
     System.out.printf("result = %d\n", c1.result);
   }
 

@@ -33,11 +33,12 @@ public class Exam0212 {
   public static void main(String[] args) {
     // 2 + 3 - 1 * 7 / 3 = ?
 
-    // 1. result변수의 메소드를 호출하기 위해 Calculate에서 불러왔다고 정의해준다
+    // 1. result를 호출하기 위해 경로 Calculate를 지정해준다 
+    // plus의 경로가 Calculate 임을 지정해준다
     Calculate.result = Calculate.plus(2, 3); 
-    Calculate.result = minus(Calculate.result, 1);
-    Calculate.result = multiple(Calculate.result, 7);
-    Calculate.result = divide(Calculate.result, 3);
+    Calculate.result = Calculate.minus(Calculate.result, 1);
+    Calculate.result = Calculate.multiple(Calculate.result, 7);
+    Calculate.result = Calculate.divide(Calculate.result, 3);
 
     System.out.printf("result = %d\n", Calculate.result);
   }
