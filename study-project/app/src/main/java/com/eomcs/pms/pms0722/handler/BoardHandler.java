@@ -68,8 +68,7 @@ public class BoardHandler {
     int no = Prompt.inputInt("번호? ");
 
     Board board = null;
-    // 디테일 메소드에서 board 변수를 만들어서
-    // 실행결과들을 저장
+    // 디테일 메소드에서 board 변수를 만들어서 실행결과들을 저장
     // 변수 사용전 null 비워주기
 
     for (int i = 0; i < this.size; i++) {    //BoardHandler클래스의 size 인스턴스 변수
