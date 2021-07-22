@@ -42,25 +42,30 @@ public class BoardHandler2 {
     System.out.println("[게시글 상세보기]");
     int number = Prompt.inputInt("번호? ");
 
-    Board board = new Board();
+    Board board = null;
 
-    if(board.no == number) {
-      System.out.printf("제목: $s\n ", board.title);
-      System.out.printf("내용: $s\n ", board.content);
-      System.out.printf("작성자: $s\n ", board.writer);
-      System.out.printf("등록일: $s\n ", board.registeredDate);
-      System.out.printf("조회수: $d\n ", board.viewCount);
+    for(int i = 0; i < this.size; i++) {
+      if(this.boards[i].no == number) {
+        board = this.boards[i];
+        break;
+      } 
+    } 
 
-    } else if (board.no == null) {   //여기서 왜 no에 null하면 안디ㅗ고 board에 해줘야되는지
+    if (board == null) {   // board.no == null 는 안됨 왜 안되는지?
       System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
     }
 
-
-
-
-
-
+    System.out.printf("제목: $s\n ", board.title);
+    System.out.printf("내용: $s\n ", board.content);
+    System.out.printf("작성자: $s\n ", board.writer);
+    System.out.printf("등록일: $s\n ", board.registeredDate);
+    System.out.printf("조회수: $d\n ", board.viewCount);
   }
+
+
+
+
 
 
 

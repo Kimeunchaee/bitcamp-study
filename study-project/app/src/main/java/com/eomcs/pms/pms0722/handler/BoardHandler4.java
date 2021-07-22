@@ -4,7 +4,7 @@ import java.sql.Date;
 import com.eomcs.pms.pms0722.domain.Board;
 import com.eomcs.pms.pms0722.util.Prompt;
 
-public class BoardHandler {
+public class BoardHandler4 {
 
 
   //메소드끼리 공유하는 변수 MAX_LENGTH / boards / size
@@ -133,55 +133,39 @@ public class BoardHandler {
   }
 
 
+  // 2 에서는 반복문을 2번사용해야했는데
+  // 배열의 시작점을 다른방법으로 지정해줘서
+  // 작성하는방법
 
   //-----------------------------------------------------------------------
-
   public void delete() {
     System.out.println("[게시글 삭제]");
-
     int no = Prompt.inputInt("번호? ");
 
-    int i = indexOf(no);
-    if (i == -1) {
-      System.out.println("해당 번호의 게시글이 없습니다.");
-      return;
-    }
+    int boardIndex = -1;
+    Board board = null;
+
+    for (int i = 0; i < this.size; i++) { 
+      if (this.boards[i].no == no) {  
+        boardIndex = i; 
+        break;
+      }
+    } 
+    System.out.println("해당 번호의 게시글이 없습니다.");
+    return;
 
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-
-    if (input.equalsIgnoreCase("Y")) {
-      for (int x = i + 1; x < this.size; x++) {
-        this.boards[x-1] = this.boards[x];
-      }
-      boards[--this.size] = null; // 앞으로 당긴 후 맨 뒤의 항목은 null로 설정한다.
-
-      System.out.println("게시글을 삭제하였습니다.");
-
-    } else {
+    if (input.equalsIgnoreCase("n")) {
       System.out.println("게시글 삭제를 취소하였습니다.");
     }
 
+    for(int i = boardIndex + 1; < this.size; i++ ) { 
+      this.boards[i - 1] = this.boards[i];
+    } this.boards[--this.size] = null; 
+
+    System.out.println("게시글을 삭제하였습니다.");
+    return;
   }
 
-  // 게시글 번호에 해당하는 인스턴스를 배열에서 찾아 그 인덱스를 리턴한다. 
-  int indexOf(int boardNo) {
-    for (int i = 0; i < this.size; i++) {
-      Board board = this.boards[i];
-      if (board.no == boardNo) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  // 게시글 번호에 해당하는 인스턴스를 찾아 리턴한다.
-  Board findByNo(int boardNo) {
-    int i = indexOf(boardNo);
-    if (i == -1) 
-      return null;
-    else 
-      return this.boards[i];
-  }
 }
-
 

@@ -5,6 +5,9 @@ public class CalculatorTest {
     // 2 + 3 + 4 - 7 * 3 = 6
     // 3 * 2 - 1 = 5
 
+
+    // Calculator. 추가해주기
+
     int r1 = 0;
     int r2 = 0;
 

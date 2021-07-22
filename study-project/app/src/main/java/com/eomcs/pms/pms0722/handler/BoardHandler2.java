@@ -4,7 +4,7 @@ import java.sql.Date;
 import com.eomcs.pms.pms0722.domain.Board;
 import com.eomcs.pms.pms0722.util.Prompt;
 
-public class BoardHandler {
+public class BoardHandler2 {
 
 
   //메소드끼리 공유하는 변수 MAX_LENGTH / boards / size
@@ -135,53 +135,40 @@ public class BoardHandler {
 
 
   //-----------------------------------------------------------------------
-
   public void delete() {
     System.out.println("[게시글 삭제]");
-
     int no = Prompt.inputInt("번호? ");
 
-    int i = indexOf(no);
-    if (i == -1) {
+    int boardIndex = -1;
+    Board board = null;
+
+    for (int i = 0; i < this.size; i++) { //i는 삭제하려는 번호 부터 시작해서
+      // size 배열의 크기 전 까지 실행하고
+      //i++ 증가시킴 (뒤의 배열을 땡겨오기위해)
+      if (this.boards[i].no == no) {  //게시글 번호와 입력한 번호를 비교함
+        boardIndex = i;  // 보드 인덱스=배열 , i번째 배열 
+        break;
+      }
+
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
-
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-
-    if (input.equalsIgnoreCase("Y")) {
-      for (int x = i + 1; x < this.size; x++) {
-        this.boards[x-1] = this.boards[x];
-      }
-      boards[--this.size] = null; // 앞으로 당긴 후 맨 뒤의 항목은 null로 설정한다.
-
-      System.out.println("게시글을 삭제하였습니다.");
-
-    } else {
+    if (input.equalsIgnoreCase("n")) {
       System.out.println("게시글 삭제를 취소하였습니다.");
     }
 
-  }
 
-  // 게시글 번호에 해당하는 인스턴스를 배열에서 찾아 그 인덱스를 리턴한다. 
-  int indexOf(int boardNo) {
-    for (int i = 0; i < this.size; i++) {
-      Board board = this.boards[i];
-      if (board.no == boardNo) {
-        return i;
-      }
-    }
-    return -1;
-  }
+    // i가 증가하다가 마지막 배열을 땡겨올때 i+1 값이 없으므로
+    // 만약 i가 보드인덱스와 같은 값일때, size -1 사이즈(배열의크기)의 전까지만 실행함
+    // 그리고 마지막 항복은 null로 초기화시킴
+    for(int i = boardIndex; i < this.size - 1; i++ ) {
+      this.boards[i] = this.boards[i + 1];
+    } this.boards[this.size - 1] = null;    // 앞으로 당긴 후 맨 뒤의 항목은 null로 설정한다.
+    // size (배열의 크기) 가 7일때 배열은 0~6까지이기때문에 size-1이 배열의 마지막항목을 의미함
 
-  // 게시글 번호에 해당하는 인스턴스를 찾아 리턴한다.
-  Board findByNo(int boardNo) {
-    int i = indexOf(boardNo);
-    if (i == -1) 
-      return null;
-    else 
-      return this.boards[i];
+    System.out.println("게시글을 삭제하였습니다.");
+    return;
   }
 }
-
 

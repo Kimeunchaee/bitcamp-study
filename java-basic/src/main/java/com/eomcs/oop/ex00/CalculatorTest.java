@@ -5,23 +5,22 @@ public class CalculatorTest {
     // 2 + 3 + 4 - 7 * 3 = 6
     // 3 * 2 - 1 = 5
 
-    Calculator c1 = new Calculator();
-    Calculator c2 = new Calculator();
+    int r1 = 0;
+    int r2 = 0;
 
-    c1.plus(2);
-    c1.plus(3);
-    c1.plus(4);
-    c1.minus(7);
-    c1.multiple(3);
-    System.out.println(c1.result);
+    r1 = Calculator.plus(r1, 2);
+    r1 = Calculator.plus(r1, 3);
+    r1 = Calculator.plus(r1, 4);
+    r1 = Calculator.minus(r1, 7);
+    r1 = Calculator.multiple(r1, 3);
 
-    c2.plus(3);
-    c2.multiple(2);
-    c2.minus(1);
+    r2 = Calculator.plus(r2, 3);
+    r2 = Calculator.multiple(r2, 2);
+    r2 = Calculator.minus(r2, 1);
 
-    System.out.println(c2.result);
+    System.out.println(r1);
+    System.out.println(r2);
   }
-
 
 
 }
