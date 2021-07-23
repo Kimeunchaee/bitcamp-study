@@ -1,16 +1,16 @@
-package com.eomcs.pp0723;
+package com.eomcs.pms.pms0723.am;
 
-import com.eomcs.pp0723.handler.BoardHandler;
-import com.eomcs.pp0723.handler.MemberHandler;
-import com.eomcs.pp0723.handler.ProjectHandler;
-import com.eomcs.pp0723.handler.TaskHandler;
-import com.eomcs.pp0723.util.Prompt;
+import com.eomcs.pms.pms0722.handler.BoardHandler1;
+import com.eomcs.pms.pms0723.am.handler.MemberHandler;
+import com.eomcs.pms.pms0723.am.handler.ProjectHandler;
+import com.eomcs.pms.pms0723.am.handler.TaskHandler;
+import com.eomcs.pms.pms0723.am.util.Prompt;
 
 public class App {
 
   public static void main(String[] args) {
 
-    BoardHandler boardHandler = new BoardHandler();
+    BoardHandler1 boardHandler = new BoardHandler1();
     MemberHandler memberHandler = new MemberHandler();
     ProjectHandler projectHandler = new ProjectHandler();
     TaskHandler taskHandler = new TaskHandler();
@@ -42,13 +42,13 @@ public class App {
       }  else if (input.equals("/project/list")) {
         projectHandler.list();
 
-      }  else if (input.equals("/project/detail")) {
+      } else if (input.equals("/project/detail")) {
         projectHandler.detail();
 
-      }  else if (input.equals("/project/update")) {
+      } else if (input.equals("/project/update")) {
         projectHandler.update(memberHandler);
 
-      }  else if (input.equals("/project/delete")) {
+      } else if (input.equals("/project/delete")) {
         projectHandler.delete();
 
       }  else if (input.equals("/task/add")) {
@@ -57,13 +57,10 @@ public class App {
       }  else if (input.equals("/task/list")) {
         taskHandler.list();
 
-      }  else if (input.equals("/task/detail")) {
-        taskHandler.detail();
-
-      }  else if (input.equals("/task/update")) {
+      } else if (input.equals("/task/update")) {
         taskHandler.update(memberHandler);
 
-      }  else if (input.equals("/task/delete")) {
+      } else if (input.equals("/task/delete")) {
         taskHandler.delete();
 
       }  else if (input.equals("/board/add")) {
@@ -80,6 +77,7 @@ public class App {
 
       }  else if (input.equals("/board/delete")) {
         boardHandler.delete();
+
 
       } else {
         System.out.println("실행할 수 없는 명령입니다.");
