@@ -168,7 +168,7 @@ public class BoardHandler3 {
 
     // 배열에서 특정 항목을 삭제하는 알고리즘
 
-    // for(int i = boardIndex; i <this.size - 1; i++ ) {  
+    // for(int i = boardIndex; i < this.size - 1; i++ ) {  
     // size - 1 를 해주지않고 size까지로 해주기위해
     // 내가 삭제하려는 배열인 i값을 -1 해준걸 다시 i에 넣어준다
     // boardIndex+ 1 로 변경해준다 >>> ????????????????????
@@ -176,7 +176,7 @@ public class BoardHandler3 {
     // this.boards[this.size - 1] = null;
 
     for(int i = boardIndex + 1; i < this.size; i++ ) { 
-      // 1번째껄 지우고싶을때 1번째 데이터가 있는 배열 번호는 0이기 때문에 boardIndex + 1 를 해서 내가 원하는 배열칸으로 지정해줄수있음
+      // 2번째껄 지우고싶을때 2번째 데이터가 있는 배열 번호는 1이기 때문에 boardIndex + 1 를 해서 내가 원하는 배열칸으로 지정해줄수있음
       this.boards[i - 1] = this.boards[i];
     } //this.boards[this.size - 1] = null;
     this.boards[--this.size] = null;   // 마지막칸에 null값을 넣어줌(초기화해줌)
