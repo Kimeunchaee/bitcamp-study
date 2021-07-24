@@ -1,8 +1,9 @@
-package com.eomcs.pp0723.pm.handler;
+package com.eomcscopy.pms.handler;
 
 import java.sql.Date;
-import com.eomcs.pp0723.pm.domain.Project;
-import com.eomcs.pp0723.pm.util.Prompt;
+import com.eomcscopy.pms.domain.Project;
+import com.eomcscopy.util.Prompt;
+
 
 public class ProjectHandler {
 
@@ -22,16 +23,13 @@ public class ProjectHandler {
     project.startDate = Prompt.inputDate("시작일? ");
     project.endDate = Prompt.inputDate("종료일? ");
 
-    // 코드 새로 작성해서 추가
-    project.owner = promptOwner(memberHandler, null);
+    project.owner = promptOwner(memberHandler);
     if (project.owner == null) {
       System.out.println("프로젝트 등록을 취소합니다.");
       return;
     }
 
-    // 수정
-    project.members = promptMembers(memberHandler, null);  // 기존멤버이름은 넘기지 않는다 = null
-
+    project.members = promptMembers(memberHandler);
 
     this.projects[this.size++] = project;
   }
@@ -56,8 +54,6 @@ public class ProjectHandler {
 
     Project project = findByNo(no);
 
-
-
     if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
       return;
@@ -70,8 +66,6 @@ public class ProjectHandler {
     System.out.printf("만든이: %s\n", project.owner);
     System.out.printf("팀원: %s\n", project.members);
   }
-
-
 
   public void update(MemberHandler memberHandler) {
     System.out.println("[프로젝트 변경]");
@@ -89,17 +83,14 @@ public class ProjectHandler {
     Date startDate = Prompt.inputDate(String.format("시작일(%s)? ", project.startDate));
     Date endDate = Prompt.inputDate(String.format("종료일(%s)? ", project.endDate));
 
-
-    // 수정
-    // String owner = null;
     String owner = promptOwner(memberHandler, project.owner);
-    if (owner==null) {
+    if (owner == null) {
       System.out.println("프로젝트 변경을 취소합니다.");
-      return; 
+      return;
     }
 
-    // 수정
-    String members = promptMembers(memberHandler, project.members); // 기존회원의 이름을 넘긴다 = project.members
+    String members = promptMembers(memberHandler, project.members);
+
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (input.equalsIgnoreCase("n") || input.length() == 0) {
@@ -142,7 +133,6 @@ public class ProjectHandler {
     System.out.println("프로젝트를 삭제하였습니다.");
   }
 
-
   private Project findByNo(int no) {
     for (int i = 0; i < this.size; i++) {
       if (this.projects[i].no == no) {
@@ -151,7 +141,6 @@ public class ProjectHandler {
     }
     return null;
   }
-
 
   private int indexOf(int no) {
     for (int i = 0; i < this.size; i++) {
@@ -162,72 +151,51 @@ public class ProjectHandler {
     return -1;
   }
 
+  private String promptOwner(MemberHandler memberHandler) {
+    return promptOwner(memberHandler, null);
+  }
 
-  //add 에서 만든이를 입력받는 소스코드 가져와서 두개의 값을 받는 메소드를 만듦
   private String promptOwner(MemberHandler memberHandler, String ownerName) {
-
-    /*
-    String label;
-    if(ownerName != null) {  //ownerName이 넘어온다면 입력한 이름을 label에 넣어서 출력
-      label = String.format("만든이(%s)?(취소: 빈 문자열) ", ownerName);
-    } else {  //ownerName이 null이면 넘어오지 않았으니까 그대로
-      label = "만든이?(취소: 빈 문자열) ";
-    }
-     */
-
-
-    /*
-    // 위에 5줄과 같은 코드
-    String label = String.format("만든이(%s)?(취소: 빈 문자열) ", 
-        ownerName != null ?"("+owner+")" : "");
-     */
-
     while (true) {
-      // 여기서 라벨은 한번만 사용하기 때문에 생략가능
-      // 위에 label을 인풋스트링에 넣어줌
-      //String owner = Prompt.inputString(label);
-
-      String owner = Prompt.inputString(String.format("만든이(%s)?(취소: 빈 문자열) ", 
-          ownerName != null ?"(" + ownerName + ")" : ""));
-
+      String owner = Prompt.inputString(String.format(
+          "만든이%s?(취소: 빈 문자열) ", 
+          ownerName != null ? "(" + ownerName + ")" : ""));
       if (memberHandler.exist(owner)) {
-        //project.owner = owner;
-        //break;
         return owner;
       } else if (owner.length() == 0) {
-        //     x   System.out.println("프로젝트 등록을 취소합니다.");
-        //     x   return;
         return null;
       }
       System.out.println("등록된 회원이 아닙니다.");
     }
   }
 
+  private String promptMembers(MemberHandler memberHandler) {
+    return promptMembers(memberHandler, null);
+  }
 
-  //add 에서 팀원을 입력받는 소스코드 가져와서 두개의 값을 받는 메소드를 만듦
-  private String promptMembers(MemberHandler memberHandler, String oldmembers) {
-    String newMembers = "";
+  private String promptMembers(MemberHandler memberHandler, String oldMembers) {
+    String members = "";
     while (true) {
-      
-      String member = Prompt.inputString(String.format("팀원(%s)?(취소: 빈 문자열) ", 
-          oldmembers != null ?"(" + oldmembers + ")" : ""));
-      //조건연산자
-      // student = (age>10)? 'A' : 'B' ;
-      // 만약 age>10 이면 student 에 A를 넣고 (if~)
-      // age>10 아니라면 student 에 B를 넣어라 (else~)
-      
+      String member = Prompt.inputString(String.format(
+          "팀원%s?(완료: 빈 문자열) ",
+          oldMembers != null ? "(" + oldMembers + ")" : ""));
       if (memberHandler.exist(member)) {
-        if (newMembers.length() > 0) {
-          newMembers += ",";
+        if (members.length() > 0) {
+          members += ",";
         }
-        newMembers += member;
+        members += member;
         continue;
       } else if (member.length() == 0) {
         break;
       } 
       System.out.println("등록된 회원이 아닙니다.");
     }
-    return newMembers;
+    return members;
   }
 
 }
+
+
+
+
+
