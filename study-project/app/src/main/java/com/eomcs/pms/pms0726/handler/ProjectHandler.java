@@ -1,17 +1,20 @@
-package com.eomcs.pp0723.pm.handler;
+package com.eomcs.pms.pms0726.handler;
 
 import java.sql.Date;
-import com.eomcs.pp0723.pm.domain.Project;
-import com.eomcs.pp0723.pm.util.Prompt;
+import com.eomcs.pms.pms0726.domain.Project;
+import com.eomcs.pms.pms0726.util.Prompt;
 
 public class ProjectHandler {
-
   static final int MAX_LENGTH = 5;
 
   Project[] projects = new Project[MAX_LENGTH];
   int size = 0;
 
-  public void add(MemberHandler memberHandler) { //exist를 호출하기위해 멤버핸들러를 불러오고 그 값을 받을 파라미터이름이 멤버핸들러
+  // ProjectHandler가 지속적으로 사용할 의존 객체는 다음과 같이 인스턴스 필드로 받는다.
+  // 이 인스턴스 변수에 의존 객체의 주소를 넣을 수 있도록 접근모드를 공개로 설정한다.
+  public MemberHandler memberHandler;
+
+  public void add(/*MemberHandler memberHandler*/) {
     System.out.println("[프로젝트 등록]");
 
     Project project = new Project();
@@ -22,21 +25,17 @@ public class ProjectHandler {
     project.startDate = Prompt.inputDate("시작일? ");
     project.endDate = Prompt.inputDate("종료일? ");
 
-    // 코드 새로 작성해서 추가
-    project.owner = promptOwner(memberHandler, null);
+    project.owner = promptOwner("만든이?(취소: 빈 문자열) "); //(memberHandler); 파라미터 줄 필요없음
     if (project.owner == null) {
       System.out.println("프로젝트 등록을 취소합니다.");
       return;
     }
 
-    // 수정
-    project.members = promptMembers(memberHandler, null);  // 기존멤버이름은 넘기지 않는다 = null
-
+    project.members = promptMembers("팀원?(완료: 빈 문자열) "); //(memberHandler); 파라미터 줄 필요없음
 
     this.projects[this.size++] = project;
   }
 
-  //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[프로젝트 목록]");
     for (int i = 0; i < this.size; i++) {
@@ -56,8 +55,6 @@ public class ProjectHandler {
 
     Project project = findByNo(no);
 
-
-
     if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
       return;
@@ -71,9 +68,8 @@ public class ProjectHandler {
     System.out.printf("팀원: %s\n", project.members);
   }
 
-
-
-  public void update(MemberHandler memberHandler) {
+  //업데이트의 파라미터도 지워준다
+  public void update() {
     System.out.println("[프로젝트 변경]");
     int no = Prompt.inputInt("번호? ");
 
@@ -89,17 +85,15 @@ public class ProjectHandler {
     Date startDate = Prompt.inputDate(String.format("시작일(%s)? ", project.startDate));
     Date endDate = Prompt.inputDate(String.format("종료일(%s)? ", project.endDate));
 
-
-    // 수정
-    // String owner = null;
-    String owner = promptOwner(memberHandler, project.owner);
-    if (owner==null) {
+    String owner = promptOwner(/*memberHandler, */String.format(
+        "만든이(%s)?(취소: 빈 문자열) ", project.owner));
+    if (owner == null) {
       System.out.println("프로젝트 변경을 취소합니다.");
-      return; 
+      return;
     }
 
-    // 수정
-    String members = promptMembers(memberHandler, project.members); // 기존회원의 이름을 넘긴다 = project.members
+    String members = promptMembers(/*memberHandler, */String.format(
+        "팀원(%s)?(완료: 빈 문자열) ", project.members));
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (input.equalsIgnoreCase("n") || input.length() == 0) {
@@ -142,7 +136,6 @@ public class ProjectHandler {
     System.out.println("프로젝트를 삭제하였습니다.");
   }
 
-
   private Project findByNo(int no) {
     for (int i = 0; i < this.size; i++) {
       if (this.projects[i].no == no) {
@@ -151,7 +144,6 @@ public class ProjectHandler {
     }
     return null;
   }
-
 
   private int indexOf(int no) {
     for (int i = 0; i < this.size; i++) {
@@ -162,72 +154,38 @@ public class ProjectHandler {
     return -1;
   }
 
-
-  //add 에서 만든이를 입력받는 소스코드 가져와서 두개의 값을 받는 메소드를 만듦
-  private String promptOwner(MemberHandler memberHandler, String ownerName) {
-
-    /*
-    String label;
-    if(ownerName != null) {  //ownerName이 넘어온다면 입력한 이름을 label에 넣어서 출력
-      label = String.format("만든이(%s)?(취소: 빈 문자열) ", ownerName);
-    } else {  //ownerName이 null이면 넘어오지 않았으니까 그대로
-      label = "만든이?(취소: 빈 문자열) ";
-    }
-     */
-
-
-    /*
-    // 위에 5줄과 같은 코드
-    String label = String.format("만든이(%s)?(취소: 빈 문자열) ", 
-        ownerName != null ?"("+owner+")" : "");
-     */
-
+  private String promptOwner(/*MemberHandler memberHandler,*/ String label) {
     while (true) {
-      // 여기서 라벨은 한번만 사용하기 때문에 생략가능
-      // 위에 label을 인풋스트링에 넣어줌
-      //String owner = Prompt.inputString(label);
-
-      String owner = Prompt.inputString(String.format("만든이(%s)?(취소: 빈 문자열) ", 
-          ownerName != null ?"(" + ownerName + ")" : ""));
-
-      if (memberHandler.exist(owner)) {
-        //project.owner = owner;
-        //break;
+      String owner = Prompt.inputString(label);
+      // 회원 이름이 등록된 회원의 이름인지 검사할 때 사용할 MemberHandler 인스턴스는
+      // 인스턴스 변수에 미리 주입되어 있기 때문에 파라미터로 받을 필요가 없다.
+      // 다음과 같이 인스턴스 변수를 직접 사용하면 된다. (this)
+      if (this.memberHandler.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {
-        //     x   System.out.println("프로젝트 등록을 취소합니다.");
-        //     x   return;
         return null;
       }
       System.out.println("등록된 회원이 아닙니다.");
     }
   }
 
-
-  //add 에서 팀원을 입력받는 소스코드 가져와서 두개의 값을 받는 메소드를 만듦
-  private String promptMembers(MemberHandler memberHandler, String oldmembers) {
-    String newMembers = "";
+  private String promptMembers(/*MemberHandler memberHandler,*/ String label) {
+    String members = "";
     while (true) {
-
-      String member = Prompt.inputString(String.format("팀원(%s)?(취소: 빈 문자열) ", 
-          oldmembers != null ?"(" + oldmembers + ")" : ""));
-      //조건연산자
-      // student = (age>10)? 'A' : 'B' ;
-      // 만약 age>10 이면 student 에 A를 넣고 (if~)
-      // age>10 아니라면 student 에 B를 넣어라 (else~)
-
-      if (memberHandler.exist(member)) {
-        if (newMembers.length() > 0) {
-          newMembers += ",";
+      String member = Prompt.inputString(label);
+      // memberHandler  > this.memhandler 로 변경 (의존객체인 멤버핸들러가 자기자신에 있기때문에)
+      if (this.memberHandler.exist(member)) {
+        if (members.length() > 0) {
+          members += ",";
         }
-        newMembers += member;
+        members += member;
         continue;
       } else if (member.length() == 0) {
         break;
       } 
       System.out.println("등록된 회원이 아닙니다.");
     }
-    return newMembers;
+    return members;
   }
 
 }
