@@ -12,13 +12,23 @@ public class TaskHandler {
   Task[] tasks = new Task[MAX_LENGTH];
   int size = 0;
 
-  public MemberHandler memberHandler;
+  //public MemberHandler memberHandler;
   // taskHandler의 여러메서드에서 지속적으로 사용할 의존 객체를 인스턴스 필드에 미리 주입받는다
   // 다른 패키지의 클래스에서 이 변수를 사용할수 있도록 접근 모드는 공개한다.
+  //2. 생성자 만든후
+  // 이제 의존객체는 생성자를 통해 주입받기때문에
+  //외부에서 인스턴스 변수에 직접 접근할 이유가 ㅇ없다
+  //따라서 전체공개모드에서 패키지멤버에게만 공개하는 모드로 전환단다 (public x)
+  MemberHandler memberHandler;
 
+
+  //생성자
+  public TaskHandler(MemberHandler memberHandler) { 
+    this.memberHandler = memberHandler; 
+  }
 
   // add()는 미리 인스턴스 변수에 주입받은 멤버핸들러를 사용한다.
-  public void add() {    //(MemberHandler memberHandler) 지움
+  public void add(/*MemberHandler memberHandler 지움*/) {  
     System.out.println("[작업 등록]");
 
     Task task = new Task();

@@ -13,15 +13,29 @@ public class App {
     BoardHandler boardHandler = new BoardHandler();
     MemberHandler memberHandler = new MemberHandler();
 
-    ProjectHandler projectHandler = new ProjectHandler();
-    projectHandler.memberHandler = memberHandler;
+    ProjectHandler projectHandler = new ProjectHandler(memberHandler);
+    // 프로젝트핸들러의 인스턴스를 만들때  멤버핸들러 인스턴스 변수를
+    // 필수로 사용한다 (강제시킨다) > 생성자 문법을 쓰는이유 : 반드시 그 값을 사용하도록 만들기 위해!
+
+
+    //projectHandler.memberHandler = memberHandler;
     // 프로젝트 핸들러의 메서드가 사용할 의존 객체를 인스턴스 변수에 미리 주입한다
     // 메서드를 호출할때마다 주입하는것이 아니라 미리 주입해놓는것이다
+    // 2. 생성자 선언 후에는 필요없는 코드
+    //생성자를 통해서만 의존객체를 접근할수 있도록 했기떄문에
 
-    TaskHandler taskHandler = new TaskHandler();
-    taskHandler.memberHandler = memberHandler;
+    // projectHandler의 메서드가 사용할 의존 객체를 주입하지 않는다면?
+    // 그 의존 객체를 사용하는 메서드르 호출할때 실행오류가 발생할 것이다.
+    // 프로젝트핸들러의 인스턴스를 생성할때 의존객체를 반드시 주입하도록
+    // 생성자를 선언한다
+
+    TaskHandler taskHandler = new TaskHandler(memberHandler);   // 의존객체 주입을 강제함
+
+    //taskHandler.memberHandler = memberHandler;
     // 테스크 핸들러의 메서드가 사용할 의존 객체를 인스턴스 변수에 미리 주입한다
     // 메서드를 호출할때마다 주입하는것이 아니라 미리 주입해놓는것이다
+    // 2. 생성자 선언 후에는 필요없는 코드
+    //생성자를 통해서만 의존객체를 접근할수 있도록 했기떄문에
 
 
     while (true) {

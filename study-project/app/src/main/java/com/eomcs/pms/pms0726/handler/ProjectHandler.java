@@ -10,9 +10,28 @@ public class ProjectHandler {
   Project[] projects = new Project[MAX_LENGTH];
   int size = 0;
 
+  //public MemberHandler memberHandler;
   // ProjectHandler가 지속적으로 사용할 의존 객체는 다음과 같이 인스턴스 필드로 받는다.
   // 이 인스턴스 변수에 의존 객체의 주소를 넣을 수 있도록 접근모드를 공개로 설정한다.
-  public MemberHandler memberHandler;
+  //2. 생성자 만든후
+  // 이제 의존객체는 생성자를 통해 주입받기때문에
+  //외부에서 인스턴스 변수에 직접 접근할 이유가 ㅇ없다
+  //따라서 전체공개모드에서 패키지멤버에게만 공개하는 모드로 전환단다 (public x)
+  MemberHandler memberHandler;
+
+  public ProjectHandler(MemberHandler memberHandler) {  //공개 - 리턴타입없음 - 메서드이름이 클래스이름과같아야함 - (인스턴스)
+    // 프로젝트핸들러의 인스턴스를 만들때 멤버핸들러를 반드시 받아서 사용하도록 파라미터를 지정한다
+
+    // 생성자에 파라미터가 있으면 인스턴스를 생성할때 반드시 그 값을 넘겨야한다
+    // 일종의 인스턴스 변수의 값을 설정하는것을 강제하는 효과가 있다
+    this.memberHandler = memberHandler; 
+  }
+  // 생성자 선언
+  // - 인스턴스를 생성할때 반드시 호출되어야하는 메서드이다
+  // - 생성자는 리컨타입이 없다
+  // - 메서드 이름이 클래스이름과 같아야한다
+  // - 인스턴스변수를 유효한값으로 초기화시킨다
+  // = 필요하다면 인스턴스변수를 초기화시킬때 사용할 값을 파라미터로 받을수 있다
 
   public void add(/*MemberHandler memberHandler*/) {
     System.out.println("[프로젝트 등록]");
