@@ -27,7 +27,8 @@ public class TaskHandler {
     //    System.out.println("1: 진행중");
     //    System.out.println("2: 완료");
     //    task.status = Prompt.inputInt("> ");
-    // 지우고 task.status = getStatus(-1); 넣어줌
+    // 지우고 task.status = getStatus(-1); 넣어줌 // -1은 유효하지 않음을 표시해줌, 사용자가 입력전인 현재는 상태가 없기때문에
+    // -1를 쓰지 않으면 컴파일오류! 파라미터를 가진 메소드이기때문에 파라미터와 아규먼트가 일치해야한다
 
     task.owner = promptOwner(memberHandler, null);
     if(task.owner == null) {
@@ -102,16 +103,24 @@ public class TaskHandler {
     String content = Prompt.inputString(String.format("내용(%s)? ", task.content));
     Date deadline = Prompt.inputDate(String.format("마감일(%s)? ", task.deadline));
 
-    // 기존 스위치문을 지우고 getStatusLabel 메소드를 사용해줌
-    // println 지우고 promptStatus(); 사용
-    int status = promptStatus(task.status);
 
+    // 1번째 수정. 기존 스위치문을 지우고 getStatusLabel 메소드를 사용해줌
     //    getStatus();
     //    System.out.printf("상태(%s)?\n", getStatusLabel(task.status));
     //    System.out.println("0: 신규");
     //    System.out.println("1: 진행중");
     //    System.out.println("2: 완료");
     //    int status = Prompt.inputInt("> ");
+
+
+    // 2번째 수정. println 지우고 promptStatus(); 사용
+    // (promptStatus에 getStatusLabel를 사용해서 메서드를 작성함)
+    // 파라미터와 리턴값이 둘다 있는 메서드이기때문에
+    // 2-1. 리턴값을 받을 변수인 메서드명 promptStatus 준비
+    // 2-2. 변수에 리턴값을 선언(타입이 같아야한다) int status = 
+    // 2-3. 변수의 아큐먼트를 작성해준다 (task.status)
+    int status = promptStatus(task.status);
+
 
     String owner = promptOwner(memberHandler, task.owner);
     if (owner == null) {
@@ -185,7 +194,8 @@ public class TaskHandler {
       if (owner.length() == 0) {
         System.out.println("작업 등록을 취소합니다.");
         return owner; 
-      } else if (memberHandler.exist(owner)) {
+      } else if (memberHandler.exist(owner)) { 
+        // memberHandler.exist(owner) 의 값이 참이면 (= 기존에 저장된 이름과 새로입력한 이름이 같으면)널값을 리턴해라
         //     x   task.owner = owner;
         //     x   break;
         return null;

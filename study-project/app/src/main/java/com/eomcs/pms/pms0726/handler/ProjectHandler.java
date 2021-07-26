@@ -208,3 +208,45 @@ public class ProjectHandler {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+/*
+1번
+파라미터로 받았던걸
+인스턴스 변수로 변경해보기
+
+> 코드 수정순서
+(public)MemberHandler memberHandler; 선언
+MemberHandler memberHandler 사용한거 지우기
+memberHandler 는 this로 받기
+app에 공유하기 위해 public 붙혀주기
+앱에서
+projectHandler.memberHandler = memberHandler;
+추가
+
+
+2번
+의존객체를 뺴먹는 일이 생기지 않도록
+인스턴스변수를 생성자로 변경해주기
+
+
+> 코드 수정순서
+의존객체 주입한걸 지운다
+생성자를 작성한다
+public ProjectHandler(MemberHandler memberHandler) { //반드시 받아야하는값을 파라미터로 작성해준다
+this.memberHandler = memberHandler; //파라미터로 넘어온 값을 주입하고 싶은 인스턴스에 넣는다
+}
+의존객체 주입한게 필요없어졌으므로 지운다
+반드시 의존객체를 주입 받아야하므로
+app에서 (memberHandler)를 작성한다
+ProjectHandler projectHandler = new ProjectHandler(memberHandler);
+ */
+

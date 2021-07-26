@@ -51,7 +51,8 @@ public class BoardHandler2 {
       } 
     } 
 
-    if (board == null) {   // board.no == null 는 안됨 왜 안되는지?
+    if (board == null) {   // 여기서는 보드를 비운다는 뜻이 아니라 초기에 Board board = null 이 해당되면
+      // 이 if문을 실행한다는 뜻 (위에 for문이 시행되지 않을경우)
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }

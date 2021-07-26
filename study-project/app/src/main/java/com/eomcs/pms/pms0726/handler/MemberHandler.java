@@ -1,8 +1,8 @@
 package com.eomcs.pms.pms0726.handler;
 
 import java.sql.Date;
-import com.eomcscopy.pms.domain.Member;
-import com.eomcscopy.util.Prompt;
+import com.eomcs.pms.pms0726.domain.Member;
+import com.eomcs.pms.pms0726.util.Prompt;
 
 
 public class MemberHandler {
