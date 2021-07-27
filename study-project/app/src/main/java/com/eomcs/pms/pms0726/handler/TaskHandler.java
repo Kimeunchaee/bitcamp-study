@@ -162,10 +162,9 @@ public class TaskHandler {
     }
   }
 
-  private String promptOwner(String label) {    //MemberHandler memberHandler,
+  private String promptOwner(String label) {                    //MemberHandler memberHandler,
     while (true) {
-      String owner = Prompt.inputString(label);
-      //멤버핸들러의 인스턴스는 미리 인스턴스 변수를 주입받은 것을 사용한다(this)
+      String owner = Prompt.inputString(label);                 //멤버핸들러의 인스턴스는 미리 인스턴스 변수를 주입받은 것을 사용한다(this)
       if (this.memberHandler.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {

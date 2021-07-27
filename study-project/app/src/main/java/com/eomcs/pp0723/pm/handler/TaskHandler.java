@@ -186,9 +186,38 @@ public class TaskHandler {
     }
     return -1; //찾지못하면
   }
+
+
+
+
+
+  private String promptOwner(MemberHandler memberHandler, String ownerName) {
+    while (true) {
+      String owner = Prompt.inputString(String.format("담당자?(%s)?(취소: 빈 문자열) ",
+          ownerName != null ? "(" + ownerName + ")" : ""));
+      if (memberHandler.exist(owner)) {
+        System.out.println("작업 등록을 취소합니다.");
+        return owner; 
+      } else if (owner.length() == 0 ) { 
+        return null;
+      }
+      System.out.println("등록된 회원이 아닙니다.");
+    }
+  }
+
+
+
+
+
+
+
+
+
+  /*
   // add 에서 담장자를 입력받는 소스코드 가져와서 메소드로 만듦
   private String promptOwner(MemberHandler memberHandler, String ownerName) {
     while (true) {
+      // ownerName은 기존 만든이, owner 는 사용자가 새로 입력한 값
       String owner = Prompt.inputString(String.format("담당자?(%s)?(취소: 빈 문자열) ",
           ownerName != null ? "(" + ownerName + ")" : ""));
       if (owner.length() == 0) {
@@ -198,11 +227,12 @@ public class TaskHandler {
         // memberHandler.exist(owner) 의 값이 참이면 (= 기존에 저장된 이름과 새로입력한 이름이 같으면)널값을 리턴해라
         //     x   task.owner = owner;
         //     x   break;
-        return null;
+        return null;  // owner에 null값을 넣는다
       }
       System.out.println("등록된 회원이 아닙니다.");
     }
   }
+   */
 
 
 
