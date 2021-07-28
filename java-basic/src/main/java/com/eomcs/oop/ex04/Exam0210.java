@@ -4,20 +4,24 @@ package com.eomcs.oop.ex04;
 public class Exam0210 {
   public static void main(String[] args) throws Exception {
     String s1 = new String("Hello");
-
     // s1 인스턴스(s1 레퍼런스가 가리키는 인스턴스)의 값을 조회하는 메서드 사용
     // 따라서 이 메서드를 호출하려면 반드시 String 인스턴스의 주소를 줘야 한다.
     char c = s1.charAt(1);
     System.out.println(c);
 
+
+    // 여기부터는 인스턴스 메서드
+    // compareTo 는 인스턴스 메서드이다
     System.out.println(s1.compareTo("Helli")); //o > i 5만큼 떨어져있으므로 결과값은 6
     System.out.println(s1.compareTo("Hello"));
     System.out.println(s1.compareTo("Hellq")); // o > q 2칸 전이므로 결과값은 -2
     // *compareTo 현재문자열이 파라미터 문자열보다 앞순서인지 전순서인지 정렬를 따질때 사용
     // *(문자열의 순서를 따질때 사용)
 
+
     System.out.println(s1.contains("ll"));
     System.out.println(s1.contains("ee"));
+    // 현재문자열에 파라미터문자열이 포함되어있는지 여부를 따진다. 참/거짓
 
     // 두 문자열을 연결하여 새 문자열을 만들자!
     String s2 = s1.concat(", world!");
@@ -59,7 +63,7 @@ public class Exam0210 {
     System.out.println(s4);
 
     // => 구분자와 문자열들을 파라미터로 받아서 새 문자열을 만든다.
-    String s5 = String.join(":", "홍길동", "임꺽정", "유관순");
+    String s5 = String.join("-", "홍길동", "임꺽정", "유관순");
     System.out.println(s5);
 
     // => primitive 값을 문자열로 만든다.
