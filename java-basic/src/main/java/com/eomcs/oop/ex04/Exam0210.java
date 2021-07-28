@@ -10,9 +10,11 @@ public class Exam0210 {
     char c = s1.charAt(1);
     System.out.println(c);
 
-    System.out.println(s1.compareTo("Helli"));
+    System.out.println(s1.compareTo("Helli")); //o > i 5만큼 떨어져있으므로 결과값은 6
     System.out.println(s1.compareTo("Hello"));
-    System.out.println(s1.compareTo("Hellq"));
+    System.out.println(s1.compareTo("Hellq")); // o > q 2칸 전이므로 결과값은 -2
+    // *compareTo 현재문자열이 파라미터 문자열보다 앞순서인지 전순서인지 정렬를 따질때 사용
+    // *(문자열의 순서를 따질때 사용)
 
     System.out.println(s1.contains("ll"));
     System.out.println(s1.contains("ee"));
@@ -53,7 +55,7 @@ public class Exam0210 {
     // 즉 "클래스 메서드=스태틱 메서드"를 제공한다.
 
     // => 형식을 갖춘 문자열을 만들기
-    String s4 = String.format("%s님 반갑습니다", "홍길동");
+    String s4 = String.format("%s님 반갑습니다", "홍길동"); //format : 스태틱메소드(인스턴스없이 호출가능)
     System.out.println(s4);
 
     // => 구분자와 문자열들을 파라미터로 받아서 새 문자열을 만든다.
@@ -61,7 +63,7 @@ public class Exam0210 {
     System.out.println(s5);
 
     // => primitive 값을 문자열로 만든다.
-    String s6 = String.valueOf(true);
+    String s6 = String.valueOf(true);   //valueOf : 스태틱메소드(인스턴스없이 호출가능)
     String s7 = String.valueOf(3.14f);
     String s8 = String.valueOf(100);
     System.out.println(s6);

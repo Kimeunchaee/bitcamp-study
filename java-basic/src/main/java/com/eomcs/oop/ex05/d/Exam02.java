@@ -12,10 +12,10 @@ public class Exam02 {
     //   - 쓰든 안쓰든 모든 기능을 상속 받는다.
 
     Calculator2 c1 = new Calculator2();
-    c1.plus(5);
-    c1.multiple(2);
-    c1.minus(2);
-    c1.divide(4);
+    c1.plus(5);         //calculator2가 상속받은 calculator의 메서드를 사용하겠다 (복사x)
+    c1.multiple(2);     //cal2의 메서드
+    c1.minus(2);        //cal메서드
+    c1.divide(4);       //cal2의 메서드
     System.out.println(c1.result);
   }
 }

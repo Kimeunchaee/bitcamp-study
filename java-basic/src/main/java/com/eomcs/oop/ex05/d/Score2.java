@@ -9,7 +9,7 @@ public class Score2 extends Score {
   public int art;
 
 
-  // 기존 코드를 변경한다.
+  // 기존 코드를 변경한다. (재정의 = 덮어쓴다 = 오버라이딩)
   @Override
   public void compute() {
     this.sum = this.kor + this.eng + this.math + this.music + this.art;

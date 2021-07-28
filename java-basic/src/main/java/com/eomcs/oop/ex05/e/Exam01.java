@@ -7,7 +7,7 @@ public class Exam01 {
     B obj = new B();
 
     // B 인스턴스를 이용하여 B가 사용권을 획득한 A 클래스의 메서드를 호출할 수 있다.
-    obj.m1();
+    obj.m1();          
 
     obj.m2();
 

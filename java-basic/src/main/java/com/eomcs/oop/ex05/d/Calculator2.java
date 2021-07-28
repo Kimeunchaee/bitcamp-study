@@ -3,6 +3,7 @@
 package com.eomcs.oop.ex05.d;
 
 public class Calculator2 extends Calculator {
+  // 상속은 기존 코드를 자동으로 복사해오는것이 아니다!
 
   // 새 기능을 추가한다.
   //

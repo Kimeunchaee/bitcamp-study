@@ -4,6 +4,7 @@ package com.eomcs.oop.ex04;
 import java.util.Date;
 
 public class Exam0120 {
+  //인스턴스를 만들때 적절한 생성자를 선택해서 유효한값으로 설정해서 사용해라
 
   public static void main(String[] args) throws Exception {
     // java.util.Date 클래스는 날짜 데이터를 다루는 클래스이다.
@@ -14,7 +15,7 @@ public class Exam0120 {
     System.out.println(d1);
 
     // 년, 월, 일 값으로 날짜 인스턴스를 초기화시킨다.
-    Date d2 = new Date(121, 2, 20);
+    Date d2 = new Date(121, 2, 20);  //deprecated 메소드는 취소선으로 경고가 뜬다 
     System.out.println(d2);
 
     // 1970년 1월 1일 0시 0분 0초부터 측정된 밀리초를 가지고 

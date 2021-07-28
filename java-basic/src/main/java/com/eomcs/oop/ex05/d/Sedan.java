@@ -21,4 +21,7 @@ public class Sedan extends Car {
     this.auto = auto;
   }
 
+
+  // new Sedan 하면 상속받은 car의 변수들까지 인스턴스가 생성된다
+  // 인스턴스는 나중에 설명
 }

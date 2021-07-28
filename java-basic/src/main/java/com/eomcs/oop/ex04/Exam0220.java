@@ -3,6 +3,8 @@ package com.eomcs.oop.ex04;
 
 public class Exam0220 {
   public static void main(String[] args) throws Exception {
+
+    //* Integer는 인스턴스를 만들지 않고 바로 클래스이름으로 메서드를 호출하는 메서드이다
     // 다음과 같이 생성자를 통해 Integer 객체를 생성할 수 있지만,
     // 이 생성자는 사용하지 말라고 권고한 것이기 때문에 
     // 가능한 개발 중에 사용하지 말라!
