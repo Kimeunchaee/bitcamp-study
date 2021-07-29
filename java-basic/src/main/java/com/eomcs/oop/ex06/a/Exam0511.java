@@ -5,12 +5,13 @@ public class Exam0511 {
 
   public static void main(String[] args) {
     Vehicle v = new Sedan();
-    
+
     // getClass() ?
     // => 레퍼런스가 가리키는 인스턴스의 실제 클래스 정보를 리턴한다.
     // => == 연산자를 사용하여 특정 클래스의 인스턴스인지 좁혀서 검사할 수 있다.
     //
     System.out.println(v.getClass() == Sedan.class);
+    //sedan이 리턴한 정보가 클래스랑 같은지 여부를 따져줌
     System.out.println(v.getClass() == Car.class);
     System.out.println(v.getClass() == Vehicle.class);
     System.out.println(v.getClass() == Truck.class);

@@ -21,6 +21,8 @@ public class Exam01 {
     Sedan s = new Sedan();
     Truck t = new Truck();
     Car c = new Car();
+    //car클래스는 섿ㄴ과 트럭에 공통으로 들어가는 코드를 더 쉽게 관리하기 위해
+    //수퍼클래스로만든것이다
   }
 
 }
