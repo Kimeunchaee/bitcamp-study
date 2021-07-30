@@ -65,9 +65,15 @@ class DumpTruckFactory2 extends TruckFactory {
   // => 컴파일 오류!
   //
   //  @Override
-  //  Car makeCar() {
+  //  Car makeCar() {     
   //    return new Car();
   //  };
+
+  // 상속받은 TurckFactory에서 리턴타입은 Truck이고 
+  // TurckFactory가 상속받은 CarFactory에서 리턴타입은 Car이다 
+  // 이때 수퍼클래스인 Car을 리턴타입으로 사용할 수 없다
+  // CarFactory의 서브클래스인 TurckFactory의 Truck은 리턴타입으로 사용가능하다
+
 }
 
 

@@ -28,13 +28,13 @@ public class Exam0430 {
     @Override
     void print() {
       System.out.println("A2.print():");
-      System.out.printf("  => this.name(%s), super.name(%s)\n",
+      System.out.printf("  => this.name(%s), super.name(%s)\n",  // A의 name을 가리킴
           this.name, super.name);
-      System.out.printf("  => this.tel(%s), super.tel(%s)\n",
+      System.out.printf("  => this.tel(%s), super.tel(%s)\n",   //A의 name을 가리킴
           this.tel, super.tel);
-      System.out.printf("  => this.working(%s), super.working(%s)\n",
+      System.out.printf("  => this.working(%s), super.working(%s)\n",       //A의 name을 가리킴
           this.working, super.working);
-      System.out.printf("  => this.age(%s), super.age(컴파일 오류!) \n",
+      System.out.printf("  => this.age(%s), super.age(컴파일 오류!) \n",     //this에서는 A2를 가리키고 super에서는 A를 가리키는데 A에는 값이 없으므로 오류가뜸
           this.age /*, super.age*/);
     }
   }
@@ -47,10 +47,11 @@ public class Exam0430 {
     @Override
     void print() {
       System.out.println("A3.print():");
-      System.out.printf("  => this.name(%s), super.name(%s)\n", this.name, super.name);
-      System.out.printf("  => this.tel(%s), super.tel(%s)\n", this.tel, super.tel);
-      System.out.printf("  => this.working(%s), super.working(%s)\n", this.working, super.working);
+      System.out.printf("  => this.name(%s), super.name(%s)\n", this.name, super.name); //this는 A3, super는 A를 가리키킴 > A3에 name이 없으므로 A를 가리킴 > this,super 둘다 A를 가리킴
+      System.out.printf("  => this.tel(%s), super.tel(%s)\n", this.tel, super.tel);     //this는A3, super는 A를 가리킴
+      System.out.printf("  => this.working(%s), super.working(%s)\n", this.working, super.working);     //this는 A3,super는 A2를 가리키는 데 둘다 name이 없으므로 A로 올라가서 표시됨
       System.out.printf("  => this.age(%s), super.age(컴파일 오류!) \n", this.age /*, super.age*/);
+      // this는 A3, super는 A를 가리키는데 A에는 age가 없으므로 super를 넣으면 오류가 뜸
     }
   }
 
@@ -66,6 +67,7 @@ public class Exam0430 {
       System.out.printf("  => this.age(%s), super.age(%s)\n", this.age, super.age);
       System.out.printf("  => this.tel(%s), super.tel(%s)\n", this.tel, super.tel);
       System.out.printf("  => this.working(%s), super.working(%s)\n", this.working, super.working);
+      // this는 A4 , super는 A를 가리킴 (A3에 working가 없고, A3가 상속받는 A의 working을 가리킴)
     }
   }
 

@@ -25,17 +25,17 @@ public class Exam0510 {
 
 
   public static void main(String[] args) {
-    A4 obj1 = new A4();
+    A4 obj1 = new A4();     // name,tel,working, age,tel, age,working,
 
-    System.out.println(obj1.name);
-    System.out.println(obj1.age);
-    System.out.println(obj1.working);
+    System.out.println(obj1.name); //A
+    System.out.println(obj1.age); //A4
+    System.out.println(obj1.working); //A4
     System.out.println("-----------------------------");
 
     // 레퍼런스를 형변환 하면 오버라이딩 하기 전,
     // 해당 클래스의 인스턴스 변수를 가리킬 수 있다.
-    System.out.println(((A3)obj1).age);
-    System.out.println(((A3)obj1).working); // 없으면 수퍼 클래스의 필드를 가리킨다.
+    System.out.println(((A3)obj1).age); // obj=인스턴스값이 저장된 주소에서 A3를 구간의 age값을 의미함 
+    System.out.println(((A3)obj1).working); // 없으면 수퍼 클래스의 필드를 가리킨다. A3에 없고,  A3가 상속받는 A를 가리킴
     System.out.println("-----------------------------");
 
     // 형변환 클래스에 존재하지 않는 필드는 가리킬 수 없다.
