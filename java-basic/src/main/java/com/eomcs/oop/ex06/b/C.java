@@ -19,6 +19,8 @@ public class C {
 
   // => 파라미터 개수가 달라야 한다.
   public float m1(float a, float b) {return 0f;} // OK
+  // 상속받은 메서드와 같은 이름을 가지지만
+  // 파라미터를 추가함. 오버로딩
   public void m1(short a, String b) {} // OK
 
   // => 파라미터 이름이 다른 것으로는 메서드를 구분할 수 없다.
