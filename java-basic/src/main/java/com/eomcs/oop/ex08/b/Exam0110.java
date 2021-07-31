@@ -15,7 +15,7 @@ public class Exam0110 {
     // 환자 데이터를 등록해보자!
     Customer c1 = new Customer();
     c1.name = "홍길동";
-    c1.age = 300;
+    c1.age = 300;           //변수에 값을 직접 입력하게 되면 환자데이터로써 말이 안되는 유효하지 않는 값을 넣어도 오류가 뜨지 않게됨
     c1.weight = 100;
     c1.height = -50;
 

@@ -8,10 +8,10 @@ class C {
   final int v1;
 
   public C() {
-    v1 = 100;
+    v1 = 100; //기본생성자 작성
   }
 
-  public void m1() {
+  public void m1() {    //메서드 작성
     // 상수 필드는 값을 변경할 수 없다.
     //    v1 = 200; // 컴파일 오류!
   }

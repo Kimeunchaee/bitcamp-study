@@ -20,35 +20,60 @@ class Customer4 {
   private int weight;
   private int height;
 
+
+
   public String getName() {
     return name;
   }
+
+
+
   public void setName(String name) {
     this.name = name;
   }
+
+
+
   public int getAge() {
     return age;
   }
+
+
+
   public void setAge(int age) {
     this.age = age;
   }
+
+
+
   public int getWeight() {
     return weight;
   }
+
+
+
   public void setWeight(int weight) {
     this.weight = weight;
   }
+
+
+
   public int getHeight() {
     return height;
   }
+
+
+
   public void setHeight(int height) {
     this.height = height;
   }
 }
 
+
+
 public class Exam0140 {
 
-  public static void main(String[] args) {
+  public void main(String[] args) {
     // 환자 데이터를 등록해보자!
     Customer4 c1 = new Customer4();
 

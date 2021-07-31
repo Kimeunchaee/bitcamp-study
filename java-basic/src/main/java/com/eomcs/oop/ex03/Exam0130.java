@@ -16,7 +16,7 @@ public class Exam0130 {
     // - 문법
     //     static 데이터타입 변수명;
     //
-    static int v1;
+    static int v1;    
     static boolean v2;
   }
 

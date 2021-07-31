@@ -32,7 +32,7 @@ class Score4 {
   // 점수를 변경할 때 계산을 다시 해야 하고, 유효하지 않은 값을 넣지 못하도록 막아야 한다.
   // 따라서 직접 접근하는 것을 막는다.
   private int kor;
-  private int eng;
+  private int eng;       
   private int math;
 
   // 계산 결과를 조작하지 못하도록 접근을 제한하자!

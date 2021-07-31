@@ -14,6 +14,21 @@ class F {
     v2 = 200;
   }
 
+
+  // 0320과 겹치는 내용
+  // 스태틱 블럭이 실행되면 스태틱으로 선언한 내용들이 자동으로 들어가서 컴파일된다
+  //  public static final int v1 = 100;
+  //  public static final int v2;
+  //  static {
+  //    v2 = 200;
+  //  }
+  //  // 위와 아래 코드는 같다
+  //  public static final int v1 = 10;
+  //  public static final int v2;
+  //  static {
+  //    v1 = 100;
+  //    v2 = 200;
+  //  }
 }
 
 public final class Exam0340 {

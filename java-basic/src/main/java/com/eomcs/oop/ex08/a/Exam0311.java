@@ -10,7 +10,7 @@ class Score3 {
   // - 이렇게 필드의 값을 바꿀 때 마다 뭔가를 수행해야 하는 경우,
   //   해당 필드의 직접 접근을 막아라!
   private int kor;
-  private int eng;
+  private int eng;    //필드명
   private int math;
 
   // 대신 메서드를 통해 값을 설정하게 하라!
@@ -18,9 +18,9 @@ class Score3 {
   // - 이런 메서드를 "세터(setter)"라 부른다.
   // - 외부에서 호출할 수 있도록 공개 모드로 설정한다.
   // - 필드를 비공개로 막으면 값을 조회할 수 없기 때문에
-  //   getter를 추가해야 한다.
+  //   getter도 추가해야 한다.
   //
-  public void setKor(int kor) {
+  public void setKor(int kor) {         // Score3에서 프로퍼티명 kor
     this.kor = kor;
     this.compute();
   }
@@ -29,7 +29,7 @@ class Score3 {
     return this.kor;
   }
 
-  public void setEng(int eng) {
+  public void setEng(int eng) {         // Score3에서 프로퍼티명 eng
     this.eng = eng;
     this.compute();
   }
@@ -38,7 +38,7 @@ class Score3 {
     return this.eng;
   }
 
-  public void setMath(int math) {
+  public void setMath(int math) {           // Score3에서 프로퍼티명 math
     this.math = math;
     this.compute();
   }
@@ -47,17 +47,20 @@ class Score3 {
     return this.math;
   }
 
+  // Score3에서 프로퍼티는 3개다
 
-  private int sum;
+  private int sum;                      //필드명
   private float aver;
 
-  public int getSum() {
+  public int getSum() {         //readonlypropert 
     return this.sum;
   }
 
-  public float getAver() {
+  public float getAver() {      //readonlypropert 
     return this.aver;
   }
+
+  // Score3에서 readonly프로퍼티는 2개다
 
   // 공개할 필요가 없는 메서드는 private으로 막아라.
   // 보통 private 으로 막는 메서드는 해당 클래스 내부에서만 사용되는 메서드이다.
@@ -80,6 +83,8 @@ public class Exam0311 {
     // 세터를 통해서 국, 영, 수 값을 설정할 때마다
     // 합계와 평균을 자동으로 계산하기 때문에 직접 compute()를 호출할 필요가 없다.
     //    s1.compute();
+
+    // setEng() 안에 compute()메서드가 있기때문에 직접 compute()를 호출할 필요가 없다.
 
     // 다음과 같이 언제든지 국, 영, 수 점수를 변경하더라도
     // 합계와 평균이 자동계산될 것이다.

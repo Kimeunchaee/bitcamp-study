@@ -55,8 +55,8 @@ class TruckFactory extends CarFactory {
 class DumpTruckFactory extends TruckFactory {
   // 메서드를 오버라이딩 할 때 리턴 타입으로 서브 클래스도 가능하다.
   @Override
-  DumpTruck makeCar() {
-    return new DumpTruck();
+  Sedan makeCar() {
+    return new Sedan();
   };
 }
 

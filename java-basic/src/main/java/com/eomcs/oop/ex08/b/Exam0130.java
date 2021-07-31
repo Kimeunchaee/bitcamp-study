@@ -38,10 +38,10 @@ class Customer3 {
   // => 나이 값이기 때문에 유효한 값은 1 ~ 150이다.
   public void setAge(int age) {
     if (age < 1 || age > 150) {
-      this.age = 0;
+      this.age = 0; //0세는 0, 150이상도 0 
       return;
     }
-    this.age = age;
+    this.age = age; // 1~150살까지만 나이값으로 리턴됨
   }
 
   // 인스턴스 변수 weight의 값을 넣는 메서드
