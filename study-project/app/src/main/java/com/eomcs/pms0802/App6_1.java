@@ -6,8 +6,15 @@ import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
 import com.eomcs.pms0802.util.Prompt;
 
-public class App {
+public class App6_1 {
 
+  // 클래스 관계  : 합성 (composition)
+
+  // 6) 컴포지트 패턴 적용하기
+  // 6-1) 컴포넌트 역할을 정의한다
+  // 직접 사용할 Menu가 아니기때문에 따로 클래스로 만들어줌(추상클래스)
+
+  // 다음단계부터는 pms0802.Menu 순서 참고
   static BoardHandler boardHandler = new BoardHandler();
   static MemberHandler memberHandler = new MemberHandler();
   static ProjectHandler projectHandler = new ProjectHandler(memberHandler);

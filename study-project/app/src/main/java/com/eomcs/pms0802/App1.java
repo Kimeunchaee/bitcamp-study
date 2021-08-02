@@ -15,10 +15,10 @@ public class App1 {
     ProjectHandler projectHandler = new ProjectHandler(memberHandler);
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
-    while (true) {
+    // 1) 메인 메뉴를 출력하고 번호를 입력 받는다.(App.java.01)
+    //    - 0 번을 입력하면 프로그램을 종료한다.
 
-      // 1. app를 실행하면 메인메뉴를 출력한다
-      // 1-1. 0번을 입력하면 종료됨 (quit 코드 사용)
+    while (true) {
       String input  = null; //초기화
       System.out.println("[메인]");
       System.out.println("1. 게시판");
