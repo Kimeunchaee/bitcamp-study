@@ -14,13 +14,13 @@ public class MenuTest {
     rootMenu.add(projectMenu);
     rootMenu.add(taskMenu);
 
-    MenuItem boardAddMenu = new MenuItem("등록");
+    MenuItem2 boardAddMenu = new MenuItem2("등록");
     boardAddMenu.addActionListener(new BoardAddListener());
 
-    MenuItem boardListMenu = new MenuItem("목록");
+    MenuItem2 boardListMenu = new MenuItem2("목록");
     boardListMenu.addActionListener(new BoardListListener());
 
-    MenuItem boardDetailMenu = new MenuItem("상세조회");
+    MenuItem2 boardDetailMenu = new MenuItem2("상세조회");
     boardDetailMenu.addActionListener(new BoardDetailListener());
 
     MenuItem boardUpdateMenu = new MenuItem("변경");
