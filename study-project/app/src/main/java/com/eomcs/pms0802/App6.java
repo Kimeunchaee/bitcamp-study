@@ -6,7 +6,7 @@ import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
 import com.eomcs.pms0802.util.Prompt;
 
-public class App6_1 {
+public class App6 {
 
   // 클래스 관계  : 합성 (composition)
 

@@ -1,4 +1,4 @@
-package com.eomcs.pms0802.Menu;
+package com.eomcs.pms0802.menu;
 
 
 public abstract class Menu {

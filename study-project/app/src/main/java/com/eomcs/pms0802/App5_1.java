@@ -6,7 +6,7 @@ import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
 import com.eomcs.pms0802.util.Prompt;
 
-public class App5 {
+public class App5_1 {
 
   // main()과 doBoardMenu()에서 사용할 수 있도록 main()밖으로 옮기고
   // 여러개의 메서드에서 공유하기 위해 static으로 변경

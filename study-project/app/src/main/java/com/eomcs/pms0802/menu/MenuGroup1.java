@@ -1,6 +1,7 @@
-package com.eomcs.pms0802.Menu;
+package com.eomcs.pms0802.menu;
 
-public class MenuGroup extends Menu {
+
+public class MenuGroup1 extends Menu {
 
   //---------------------------------------------------------
   Menu[] childs = new Menu[100];
@@ -11,7 +12,7 @@ public class MenuGroup extends Menu {
   // 문제는 컴파일러가 추가한 기본 생성자는 수퍼클래스의 기본생성자를 호출하기 때문에
   // 컴파일 오류가 발생한다 (Menu클래스에서 기본생성자를 만들어주지 않았기 때문에)
   // 따라서 개발자가 직접 생성자를 정의해야한다.
-  public MenuGroup(String title) {
+  public MenuGroup1(String title) {
     super(title);
   }
 
