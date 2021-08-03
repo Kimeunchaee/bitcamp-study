@@ -3,23 +3,38 @@ package com.eomcs.pms0802.menu;
 import com.eomcs.pms0802.util.Prompt;
 
 
-public class MenuGroup3 extends Menu {
+public class MenuGroup4 extends Menu {
 
   Menu[] childs = new Menu[100];  
   int size;
 
-  boolean disablePrevMenu; // 이전메뉴를 활성화(기본값)할지  : 이전메뉴가 출력되는게 기본값임
+  boolean disablePrevMenu; 
+
+  String prevMenuTitle =  "이전메뉴";   // 기본값 하나 추가함
 
 
-  public MenuGroup3 (String title) {
+
+
+
+  public MenuGroup4 (String title) {
     super(title);
   }
 
-  //생성자 추가
-  public MenuGroup3 (String title, boolean disablePrevMenu) {
+
+  public MenuGroup4 (String title, boolean disablePrevMenu) {
     super(title);
-    this.disablePrevMenu = disablePrevMenu;   //이 생성자를 사용하면 비활성화시킨다
+    this.disablePrevMenu = disablePrevMenu; 
   }
+
+
+  // prevMenuTitle 는 필수적인것이 아니라 선택적으로 사용하도록
+  // 생성자로 만들지 않고 setter로 만든다
+  public void setPrevMenuTitle(String prevMenuTitle) {
+    this.prevMenuTitle = prevMenuTitle;
+  }
+
+
+
 
 
   public void add (Menu child) {
@@ -69,23 +84,24 @@ public class MenuGroup3 extends Menu {
         System.out.printf("%d. %s\n", i + 1, this.childs[i].title);
       }
 
-      // 추가 disablePrevMenu
       if (!disablePrevMenu) {
-        System.out.println("0. 이전메뉴");
+        //System.out.println("0. 이전메뉴");
+        // prevMenuTitle 사용해줌
+        System.out.printf("0. %s\n", this.prevMenuTitle);
       }
 
       int menuNo = Prompt.inputInt("선택> ");
-
-      if (menuNo == 0 && !disablePrevMenu) {   // && 모두 참일때만 실행
-        return;
+      if (menuNo == 0 && !disablePrevMenu) {
+        return; //메서드가 호출된 곳으로 돌아감 (App에 execute()부분)
       }
 
-      if (menuNo < 0 || menuNo > this.size) {   // || 둘중하나라도 참일때만 실행
+      if (menuNo < 0 || menuNo > this.size) {
         System.out.println("무효한 메뉴 번호입니다.");
         continue;
       }
 
-      this.childs[menuNo - 1].execute();    //인덱스는 실제 번호보다 하나 큰수이기때문에  출력할때 ?????????????/
+      //.execute()를 실행으로 while문을 반복
+      this.childs[menuNo - 1].execute();
     }
   }
 

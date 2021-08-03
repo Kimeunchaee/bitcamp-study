@@ -4,27 +4,8 @@ import com.eomcs.pms0802.handler.BoardHandler;
 import com.eomcs.pms0802.handler.MemberHandler;
 import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
-import com.eomcs.pms0802.menu.BoardDeleteMenu;
-import com.eomcs.pms0802.menu.BoardDetailMenu;
-import com.eomcs.pms0802.menu.BoardListMenu;
-import com.eomcs.pms0802.menu.BoardUpdateMenu;
-import com.eomcs.pms0802.menu.MemberAddMenu;
-import com.eomcs.pms0802.menu.MemberDeleteMenu;
-import com.eomcs.pms0802.menu.MemberDetailMenu;
-import com.eomcs.pms0802.menu.MemberListMenu;
-import com.eomcs.pms0802.menu.MemberUpdateMenu;
 import com.eomcs.pms0802.menu.Menu;
 import com.eomcs.pms0802.menu.MenuGroup;
-import com.eomcs.pms0802.menu.ProjectAddMenu;
-import com.eomcs.pms0802.menu.ProjectDeleteMenu;
-import com.eomcs.pms0802.menu.ProjectDetailMenu;
-import com.eomcs.pms0802.menu.ProjectListMenu;
-import com.eomcs.pms0802.menu.ProjectUpdateMenu;
-import com.eomcs.pms0802.menu.TaskAddMenu;
-import com.eomcs.pms0802.menu.TaskDeleteMenu;
-import com.eomcs.pms0802.menu.TaskDetailMenu;
-import com.eomcs.pms0802.menu.TaskListMenu;
-import com.eomcs.pms0802.menu.TaskUpdateMenu;
 import com.eomcs.pms0802.util.Prompt;
 
 public class App8 {
@@ -48,15 +29,13 @@ public class App8 {
 
   //--------------------------------------
   static Menu createMenu() {
+
     MenuGroup mainMenuGroup = new MenuGroup("메인");
     mainMenuGroup.setPrevMenuTitle("종료");
 
 
-
-
-
     MenuGroup boardMenu = new MenuGroup("게시판");
-
+    mainMenuGroup.add(boardMenu);
     // 로컬클래스 복붙해옴 (BoardAddMenu클래스는 삭제)
     // App에서만 사용하는 클래스는 따로 만들필요없이
     // 같은 클래스안에 익명클래스로 만듦
@@ -75,18 +54,19 @@ public class App8 {
     //    }
     //  }
 
-
-    // 중첩클래스를 사용하기때무네 App클래스의 메소드를
+    // 중첩클래스를 사용하기때문에 App클래스의 메소드를
     //자유롭게 사용할 수 있다
     // 0. boardMenu.add(new BoardAddMenu()); 추가
     // 1. BoardHandler boardhandler 패키지멤버일때 받은 값은 필요없으므로 지워준다
     // 2. 중첩클래스일 경우에는 이름이 필요없다(익명클래스로 바꿔줌) > public class extends 도 다 빼준다
-    // 3. 익명클래스로 만들어짐과 동시에 생성자를 만들어줘야한다 Menu앞에 new넣기
-    // 수퍼클래스
+    // 3. 익명클래스로 만들어짐과 동시에 생성자를 만들어줘야한다 Menu앞에 new넣기 
+    // Menu m = new Menu 으로 바꿔주는데 m 파라미터를 딱 한번만 사용하므로
+    // 지정해주지않고 (지정해줬던거 삭제) 바로 boardMenu.add()메서드안에 넣어줌
     // 4. 수퍼클래스의 생성자를 호출할수없으므로 삭제함, super("등록") 은 new Menu ("등록") 으로 바꿔줌
-    // 5. 지금까지 수정한 값을 boardMenu.add (  여기에 ) 넣어준다
+    // 5. 지금까지 수정한 값을 //boardMenu.add(new BoardAddMenu(boardHandler)); 이 코드에서
+    // boardMenu.add (  여기에 ) 넣어주는걸로 수정해준다
 
-
+    // 이제 ProjectListMenu.... 모든 클래스파일이 필요없게 된다
 
     boardMenu.add(new Menu ("등록") {
       @Override
@@ -94,45 +74,134 @@ public class App8 {
         boardHandler.add();
       }
     });
+    //boardMenu.add(new BoardAddMenu(boardHandler));
 
 
+    boardMenu.add(new Menu ("목록") {
+      @Override
+      public void execute() {
+        boardHandler.list();
+      }
+    });
+    //boardMenu.add(new BoardListMenu(boardHandler));
 
-    mainMenuGroup.add(boardMenu);
 
-    boardMenu.add(new BoardAddMenu(boardHandler));
-    boardMenu.add(new BoardListMenu(boardHandler));
-    boardMenu.add(new BoardDetailMenu(boardHandler));
-    boardMenu.add(new BoardUpdateMenu(boardHandler));
-    boardMenu.add(new BoardDeleteMenu(boardHandler));
+    boardMenu.add(new Menu ("상세보기") {
+      @Override
+      public void execute() {
+        boardHandler.detail();
+      }
+    });
+    //boardMenu.add(new BoardDetailMenu(boardHandler));
 
 
-    MenuGroup memberMenu = new MenuGroup("게시판");
+    boardMenu.add(new Menu ("변경") {
+      @Override
+      public void execute() {
+        boardHandler.update();
+      }
+    });
+    //boardMenu.add(new BoardUpdateMenu(boardHandler));
+
+
+    boardMenu.add(new Menu ("삭제") {
+      @Override
+      public void execute() {
+        boardHandler.delete();
+      }
+    });
+    //boardMenu.add(new BoardDeleteMenu(boardHandler));
+
+
+    MenuGroup memberMenu = new MenuGroup("회원");
     mainMenuGroup.add(memberMenu);
+    memberMenu.add(new Menu ("등록") {
+      @Override
+      public void execute() {
+        memberHandler.add();
+      }}); 
+    memberMenu.add(new Menu ("목록") {
+      @Override
+      public void execute() {
+        memberHandler.list();
+      }});
+    memberMenu.add(new Menu ("상세보기") {
+      @Override
+      public void execute() {
+        memberHandler.detail();
+      }});
+    memberMenu.add(new Menu ("변경") {
+      @Override
+      public void execute() {
+        memberHandler.update();
+      }});
+    memberMenu.add(new Menu ("삭제") {
+      @Override
+      public void execute() {
+        memberHandler.delete();
+      }});
 
-    memberMenu.add(new MemberAddMenu(memberHandler));
-    memberMenu.add(new MemberListMenu(memberHandler));
-    memberMenu.add(new MemberDetailMenu(memberHandler));
-    memberMenu.add(new MemberUpdateMenu(memberHandler));
-    memberMenu.add(new MemberDeleteMenu(memberHandler));
+
+
 
     MenuGroup projectMenu = new MenuGroup("프로젝트");
     mainMenuGroup.add(projectMenu);
+    projectMenu.add(new Menu ("등록") {
+      @Override
+      public void execute() {
+        projectHandler.add();
+      }});
+    projectMenu.add(new Menu("목록") {
+      @Override
+      public void execute() {
+        projectHandler.list();
+      }});
+    projectMenu.add(new Menu("상세보기") {
+      @Override
+      public void execute() {
+        projectHandler.detail();
+      }});
+    projectMenu.add(new Menu("변경") {
+      @Override
+      public void execute() {
+        projectHandler.update();
+      }});
+    projectMenu.add(new Menu("삭제") {
+      @Override
+      public void execute() {
+        projectHandler.delete();
+      }});
 
-    projectMenu.add(new ProjectAddMenu(projectHandler));
-    projectMenu.add(new ProjectListMenu(projectHandler));
-    projectMenu.add(new ProjectDetailMenu(projectHandler));
-    projectMenu.add(new ProjectUpdateMenu(projectHandler));
-    projectMenu.add(new ProjectDeleteMenu(projectHandler));
+
 
 
     MenuGroup taskMenu = new MenuGroup("작업");
     mainMenuGroup.add(taskMenu);
-
-    taskMenu.add(new TaskAddMenu(taskHandler));
-    taskMenu.add(new TaskListMenu(taskHandler));
-    taskMenu.add(new TaskDetailMenu(taskHandler));
-    taskMenu.add(new TaskUpdateMenu(taskHandler));
-    taskMenu.add(new TaskDeleteMenu(taskHandler));
+    taskMenu.add(new Menu ("등록") {
+      @Override
+      public void execute() {
+        taskHandler.add();
+      }});
+    taskMenu.add(new Menu ("목록") {
+      @Override
+      public void execute() {
+        taskHandler.list();
+      }});
+    taskMenu.add(new Menu ("상세보기") {
+      @Override
+      public void execute() {
+        taskHandler.detail();
+      }});
+    taskMenu.add(new Menu ("변경") {
+      @Override
+      public void execute() {
+        taskHandler.update();
+      }});
+    taskMenu.add(new Menu ("삭제") {
+      @Override
+      public void execute() {
+        taskHandler.delete();
+      }});
 
     return mainMenuGroup;  
   }
@@ -238,7 +307,7 @@ public class App8 {
     }
   }
 
-  static int doMainMenu () {
+  static int doMainMenu() {
     System.out.println("[메인]");
     System.out.println("1. 게시판");
     System.out.println("2. 회원");

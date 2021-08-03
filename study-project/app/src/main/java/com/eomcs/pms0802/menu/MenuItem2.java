@@ -10,23 +10,24 @@ public class MenuItem2 extends Menu {
 
   //--------------------------------------------
 
-  //객체 추가
+  //3단계 : ActionListener 이름의 인터페이스를 별도의 파일로 만들기
   //리스너를 보관하는 배열을 준비한다.
   ActionListener[] listeners = new ActionListener[10];
   int size;
 
   //--------------------------------------------
 
+  // 1단계 : 부모클래스의 생성자 호출
   public MenuItem2(String title) {
     super(title);
   }
 
   //--------------------------------------------
 
-  //리스너를 등록하는 메서드 추가
+  //4단계 : 리스너를 등록하는 메서드 추가
   public void addActionListener(ActionListener listener) {
-    if (this.size == this.listeners.length) {
-      return;
+    if (this.size == this.listeners.length) {   //추가된 폴더와 전체배열의 크기가 같으면(꽉차면)
+      return; //리턴해라?
     }
     this.listeners[this.size++] = listener;
   }
@@ -34,9 +35,11 @@ public class MenuItem2 extends Menu {
 
 
   //--------------------------------------------
-
+  //2단계 : 부모클래스의 메서드 오버라이딩
   @Override
   public void execute() {
+
+    //5단계 : execute()에 실행항 내용 작성해주기
 
     // 메뉴를 실행하면 이 메뉴에 등록된 모든 리스너에게 알린다.
     for (int i = 0; i < this.size; i++) {

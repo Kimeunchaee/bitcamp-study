@@ -4,7 +4,6 @@ import com.eomcs.pms0802.handler.BoardHandler;
 import com.eomcs.pms0802.handler.MemberHandler;
 import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
-import com.eomcs.pms0802.menu.BoardAddMenu;
 import com.eomcs.pms0802.menu.BoardDeleteMenu;
 import com.eomcs.pms0802.menu.BoardDetailMenu;
 import com.eomcs.pms0802.menu.BoardListMenu;
@@ -81,7 +80,7 @@ public class App7 {
     mainMenuGroup.add(boardMenu);
 
     //메뉴항목 집어넣기
-    boardMenu.add(new BoardAddMenu(boardHandler));
+    //boardMenu.add(new BoardAddMenu(boardHandler));
     boardMenu.add(new BoardListMenu(boardHandler));
     boardMenu.add(new BoardDetailMenu(boardHandler));
     boardMenu.add(new BoardUpdateMenu(boardHandler));
@@ -89,7 +88,7 @@ public class App7 {
 
 
     //-----회원
-    MenuGroup memberMenu = new MenuGroup("게시판");
+    MenuGroup memberMenu = new MenuGroup("회원");
     mainMenuGroup.add(memberMenu);
 
     //메뉴항목 집어넣기

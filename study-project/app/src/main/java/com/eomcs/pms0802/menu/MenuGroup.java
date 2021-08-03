@@ -8,9 +8,9 @@ public class MenuGroup extends Menu {
   Menu[] childs = new Menu[100];  
   int size;
 
-  boolean disablePrevMenu; // 이전메뉴를 활성화(기본값)할지  : 이전메뉴가 출력되는게 기본값임
+  boolean disablePrevMenu;
 
-  String prevMenuTitle =  "이전메뉴";   // 기본값 하나 추가함
+  String prevMenuTitle =  "이전메뉴";   
 
 
 
@@ -20,15 +20,11 @@ public class MenuGroup extends Menu {
     super(title);
   }
 
-  //생성자 추가
   public MenuGroup (String title, boolean disablePrevMenu) {
     super(title);
-    this.disablePrevMenu = disablePrevMenu;   //이 생성자를 사용하면 비활성화시킨다
+    this.disablePrevMenu = disablePrevMenu; 
   }
 
-
-  // prevMenuTitle 는 필수적인것이 아니라 선택적으로 사용하도록
-  // 생성자로 만들지 않고 setter로 만든다
   public void setPrevMenuTitle(String prevMenuTitle) {
     this.prevMenuTitle = prevMenuTitle;
   }

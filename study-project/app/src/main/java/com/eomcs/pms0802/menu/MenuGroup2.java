@@ -23,7 +23,7 @@ public class MenuGroup2 extends Menu {
   }
 
   public Menu remove (Menu child) {
-    int index = indexOf(child);   // child 리무브할 대상을 indexOf메서드로 찾음
+    int index = indexOf(child);   // child remove할 대상을 indexOf메서드로 찾음
     if(index == -1) {               // -1유효하지 않을때, 삭제할 대상을 찾지 못할때 
       return null;                       // null을 Menu에 리턴하면 삭제하지 못했다는뜻, 샂게했다면 삭제한 그 주소를 리턴함
       // 메서드 타입을 void > Menu로 바꿔주고 return null 해주기
@@ -72,7 +72,7 @@ public class MenuGroup2 extends Menu {
         System.out.println("무효한 메뉴 번호입니다.");
         continue;
       }
-      this.childs[menuNo - 1].execute(); //인덱스는 실제 번호보다 하나 큰수이기때문에  출력할때 ?????????????/
+      this.childs[menuNo - 1].execute(); 
     }
   }
 
