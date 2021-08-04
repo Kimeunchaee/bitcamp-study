@@ -166,9 +166,14 @@ public class ProjectHandler {
     Node node = head;
     Node prev = null;
 
-    while(node !== null) {
+    while(node != null) {
       if(node.project == propject) {
 
+        prev.next = node.next;
+        node.next = null;
+
+        //하다말았음
+        break;
       }
     }
     for (int i = index + 1; i < this.size; i++) {
