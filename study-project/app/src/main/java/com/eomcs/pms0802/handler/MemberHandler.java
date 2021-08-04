@@ -5,10 +5,24 @@ import com.eomcs.pms0802.domain.Member;
 import com.eomcs.pms0802.util.Prompt;
 public class MemberHandler {
 
-  static final int MAX_LENGTH = 5;
+  //2. 각 핸들러에 노트 중첩클래스 작성
+  static class Node{
+    Member member;
+    Node next;
 
+    public Node(Member member) {
+      this.member = member;
+    }
+  }
+
+  //4. 배열 안쓸꺼니까 삭제
+  static final int MAX_LENGTH = 5;
   Member[] members = new Member[MAX_LENGTH];
+
   int size = 0;
+  //3. 노드 필드 추가
+  Node head;
+  Node tail;
 
   public void add() {
     System.out.println("[회원 등록]");
@@ -23,19 +37,49 @@ public class MemberHandler {
     member.tel = Prompt.inputString("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
 
+    // 4. add기능에 맞게 노드사용 코드작성
+    Node node = new Node(member);
+    if(head == null) {
+      tail = head = node;
+    } else {
+      tail.next = node;
+      tail = node;
+    }
+    size++;
+
+
+    //    // 1. 배열일때 추가
+    //    if(size == this.members.length) {
+    //      Member[] arr = new Member[ this.members.length + (this.members.length >> 1) ];
+    //      for(int i =0; i < this.size; i++) {
+    //        arr[i] = members[i];
+    //      }
+    //      this.members = arr;
+    //      System.out.println("새 Member[]객체를 만듦");
+    //    }
+    //
+
     this.members[this.size++] = member;
   }
 
   public void list() {
     System.out.println("[회원 목록]");
-    for (int i = 0; i < this.size; i++) {
-      System.out.printf("%d, %s, %s, %s, %s\n", 
-          this.members[i].no, 
-          this.members[i].name, 
-          this.members[i].email, 
-          this.members[i].tel, 
-          this.members[i].registeredDate);
+
+    // 5. list기능에 맞게 노드사용 코드작성 
+    if(head == null) {
+      return;
     }
+    Node node = head;
+
+    do {
+      System.out.printf("%d, %s, %s, %s, %s\n", 
+          node.member.no, 
+          node.member.name, 
+          node.member.email, 
+          node.member.tel, 
+          node.member.registeredDate);
+      node = node.next;
+    } while(node != null);
   }
 
   public void detail() {

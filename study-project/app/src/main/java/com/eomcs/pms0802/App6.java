@@ -1,6 +1,6 @@
 package com.eomcs.pms0802;
 
-import com.eomcs.pms0802.handler.BoardHandler;
+import com.eomcs.pms0802.handler.BoardHandler1;
 import com.eomcs.pms0802.handler.MemberHandler;
 import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
@@ -15,7 +15,7 @@ public class App6 {
   // 직접 사용할 Menu가 아니기때문에 따로 클래스로 만들어줌(추상클래스)
 
   // 다음단계부터는 pms0802.Menu 순서 참고
-  static BoardHandler boardHandler = new BoardHandler();
+  static BoardHandler1 boardHandler = new BoardHandler1();
   static MemberHandler memberHandler = new MemberHandler();
   static ProjectHandler projectHandler = new ProjectHandler(memberHandler);
   static TaskHandler taskHandler = new TaskHandler(memberHandler);

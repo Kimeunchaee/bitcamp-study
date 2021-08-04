@@ -1,6 +1,6 @@
 package com.eomcs.pms0802;
 
-import com.eomcs.pms0802.handler.BoardHandler;
+import com.eomcs.pms0802.handler.BoardHandler1;
 import com.eomcs.pms0802.handler.MemberHandler;
 import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
@@ -10,7 +10,7 @@ public class App1 {
 
   public static void main(String[] args) {
 
-    BoardHandler boardHandler = new BoardHandler();
+    BoardHandler1 boardHandler = new BoardHandler1();
     MemberHandler memberHandler = new MemberHandler();
     ProjectHandler projectHandler = new ProjectHandler(memberHandler);
     TaskHandler taskHandler = new TaskHandler(memberHandler);

@@ -1,6 +1,6 @@
 package com.eomcs.pms0802;
 
-import com.eomcs.pms0802.handler.BoardHandler;
+import com.eomcs.pms0802.handler.BoardHandler1;
 import com.eomcs.pms0802.handler.MemberHandler;
 import com.eomcs.pms0802.handler.ProjectHandler;
 import com.eomcs.pms0802.handler.TaskHandler;
@@ -16,7 +16,7 @@ public class App9 {
   // service() 인스턴스 메서드를 추가해서 main()의 코드들(=APP에서 실행할 애들)을 옮겨준다
   // main() 메서드에서 App 클래스의 service() 를 호출한다.
 
-  BoardHandler boardHandler = new BoardHandler();
+  BoardHandler1 boardHandler = new BoardHandler1();
   MemberHandler memberHandler = new MemberHandler();
   ProjectHandler projectHandler = new ProjectHandler(memberHandler);
   TaskHandler taskHandler = new TaskHandler(memberHandler);

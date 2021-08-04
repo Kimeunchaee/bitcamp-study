@@ -4,18 +4,14 @@ import java.sql.Date;
 import com.eomcs.pms0802.domain.Board;
 import com.eomcs.pms0802.util.Prompt;
 
-public class BoardHandler {
+// detail() , delete(), findByNo() 수정
+public class BoardHandler4 {
 
-  static class Node {
-    Board board;
-    Node next;
-    public Node(Board board) {
-      this.board = board;
-    }
-  }
+  static final int MAX_LENGTH = 5;
 
-
+  Board[] boards = new Board[MAX_LENGTH];
   int size = 0;
+
   Node head;
   Node tail;
 
@@ -73,6 +69,7 @@ public class BoardHandler {
     int no = Prompt.inputInt("번호? ");
 
     Board board = findByNo(no);
+    // findByNo 메서드로 가서 코드 수정해줌
 
 
     if (board == null) {
@@ -90,7 +87,7 @@ public class BoardHandler {
 
 
   //----------------------------------------------------------
-  public void update() {        
+  public void update() {         // 업데이트는 수정할거 없음
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
@@ -121,8 +118,11 @@ public class BoardHandler {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
+    // indexOf 대신 findByNo 사용
+    //int index = indexOf(no);  //기존코드
+    Board board = findByNo(no); //추가
 
+    //if (index == -1) 를 (board == null)로 변경
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
@@ -134,30 +134,31 @@ public class BoardHandler {
       return;
     }
 
+    // indexOf 대신에 findByNo메서드 사용했으므로 이 부분은 이제 필요없음
+    //    for (int i = index + 1; i < this.size; i++) {
+    //      this.boards[i - 1] = this.boards[i];
+    //    }
+    //    this.boards[--this.size] = null;
 
 
+    //추가 (보통 중간의 노드의 연결을 끊을때 (삭제)와 만약 마지막노드를 삭제할때 코드를 같이 작성)
     Node node = head;
     Node prev = null;
 
     while (node != null) {
       if(node.board == board) {
-        if(node == head) {     
-          head = node.next;  
-        } else {             
-          prev.next = node.next;   
-        }
-        node.next = null;
-
-        if(node == tail){ 
-          tail = prev; 
-        }
+        prev.next = node.next; // 전 노드에 넥스트의 값을 현재찾은 노드에 넥스트의 값으로 교체한다
+        // 이전노드의 연결을 끊고 다음 노드와 연결한다  
+        node.next = null; // 현재 노트의 넥스트 값을 비워준다 (다음노드와 연결을 끊는다)
         break;
       }
-
-      prev = node;   
-      node = node.next; 
+      //현재 노드가 아니라면
+      prev = node; //현재 노드의 주소를 prev변수에 저장하고
+      node = node.next; //node변수에는 다음 노드의 주소를 저장한다
     }
     size--;
+    //
+
     System.out.println("게시글을 삭제하였습니다.");
   }
 
@@ -166,16 +167,53 @@ public class BoardHandler {
   //-------------------------------------------------------
 
   private Board findByNo(int no) {
+    //    for (int i = 0; i < this.size; i++) {
+    //      if (this.boards[i].no == no) {
+    //        return this.boards[i];
+    //      }
+    //    }
+    //    return null;
+
+
+    // do-while사용코드
+    if (head == null) {
+      return null;
+    }
+
     Node node = head;
-    while (node != null) {
+    do {
       if(node.board.no == no) {
         return node.board;
       }
       node = node.next;
-    } 
+    } while (node != null);
     return null;
+
+
+
+    // while 사용코드 (위랑 내용은 같음)
+    //    Node node = head;
+    //    while (node != null) {
+    //      if(node.board.no == no) {
+    //        return node.board;
+    //      }
+    //      node = node.next;
+    //    } 
+    //    return null;
   }
 
+  // -------------------------------------------------------
+
+  // 이제 이 메서드 사용안함 
+  //  private int indexOf(int no) {
+  //    for (int i = 0; i < this.size; i++) {
+  //      if (this.boards[i].no == no) {
+  //        return i;
+  //      }
+  //    }
+  //    return -1;
+  //  }
+  //-------------------------------------------------------
 
 }
 

@@ -43,8 +43,17 @@ public class ProjectHandler {
       System.out.println("프로젝트 등록을 취소합니다.");
       return;
     }
-
     project.members = promptMembers("팀원?(완료: 빈 문자열) ");
+
+    //size는 로컬변수이면서 한번만 사용되기 때문에 this를 생략할수있음
+    if(size == this.projects.length) {
+      Project[] arr = new Project[ this.projects.length + (this.projects.length >> 1) ];
+      for(int i =0; i < this.size; i++) {
+        arr[i] = projects[i];
+      }
+      this.projects = arr;
+      System.out.println("새 Project[]객체를 만듦");
+    }
 
     this.projects[this.size++] = project;
   }

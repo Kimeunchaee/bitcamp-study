@@ -3,24 +3,14 @@ package com.eomcs.pms0802.handler;
 import java.sql.Date;
 import com.eomcs.pms0802.domain.Board;
 import com.eomcs.pms0802.util.Prompt;
-
-public class BoardHandler {
-
-  static class Node {
-    Board board;
-    Node next;
-    public Node(Board board) {
-      this.board = board;
-    }
-  }
+public class BoardHandler2 {
 
 
+  static final int MAX_LENGTH = 5;
+
+  Board[] boards = new Board[MAX_LENGTH];
   int size = 0;
-  Node head;
-  Node tail;
 
-
-  //----------------------------------------------------------
   public void add() {
     System.out.println("[새 게시글]");
 
@@ -32,48 +22,37 @@ public class BoardHandler {
     board.writer = Prompt.inputString("작성자? ");
     board.registeredDate = new Date(System.currentTimeMillis());
 
-    Node node = new Node(board);
-
-    if (head == null) {
-      tail = head = node;
-    } else {
-      tail.next = node;
-      tail = node;
+    //size는 로컬변수이면서 한번만 사용되기 때문에 this를 생략할수있음
+    if(this.size == this.boards.length) {
+      Board[] arr = new Board[ this.boards.length + (this.boards.length >> 1) ];
+      for(int i =0; i < this.size; i++) {
+        arr[i] = boards[i];
+      }
+      this.boards = arr;
+      System.out.println("새 Board[]객체를 만듦");
     }
 
-    size++;
+    this.boards[this.size++] = board; 
   }
 
-
-  //----------------------------------------------------------
   public void list() {
     System.out.println("[게시글 목록]");
-    if (head == null) {
-      return;
-    }
-
-    Node node = head;
-
-    do {
+    for (int i = 0; i < this.size; i++) {
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
-          node.board.no, 
-          node.board.title, 
-          node.board.writer,
-          node.board.registeredDate,
-          node.board.viewCount, 
-          node.board.like);
-      node = node.next;
-    } while (node != null);
+          this.boards[i].no, 
+          this.boards[i].title, 
+          this.boards[i].writer,
+          this.boards[i].registeredDate,
+          this.boards[i].viewCount, 
+          this.boards[i].like);
+    }
   }
 
-
-  //----------------------------------------------------------
   public void detail() {
     System.out.println("[게시글 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
     Board board = findByNo(no);
-
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -87,10 +66,7 @@ public class BoardHandler {
     System.out.printf("조회수: %d\n", ++board.viewCount);
   }
 
-
-
-  //----------------------------------------------------------
-  public void update() {        
+  public void update() {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
@@ -115,15 +91,13 @@ public class BoardHandler {
     System.out.println("게시글을 변경하였습니다.");
   }
 
-
-  //----------------------------------------------------------
   public void delete() {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
+    int index = indexOf(no);
 
-    if (board == null) {
+    if (index == -1) {
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
@@ -134,46 +108,30 @@ public class BoardHandler {
       return;
     }
 
-
-
-    Node node = head;
-    Node prev = null;
-
-    while (node != null) {
-      if(node.board == board) {
-        if(node == head) {     
-          head = node.next;  
-        } else {             
-          prev.next = node.next;   
-        }
-        node.next = null;
-
-        if(node == tail){ 
-          tail = prev; 
-        }
-        break;
-      }
-
-      prev = node;   
-      node = node.next; 
+    for (int i = index + 1; i < this.size; i++) {
+      this.boards[i - 1] = this.boards[i];
     }
-    size--;
+    this.boards[--this.size] = null;
+
     System.out.println("게시글을 삭제하였습니다.");
   }
 
-
-
-  //-------------------------------------------------------
-
   private Board findByNo(int no) {
-    Node node = head;
-    while (node != null) {
-      if(node.board.no == no) {
-        return node.board;
+    for (int i = 0; i < this.size; i++) {
+      if (this.boards[i].no == no) {
+        return this.boards[i];
       }
-      node = node.next;
-    } 
+    }
     return null;
+  }
+
+  private int indexOf(int no) {
+    for (int i = 0; i < this.size; i++) {
+      if (this.boards[i].no == no) {
+        return i;
+      }
+    }
+    return -1;
   }
 
 

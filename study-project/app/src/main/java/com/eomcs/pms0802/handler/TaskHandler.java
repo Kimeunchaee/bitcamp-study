@@ -42,6 +42,16 @@ public class TaskHandler {
       return; 
     }
 
+    //size는 로컬변수이면서 한번만 사용되기 때문에 this를 생략할수있음
+    if(size == this.tasks.length) {
+      Task[] arr = new Task[ this.tasks.length + (this.tasks.length >> 1) ];
+      for(int i =0; i < this.size; i++) {
+        arr[i] = tasks[i];
+      }
+      this.tasks = arr;
+      System.out.println("새 Tasks[]객체를 만듦");
+    }
+
     this.tasks[this.size++] = task;
   }
 
