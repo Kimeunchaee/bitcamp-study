@@ -147,14 +147,14 @@ public class BoardHandler4 {
 
     while (node != null) {
       if(node.board == board) {
-        prev.next = node.next; // 전 노드에 넥스트의 값을 현재찾은 노드에 넥스트의 값으로 교체한다
+        prev.next = node.next; // 전 노드에 넥스트의 값을 현재노드에 넥스트의 값으로 교체한다
         // 이전노드의 연결을 끊고 다음 노드와 연결한다  
         node.next = null; // 현재 노트의 넥스트 값을 비워준다 (다음노드와 연결을 끊는다)
         break;
       }
-      //현재 노드가 아니라면
-      prev = node; //현재 노드의 주소를 prev변수에 저장하고
-      node = node.next; //node변수에는 다음 노드의 주소를 저장한다
+      // 현재 노드가 아니라면,
+      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
+      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
     }
     size--;
     //
@@ -176,6 +176,9 @@ public class BoardHandler4 {
 
 
     // do-while사용코드
+    // do 실행문: 조건과 상관 없이 무조건 한 번 작업을 수행한다.
+    // while 조건문 : 그 다음 조건이 참(true)이면 반복해서 작업을 수행 한다.
+
     if (head == null) {
       return null;
     }

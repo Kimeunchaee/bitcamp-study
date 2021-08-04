@@ -16,8 +16,8 @@ public class MemberHandler {
   }
 
   //4. 배열 안쓸꺼니까 삭제
-  static final int MAX_LENGTH = 5;
-  Member[] members = new Member[MAX_LENGTH];
+  //  static final int MAX_LENGTH = 5;
+  //  Member[] members = new Member[MAX_LENGTH];
 
   int size = 0;
   //3. 노드 필드 추가
@@ -48,7 +48,7 @@ public class MemberHandler {
     size++;
 
 
-    //    // 1. 배열일때 추가
+    //    // 1. 배열을 사용하는 경우 배열 증가 시키기
     //    if(size == this.members.length) {
     //      Member[] arr = new Member[ this.members.length + (this.members.length >> 1) ];
     //      for(int i =0; i < this.size; i++) {
@@ -59,7 +59,7 @@ public class MemberHandler {
     //    }
     //
 
-    this.members[this.size++] = member;
+    //this.members[this.size++] = member;
   }
 
   public void list() {
@@ -86,6 +86,8 @@ public class MemberHandler {
     System.out.println("[회원 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
+    // detail에서 사용된 메서드를 수정해줌
+    // 6. findByNo(no) 메서드 수정
     Member member = findByNo(no);
 
     if (member == null) {
@@ -136,9 +138,13 @@ public class MemberHandler {
     System.out.println("[회원 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    int index = indexOf(no);
+    // 8. delete기능을 하는 코드를 노드를 사용해서 작성
 
-    if (index == -1) {
+    // 삭제 int index = indexOf(no);
+    Member member = findByNo(no);
+
+    // 수정 if (index == -1) {
+    if (member == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
       return;
     }
@@ -149,42 +155,142 @@ public class MemberHandler {
       return;
     }
 
-    for (int i = index + 1; i < this.size; i++) {
-      this.members[i - 1] = this.members[i];
-    }
-    this.members[--this.size] = null;
+    //    for (int i = index + 1; i < this.size; i++) {
+    //      this.members[i - 1] = this.members[i];
+    //    }
+    //    this.members[--this.size] = null;
 
+    //삭제하는 기능 작성
+    Node node = head;
+    Node prev = null;
+
+    // 9. 중간 노드를 삭제할때 (보통의경우)
+    //    while(node != null) {
+    //      if(node.member == member) {
+    //        prev.next = node.next; //이전노드 연결끊고 그 다음 노드로 연결 (1개 삭제했으니까)
+    //        node.next = null; //다음노드와 연결을 끊음
+    //        break;
+    //      }
+    //      // 현재 노드가 아니라면,
+    //      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
+    //      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
+    //    }
+    //    size--;
+
+
+
+    // 10. 중간노드 삭제 + 마지막노드 삭체하는 경우도 추가
+    //    while(node != null) {
+    //      if(node.member == member) {
+    //        prev.next = node.next;
+    //        node.next = null;
+    //
+    //        //추가
+    //        if(node == tail) {
+    //          tail = prev;
+    //        }
+    //        break;
+    //      }
+    //      prev = node; 
+    //      node = node.next; 
+    //    }
+    //    size--;
+
+
+
+
+    // 11. 중간노드 삭제 + 마지막노드 삭제 + 맨처음노드 삭제 추가
+    while(node != null) {
+      if(node.member == member) {
+
+        //추가
+        if(node == head) {
+          head = node.next;
+        } else {
+          prev.next = node.next;
+        }
+        node.next = null;
+
+
+        if(node == tail) {
+          tail = prev;
+        }
+        break;
+      }
+      prev = node; 
+      node = node.next; 
+    }
+    size--;
     System.out.println("회원을 삭제하였습니다.");
   }
 
+
+  // 12. 멤버핸들러와 프로젝트핸들러에서
+  // exist메서드는 배열을 사용하고있기때문에
+  // 노드로 바꿔줌
   boolean exist(String name) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].name.equals(name)) {
+    Node node = head;
+
+    while (node != null) {
+      if(node.member.name.equals(name)) {
         return true;
       }
+      node = node.next;
     }
+
     return false;
   }
 
   private Member findByNo(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].no == no) {
-        return this.members[i];
+    //    for (int i = 0; i < this.size; i++) {
+    //      if (this.members[i].no == no) {
+    //        return this.members[i];
+    //      }
+    //    }
+    //    return null;
+
+
+    // 7. for문 사용하지 않고 번호를 찾는 코드를
+    // 노드를 사용해서 작성
+
+    Node node = head;
+    do {
+      if(node.member.no == no) {
+        return node.member;
       }
-    }
+      node = node.next;
+    } while(node != null);
     return null;
   }
 
-  private int indexOf(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].no == no) {
-        return i;
-      }
-    }
-    return -1;
-  }
+
+
+  //  private Member findByNo(int no) {
+  //    Node node = head;
+  //
+  //    while (node != null) {
+  //      if (node.member.no == no) {
+  //        return node.member;
+  //      }
+  //      node = node.next;
+  //    }
+  //
+  //    return null;
+  //  }
+
 
 }
+
+
+
+//  private int indexOf(int no) {
+//    for (int i = 0; i < this.size; i++) {
+//      if (this.members[i].no == no) {
+//        return i;
+//      }
+//    }
+//    return -1;
+//  }
 
 
 
