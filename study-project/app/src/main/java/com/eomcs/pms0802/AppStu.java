@@ -31,11 +31,13 @@ public class AppStu {
     mainMenuGroup.add(boardMenu);
 
 
-    new Menu("등록") {
+
+    boardMenu.add(new Menu("등록") {
       @Override
       public void execute() {
+        boardHandler.add();
       }
-    }
+    });
 
 
     boardMenu.add(new BoardListMenu(boardHandler));
