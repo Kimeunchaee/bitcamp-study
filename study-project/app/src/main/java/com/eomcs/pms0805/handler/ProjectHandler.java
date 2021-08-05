@@ -1,26 +1,31 @@
-package com.eomcs.pms0802.handler;
+package com.eomcs.pms0805.handler;
+
 import java.sql.Date;
-import com.eomcs.pms0802.domain.Project;
-import com.eomcs.pms0802.util.Prompt;
+import com.eomcs.pms0805.domain.Project;
+import com.eomcs.pms0805.util.Prompt;
+
 public class ProjectHandler {
 
+  static final int MAX_LENGTH = 5;
 
-  static class Node{
-    Project project;
-    Node next;
-
-    public Node(Project project) {
-      this.project = project;
-    }
-  }
-
+  Project[] projects = new Project[MAX_LENGTH];
   int size = 0;
-  Node head;
-  Node tail;
 
-
+  // 이제 의존 객체는 생성자를 통해 주입 받기 때문에 
+  // 외부에서 인스턴스 변수에 직접 접근할 이유가 없다.
+  // 따라서 전체 공개 모드에서 패키지 멤버에게만 공개하는 모드로 전환한다. 
   MemberHandler memberHandler;
+
+  // 생성자 선언
+  // - 인스턴스를 생성할 때 반드시 호출되어야 하는 메서드이다.
+  // - 생성자는 리턴 타입이 없다.
+  // - 메서드 이름이 클래스 이름과 같아야 한다.
+  // - 인스턴스를 사용하기 전에 반드시 값을 설정해야 하는 인스턴스 변수가 있다면,
+  //   생성자의 파라미터로 선언하라.
+  // 
   public ProjectHandler(MemberHandler memberHandler) {
+    // 생성자에 파라미터가 있으면 인스턴스를 생성할 때 반드시 그 값을 넘겨야 한다.
+    // 일종의 인스턴스 변수의 값을 설정하는 것을 강제하는 효과가 있다.
     this.memberHandler = memberHandler;
   }
 
@@ -40,50 +45,25 @@ public class ProjectHandler {
       System.out.println("프로젝트 등록을 취소합니다.");
       return;
     }
+
     project.members = promptMembers("팀원?(완료: 빈 문자열) ");
 
-
-    //    if(size == this.projects.length) {
-    //      Project[] arr = new Project[ this.projects.length + (this.projects.length >> 1) ];
-    //      for(int i =0; i < this.size; i++) {
-    //        arr[i] = projects[i];
-    //      }
-    //      this.projects = arr;  //이걸 왜 넣지?........ arr[i] = projects[i] 얘랑 무슨차이?
-    //      System.out.println("새 Project[]객체를 만듦");
-    //    }
-
-    Node node = new Node(project);
-    if(head == null) {
-      tail = head = node;
-    } else {
-      tail.next = node;
-      tail = node;
-    }
-    size++;
-
+    this.projects[this.size++] = project;
   }
 
-
+  //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[프로젝트 목록]");
-
-    if(head ==  null) {
-      return;
-    }
-    Node node = head;
-
-    do {
+    for (int i = 0; i < this.size; i++) {
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
-          node.project.no, 
-          node.project.title, 
-          node.project.startDate, 
-          node.project.endDate, 
-          node.project.owner,
-          node.project.members);
-      node = node.next;
-    }  while (node != null);
+          this.projects[i].no, 
+          this.projects[i].title, 
+          this.projects[i].startDate, 
+          this.projects[i].endDate, 
+          this.projects[i].owner,
+          this.projects[i].members);
+    }
   }
-
 
   public void detail() {
     System.out.println("[프로젝트 상세보기]");
@@ -150,9 +130,9 @@ public class ProjectHandler {
     System.out.println("[프로젝트 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Project project = findByNo(no);
+    int index = indexOf(no);
 
-    if (project == null) {
+    if (index == -1) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
       return;
     }
@@ -163,46 +143,38 @@ public class ProjectHandler {
       return;
     }
 
-    Node node = head;
-    Node prev = null;
-
-    while(node != null) {
-      if(node.project == project) {
-        if (node == head) {
-          head = node.next;
-        } else {
-          prev.next = node.next;
-        }
-        node.next = null;
-
-        if(node == tail) {
-          tail = prev;
-        }
-        break;
-      }
-
-      prev = node;
-      node = node.next;
+    for (int i = index + 1; i < this.size; i++) {
+      this.projects[i - 1] = this.projects[i];
     }
-    size--;
+    this.projects[--this.size] = null;
+
     System.out.println("프로젝트를 삭제하였습니다.");
   }
 
   private Project findByNo(int no) {
-    Node node = head;
-    do {
-      if(node.project.no == no) {
-        return node.project;
+    for (int i = 0; i < this.size; i++) {
+      if (this.projects[i].no == no) {
+        return this.projects[i];
       }
-      node = node.next;
-    } while(node != null);
+    }
     return null;
+  }
+
+  private int indexOf(int no) {
+    for (int i = 0; i < this.size; i++) {
+      if (this.projects[i].no == no) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   private String promptOwner(String label) {
     while (true) {
       String owner = Prompt.inputString(label);
-
+      // 회원 이름이 등록된 회원의 이름인지 검사할 때 사용할 MemberHandler 인스턴스는
+      // 인스턴스 변수에 미리 주입되어 있기 때문에 파라미터로 받을 필요가 없다.
+      // 다음과 같이 인스턴스 변수를 직접 사용하면 된다.
       if (this.memberHandler.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {

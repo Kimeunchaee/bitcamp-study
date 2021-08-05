@@ -37,7 +37,7 @@ public class MemberHandler {
     member.tel = Prompt.inputString("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
 
-    // 4. add기능에 맞게 노드사용 코드작성
+    // 5. add기능에 맞게 노드사용 코드작성
     Node node = new Node(member);
     if(head == null) {
       tail = head = node;
@@ -65,7 +65,7 @@ public class MemberHandler {
   public void list() {
     System.out.println("[회원 목록]");
 
-    // 5. list기능에 맞게 노드사용 코드작성 
+    // 6. list기능에 맞게 노드사용 코드작성 
     if(head == null) {
       return;
     }
@@ -87,7 +87,7 @@ public class MemberHandler {
     int no = Prompt.inputInt("번호? ");
 
     // detail에서 사용된 메서드를 수정해줌
-    // 6. findByNo(no) 메서드 수정
+    // 7. findByNo(no) 메서드 수정
     Member member = findByNo(no);
 
     if (member == null) {
@@ -138,7 +138,7 @@ public class MemberHandler {
     System.out.println("[회원 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    // 8. delete기능을 하는 코드를 노드를 사용해서 작성
+    // 9. delete기능을 하는 코드를 노드를 사용해서 작성
 
     // 삭제 int index = indexOf(no);
     Member member = findByNo(no);
@@ -164,7 +164,7 @@ public class MemberHandler {
     Node node = head;
     Node prev = null;
 
-    // 9. 중간 노드를 삭제할때 (보통의경우)
+    // 10. 중간 노드를 삭제할때 (보통의경우)
     //    while(node != null) {
     //      if(node.member == member) {
     //        prev.next = node.next; //이전노드 연결끊고 그 다음 노드로 연결 (1개 삭제했으니까)
@@ -179,7 +179,7 @@ public class MemberHandler {
 
 
 
-    // 10. 중간노드 삭제 + 마지막노드 삭체하는 경우도 추가
+    // 11. 중간노드 삭제 + 마지막노드 삭체하는 경우도 추가
     //    while(node != null) {
     //      if(node.member == member) {
     //        prev.next = node.next;
@@ -199,7 +199,7 @@ public class MemberHandler {
 
 
 
-    // 11. 중간노드 삭제 + 마지막노드 삭제 + 맨처음노드 삭제 추가
+    // 12. 중간노드 삭제 + 마지막노드 삭제 + 맨처음노드 삭제 추가
     while(node != null) {
       if(node.member == member) {
 
@@ -225,8 +225,7 @@ public class MemberHandler {
   }
 
 
-  // 12. 멤버핸들러와 프로젝트핸들러에서
-  // exist메서드는 배열을 사용하고있기때문에
+  // 13. exist메서드는 배열을 사용하고있기때문에
   // 노드로 바꿔줌
   boolean exist(String name) {
     Node node = head;
@@ -250,7 +249,7 @@ public class MemberHandler {
     //    return null;
 
 
-    // 7. for문 사용하지 않고 번호를 찾는 코드를
+    // 8. for문 사용하지 않고 번호를 찾는 코드를
     // 노드를 사용해서 작성
 
     Node node = head;

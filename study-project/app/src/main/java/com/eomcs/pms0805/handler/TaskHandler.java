@@ -1,29 +1,33 @@
-package com.eomcs.pms0802.handler;
+package com.eomcs.pms0805.handler;
 
 import java.sql.Date;
-import com.eomcs.pms0802.domain.Task;
-import com.eomcs.pms0802.util.Prompt;
+import com.eomcs.pms0805.domain.Task;
+import com.eomcs.pms0805.util.Prompt;
+
 public class TaskHandler {
 
-  static class Node{
-    Task date; // 데이터가 저장될 필드
-    Node next;// 다음 노드를 가리키는 필드
+  static final int MAX_LENGTH = 5;
 
-    public Node(Task input) {   //생성자
-      this.date = input;
-    }
-  }
-
+  Task[] tasks = new Task[MAX_LENGTH];
   int size = 0;
-  Node head;
-  Node tail;
 
+  // 이제 의존 객체는 생성자를 통해 주입 받기 때문에 
+  // 외부에서 인스턴스 변수에 직접 접근할 이유가 없다.
+  // 따라서 전체 공개 모드에서 패키지 멤버에게만 공개하는 모드로 전환한다. 
   MemberHandler memberHandler;
+
+
+  // TaskHandler의 의존 객체를 반드시 주입하도록 강제하고 싶다면,
+  // 생성자를 선언할 때 파라미터로 지정하라.
+  // 즉 TaskHandler의 인스턴스를 생성할 때 필요한 값이 있다면,
+  // 생성자의 파라미터를 이용해서 받을 수 있다.
   public TaskHandler(MemberHandler memberHandler) {
     this.memberHandler = memberHandler;
   }
 
 
+  // add()에서 사용할 MemberHandler는 메서드를 호출하기 전에 
+  // 인스턴스 변수에 미리 주입되어 있어야 한다.
   public void add() {
     System.out.println("[작업 등록]");
 
@@ -39,22 +43,10 @@ public class TaskHandler {
       return; 
     }
 
-    // 노드를 생성
-    Node node = new Node(input);
-
-    if(size == this.tasks.length) {
-      Task[] arr = new Task[ this.tasks.length + (this.tasks.length >> 1) ];
-      for(int i =0; i < this.size; i++) {
-        arr[i] = tasks[i];
-      }
-      this.tasks = arr;
-      System.out.println("새 Tasks[]객체를 만듦");
-    }
-
     this.tasks[this.size++] = task;
   }
 
-
+  //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[작업 목록]");
 
@@ -84,7 +76,8 @@ public class TaskHandler {
     System.out.printf("담당자: %s\n", task.owner);
   }
 
-
+  // update()가 사용할 MemberHandler 는 
+  // 인스턴스 변수에 미리 주입 받기 때문에 파라미터로 받을 필요가 없다.
   public void update() {
     System.out.println("[작업 변경]");
     int no = Prompt.inputInt("번호? ");
@@ -172,7 +165,7 @@ public class TaskHandler {
   private String promptOwner(String label) {
     while (true) {
       String owner = Prompt.inputString(label);
-
+      // MemberHandler의 인스턴스는 미리 인스턴스 변수에 주입 받은 것을 사용한다.
       if (this.memberHandler.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {
