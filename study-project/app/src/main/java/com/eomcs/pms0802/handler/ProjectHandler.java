@@ -48,7 +48,7 @@ public class ProjectHandler {
     //      for(int i =0; i < this.size; i++) {
     //        arr[i] = projects[i];
     //      }
-    //      this.projects = arr;  //이걸 왜 넣지?........ arr[i] = projects[i] 얘랑 무슨차이?
+    //      this.projects = arr;  //arr 배열을 다시 기존에 다루던 배열로 넣어서 projects변수로 관리한다
     //      System.out.println("새 Project[]객체를 만듦");
     //    }
 

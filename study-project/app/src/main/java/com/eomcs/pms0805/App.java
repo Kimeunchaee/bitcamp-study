@@ -10,20 +10,41 @@ import com.eomcs.pms0805.util.Prompt;
 
 
 // 08-d 를 가지고 10-a로 수정
-// 보드핸들러를 역할별로 두개로 나눈디 (High Cohesion) 
+// 핸들러를 역할별로 두개로 나눈다 (High Cohesion) 
 // 교체와 유지보수가 쉽다
-// 보드핸들러 : UI 처리
-// 보드리스트 : 데이터처리
+// **핸들러 : UI 처리
+// **리스트 : 데이터처리
 
-
-// 1. 보드리스트 클래스 만들기 (handler패키지에)
+// GRASP : OOP기초 설계 패턴
+// 에 맞게 핸들러와 리스트를 수정해주고
+// APP에 와서 수정
 
 public class App {
 
   BoardHandler boardHandler = new BoardHandler();
   MemberHandler memberHandler = new MemberHandler();
-  ProjectHandler projectHandler = new ProjectHandler(memberHandler);
-  TaskHandler taskHandler = new TaskHandler(memberHandler);
+
+  //memberhandler.getMemberList(); 안됨
+  // 클래스에서는 선언만 할수 있기 때문에
+
+  // memberHandler 에서 호출했던걸 .getMemberList 메서드 호출로 바꿔줌
+  // 기존코드 ProjectHandler projectHandler = new ProjectHandler(memberHandler);
+  ProjectHandler projectHandler = new ProjectHandler(memberHandler.getMemberList());
+
+  //memberHandler 에서 호출했던걸 .getMemberList 메서드 호출로 바꿔줌
+  // 기존코드 TaskHandler taskHandler = new TaskHandler(memberHandler);
+  TaskHandler taskHandler = new TaskHandler(memberHandler.getMemberList());
+
+
+
+  //App생성자 만들어서
+  public App() {
+    //memberhandler.memberList = null; 이렇게 마음대로 바꾸는걸 막기위해
+    //memberList을 사용하려면 getter를 사용하도록한다
+
+
+  }
+
 
   public static void main(String[] args) {
     App app = new App();

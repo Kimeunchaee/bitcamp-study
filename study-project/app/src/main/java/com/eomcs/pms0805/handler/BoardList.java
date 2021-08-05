@@ -4,7 +4,8 @@ import com.eomcs.pms0805.domain.Board;
 
 // 별도의 클래스로 캡슐화
 // 복잡한 코드를 감춘다
-// 핸들러에서 메서드만 호출해서 간결하게 사용하도록
+// 핸들러에서 메서드만 호출해서 간결하게 사용하도록 할수 있고
+// 유지보수가 쉬워진다
 
 public class BoardList {
 
@@ -22,10 +23,13 @@ public class BoardList {
     this.boards[this.size++] = board;
   } 
 
+
+
+
+  //-----------------------------------------------------
   // 3.  새 배열을 만듦
   public Board[] toArray() {
     Board[] arr = new Board[this.size]; // 배열의 저장된 값을 담을 정도의 크기를 가진 새 배열을 만든다
-
     for(int i = 0; i < this.size; i++) { // 배열에 저장된 값을 새 배열에 복사한다
       arr[i] = boards[i];
     }
@@ -60,26 +64,25 @@ public class BoardList {
 
 
   //-----------------------------------------------------
-  // 5. 인덱스를 삭제하는 코드를 보드리스트로 이동 (보드핸들러의 delete안에 있음)
+  // 5. 인덱스를 삭제하는 코드를 보드리스트로 이동 (보드핸들러의 delete안에 있었음)
   // 메서드명 remove로 만들어서 넣기
-  // 기존 public Board remove (Board board) {
-  // boolean 으로 수정
+  // 기존 public Board remove (Board board) > boolean 으로 수정
   public boolean remove (Board board) {
 
-
     //새로 작성
-    // int index = indexOf(board.no);
-    if(index == -1) {
+    // remove메서드를 보드객체가 존재하지 않을때(무효한값인 -1일때) 사용하려고 하면
+    // false로 리턴한다 (remove메서드가 실행되지 않고 사용하지 못하도록)
+    int index = indexOf(board);
+    if(index == -1) {               
       return false;
     }
 
-    //기존코드
     for (int i = index + 1; i < this.size; i++) {
       this.boards[i - 1] = this.boards[i];
     }
     this.boards[--this.size] = null;
 
-    //추가
+    //새로 작성
     return true;
   }
 
@@ -88,11 +91,11 @@ public class BoardList {
   // 6. indexOf 가지고 오기
   // 기존 private int indexOf(int no) {
   private int indexOf(Board board) {  //이제 번호가 아닌 보드객체 자체를 찾음
-    // indexOf를 가져다 쓰는 곳에서 원하는 인스턴스를 선택하도록 (ex. remove에서 board.no 번호를 선택함)
+    // 메서드를 호출하는 쪽(핸들러)에서 원하는 객체(예. no) 를 선택할수 있음
 
     for (int i = 0; i < this.size; i++) {
       // 기존코드 if (this.boards[i].no == no) {
-      if (board == board) {
+      if (this.boards[i] == board) {        // 보드객체 자체를 찾도록 수정
         return i;
       }
     }

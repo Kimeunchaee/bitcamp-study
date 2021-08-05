@@ -4,6 +4,12 @@ import java.sql.Date;
 import com.eomcs.pms0805.domain.Board;
 import com.eomcs.pms0805.util.Prompt;
 
+
+
+// 보드리스트에 데이터를 다루는 코드들이 있고
+// 핸들러는 호출해서 사용하기만 한다
+
+
 public class BoardHandler {
 
   // 1. 보드리스트 클래스로 빼준다
@@ -13,6 +19,7 @@ public class BoardHandler {
 
   // 3. 보드리스트를 불러오기
   BoardList boardList =  new BoardList();
+
 
 
 
@@ -43,7 +50,7 @@ public class BoardHandler {
   public void list() {
     System.out.println("[게시글 목록]");
 
-    // 5. toArrat메서드 사용
+    // 5. 리스트에서 만든 toArray메서드 사용
     Board[] list = boardList.toArray();
 
     // 6 for문의 조건,증가문을 수정한다
@@ -69,7 +76,7 @@ public class BoardHandler {
     int no = Prompt.inputInt("번호? ");
 
     // 7. findByNo 메서드로 가서 수정
-    // 앞에 boardList. 클래스명 써주기
+    // findByNo를 boardList클래스에서 받아와야하기 때문에 boardList. 추가
     Board board = boardList.findByNo(no);
 
     if (board == null) {
@@ -92,7 +99,7 @@ public class BoardHandler {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    // boardList. 추가
+    // 8. findByNo를 boardList클래스에서 받아와야하기 때문에 boardList. 추가
     Board board = boardList.findByNo(no);
 
     if (board == null) {
@@ -123,7 +130,7 @@ public class BoardHandler {
     int no = Prompt.inputInt("번호? ");
 
 
-    // 수정
+    // 9. boardList.findByNo() 로 바꿔줌
     // 기존코드 int index = indexOf(no);
     Board board = boardList.findByNo(no);
 
@@ -139,14 +146,16 @@ public class BoardHandler {
       return;
     }
 
-    //추가
-    boardList.remove(board);
-
-    //보드리스트로 이동
+    // 10. 해당 코드를 보드리스트로 이동시키고
+    // remove() 메서드로 만든다
     //    for (int i = index + 1; i < this.size; i++) {
     //      this.boards[i - 1] = this.boards[i];
     //    }
     //    this.boards[--this.size] = null;
+
+    //추가
+    boardList.remove(board);
+
 
     System.out.println("게시글을 삭제하였습니다.");
   }
@@ -156,8 +165,9 @@ public class BoardHandler {
 
 
   //-----------------------------------------------------
+  // 7-1. findByNo의 소스코드를 그대로 리스트클래스로 옮김
+  // 만약 findByNo 메서드를 옮기지 않고 핸들러에서 계속 사용할 경우
   //  private Board findByNo(int no) {
-  // *findByNo 메서드를 핸들러에서 사용할 경우
   //    //추가
   //    Board[] list = boardList.toArray();
   //
@@ -172,6 +182,7 @@ public class BoardHandler {
 
 
   //-----------------------------------------------------
+  // 7-2. indexOf의 소스코드를 리스트클래스로 옮김
   // 리스트로 옮김
   //  private int indexOf(int no) {
   //    for (int i = 0; i < this.size; i++) {

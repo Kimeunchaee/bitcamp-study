@@ -1,16 +1,25 @@
 package com.eomcs.pms0805.handler;
 
 import java.sql.Date;
-
 import com.eomcs.pms0805.domain.Member;
 import com.eomcs.pms0805.util.Prompt;
 
 public class MemberHandler {
 
-  static final int MAX_LENGTH = 5;
+  // 접근이 디폴트로 되어있다
+  // 같은 패키지안에서만 접근가능하다
+  // APP에서 사용하기위해 public 으로 바꿔주는데
+  // 퍼블릭은 호출하는 쪽에서 memberList를 마음대로 바꿀수있기때문에
+  // 이를 방지하기위해 getter 메서드로 만들어준다
 
-  Member[] members = new Member[MAX_LENGTH];
-  int size = 0;
+  // 기존코드
+  // public MemberList memberList =  new MemberList();
+
+  // getter 메서드로 바꿔줌
+  MemberList memberList =  new MemberList();
+  public MemberList getMemberList() {
+    return memberList;
+  }
 
   public void add() {
     System.out.println("[회원 등록]");
@@ -25,18 +34,21 @@ public class MemberHandler {
     member.tel = Prompt.inputString("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
 
-    this.members[this.size++] = member;
+    memberList.add(member);
   }
 
   public void list() {
     System.out.println("[회원 목록]");
-    for (int i = 0; i < this.size; i++) {
+
+    Member[] list = memberList.toArray();
+
+    for (Member member : list) {
       System.out.printf("%d, %s, %s, %s, %s\n", 
-          this.members[i].no, 
-          this.members[i].name, 
-          this.members[i].email, 
-          this.members[i].tel, 
-          this.members[i].registeredDate);
+          member.no, 
+          member.name, 
+          member.email, 
+          member.tel, 
+          member.registeredDate);
     }
   }
 
@@ -44,7 +56,7 @@ public class MemberHandler {
     System.out.println("[회원 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    Member member = findByNo(no);
+    Member member = memberList.findByNo(no);
 
     if (member == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
@@ -62,7 +74,7 @@ public class MemberHandler {
     System.out.println("[회원 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    Member member = findByNo(no);
+    Member member = memberList.findByNo(no);
 
     if (member == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
@@ -94,9 +106,10 @@ public class MemberHandler {
     System.out.println("[회원 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    int index = indexOf(no);
+    //int index = indexOf(no);
+    Member member = memberList.findByNo(no);
 
-    if (index == -1) {
+    if (member == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
       return;
     }
@@ -107,42 +120,30 @@ public class MemberHandler {
       return;
     }
 
-    for (int i = index + 1; i < this.size; i++) {
-      this.members[i - 1] = this.members[i];
-    }
-    this.members[--this.size] = null;
+    memberList.remove(member);
 
     System.out.println("회원을 삭제하였습니다.");
   }
 
-  boolean exist(String name) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].name.equals(name)) {
-        return true;
-      }
-    }
-    return false;
-  }
 
-  private Member findByNo(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].no == no) {
-        return this.members[i];
-      }
-    }
-    return null;
-  }
 
-  private int indexOf(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.members[i].no == no) {
-        return i;
-      }
-    }
-    return -1;
-  }
+
+  // 멤버핸들러에 만든 메서드인 exist
+  // 멤버 리스트로 옮기고
+  // 프로젝트 핸들러에서 멤버리스트에서 불러서 사용할수 있도록 함
+  // 멤버핸들러에는 exist를 호출할 필요없음 (사용하지 않으니까)
+  //  boolean exist(String name) {
+  //    for (int i = 0; i < this.size; i++) {
+  //      if (this.members[i].name.equals(name)) {
+  //        return true;
+  //      }
+  //    }
+  //    return false;
+
+
 
 }
+
 
 
 
