@@ -7,7 +7,7 @@ import com.eomcs.pms0805pm.domain.Task;
 
 
 //extends ArrayList 상속 추가
-public class TaskList3 extends ArrayList{
+public class TaskList3 extends ArrayList3{
 
 
 

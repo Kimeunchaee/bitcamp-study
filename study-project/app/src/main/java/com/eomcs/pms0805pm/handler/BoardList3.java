@@ -10,13 +10,13 @@ import com.eomcs.pms0805pm.domain.Board;
 //서브클래스의 공통필드들을 수퍼클래스로 정의한다
 
 // 1. ArrayList 수퍼클래스 만들기
-// 2. 공통된 코드 추출하기
-// 3. ArrayList의 코드를 각각의 List3에 호출해주기 (List3 수정)
+// 2. 공통된 코드 추출하기 (배열을 사용한 List)
+// 3.각각의 List3에서 ArrayList를 상속받고 필요없는 코드 지우고 수정하기
 
 
 
 // 상속받았으니까 extends ArrayList 추가
-public class BoardList3 extends ArrayList {
+public class BoardList3 extends ArrayList3 {
 
   //*필요없음 상속클래스꺼 사용
   //  static final int MAX_LENGTH = 5;

@@ -2,7 +2,7 @@ package com.eomcs.pms0805pm.handler;
 
 import com.eomcs.pms0805pm.domain.Board;
 
-// 09-a,b에서 해줬던 작업
+// 09-a에서 해줬던 작업 (배열크기 변경)
 // 여기에 추가
 // 이제 핸들러를 직접 변경할 필요없이
 // 리스트에서 바꿔주면 유지보수가 쉬워진다

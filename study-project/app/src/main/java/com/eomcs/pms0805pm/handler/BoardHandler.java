@@ -13,8 +13,13 @@ public class BoardHandler {
   //클래스명 바꿔주기 (교체가 쉽다)
   // BoardList2 boardList = new BoardList2();
 
-  // 2. 상속을 적용한  BoardList3로 바꿔주기
-  BoardList3 boardList = new BoardList3();
+  // 2. 상속을 적용한  BoardList3(배열사용)로 바꿔주기
+  //BoardList3 boardList = new BoardList3();
+
+  //3. 상속을 적용한  BoardList4(Node사용)로 바꿔주기
+  BoardList4 boardList = new BoardList4();
+
+
 
   public void add() {
     System.out.println("[새 게시글]");

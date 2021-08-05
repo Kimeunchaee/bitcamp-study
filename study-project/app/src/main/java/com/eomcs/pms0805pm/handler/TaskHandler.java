@@ -10,16 +10,25 @@ public class TaskHandler {
   //TaskList taskList = new TaskList();
 
   //1. 링크드리스트를 사용한 TaskList2로 바꿔주기
-  //TaskList2 taskList = new TaskList2();
+  // TaskList2 taskList = new TaskList2();
+  //  MemberList2 memberList;
+  //  public TaskHandler(MemberList2 memberList) {
+  //    this.memberList = memberList;
+  //  }
 
   //2. 상속을 적용한  TaskList3로 바꿔주기
-  TaskList3 taskList = new TaskList3();
+  //  TaskList3 taskList = new TaskList3();
+  //  MemberList3 memberList;
+  //  public TaskHandler(MemberList3 memberList) {
+  //    this.memberList = memberList;
+  //  }
 
-  MemberList3 memberList;
-  public TaskHandler(MemberList3 memberList) {
+  //3. 상속을 적용한 TaskList4(Node사용)로 바꿔주기
+  TaskList4 taskList = new TaskList4();
+  MemberList4 memberList;
+  public TaskHandler(MemberList4 memberList) {
     this.memberList = memberList;
   }
-
 
   public void add() {
     System.out.println("[작업 등록]");

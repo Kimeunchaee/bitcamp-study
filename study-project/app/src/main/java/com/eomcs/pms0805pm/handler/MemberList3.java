@@ -6,7 +6,7 @@ import com.eomcs.pms0805pm.domain.Member;
 // 서브클래스의 공통필드들을 수퍼클래스로 정의한다
 
 //extends ArrayList 상속 추가
-public class MemberList3 extends ArrayList{
+public class MemberList3 extends ArrayList3{
 
   // MemberList3에서 다뤄줘야하는 데이터만 남는다
   // findByNo는 형변환이 각각 다르기때문에

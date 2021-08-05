@@ -7,7 +7,7 @@ import com.eomcs.pms0805pm.domain.Project;
 
 
 //extends ArrayList 상속 추가
-public class ProjectList3 extends ArrayList{
+public class ProjectList3 extends ArrayList3{
 
   // 수퍼클래스에서 사용하는 메서드들 지워주기
   public Project findByNo(int no) {

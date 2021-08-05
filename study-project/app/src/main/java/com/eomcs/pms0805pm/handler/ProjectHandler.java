@@ -10,12 +10,22 @@ public class ProjectHandler {
 
   //1. 링크드리스트를 사용한 ProjectList2로 바꿔주기
   //ProjectList2 projectList = new ProjectList2();
+  //MemberList2 memberList;
+  //public ProjectHandler(MemberList2 memberList) {
+  //  this.memberList = memberList;
+  //}
 
   //2. 상속을 적용한  ProjectList3로 바꿔주기
-  ProjectList3 projectList = new ProjectList3();
+  //  ProjectList3 projectList = new ProjectList3();
+  //  MemberList3 memberList;
+  //  public ProjectHandler(MemberList3 memberList) {
+  //    this.memberList = memberList;
+  //  }
 
-  MemberList3 memberList;
-  public ProjectHandler(MemberList3 memberList) {
+  //3. 상속을 적용한 ProjectList4(Node사용)로 바꿔주기
+  ProjectList4 projectList = new ProjectList4();
+  MemberList4 memberList;
+  public ProjectHandler(MemberList4 memberList) {
     this.memberList = memberList;
   }
 

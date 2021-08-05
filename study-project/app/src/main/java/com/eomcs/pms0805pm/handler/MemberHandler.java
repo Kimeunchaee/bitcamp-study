@@ -11,11 +11,19 @@ public class MemberHandler {
 
   //1. 링크드리스트를 사용한 MemberList2로 바꿔주기
   //MemberList2 memberList = new MemberList2();
+  //public MemberList2 getMemberList() {
+  //return memberList;
+  //}
 
   //2. 상속을 적용한  MemberList3로 바꿔주기
-  MemberList3 memberList = new MemberList3();
+  //  MemberList3 memberList = new MemberList3();
+  //  public MemberList3 getMemberList() {
+  //    return memberList;
+  //  }
 
-  public MemberList3 getMemberList() {
+  //3. 상속을 적용한  MemberList4(Node사용)로 바꿔주기
+  MemberList4 memberList = new MemberList4();
+  public MemberList4 getMemberList() {
     return memberList;
   }
 
