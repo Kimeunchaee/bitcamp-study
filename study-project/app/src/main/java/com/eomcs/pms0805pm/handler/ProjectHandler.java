@@ -5,12 +5,17 @@ import com.eomcs.pms0805pm.domain.Project;
 import com.eomcs.pms0805pm.util.Prompt;
 
 public class ProjectHandler {
-
+  //기존
   //ProjectList projectList = new ProjectList();
-  ProjectList2 projectList = new ProjectList2();
 
-  MemberList2 memberList;
-  public ProjectHandler(MemberList2 memberList) {
+  //1. 링크드리스트를 사용한 ProjectList2로 바꿔주기
+  //ProjectList2 projectList = new ProjectList2();
+
+  //2. 상속을 적용한  ProjectList3로 바꿔주기
+  ProjectList3 projectList = new ProjectList3();
+
+  MemberList3 memberList;
+  public ProjectHandler(MemberList3 memberList) {
     this.memberList = memberList;
   }
 
@@ -40,9 +45,10 @@ public class ProjectHandler {
   public void list() {
     System.out.println("[프로젝트 목록]");
 
-    Project[] list = projectList.toArray();
-
-    for (Project project : list) {
+    //Project[] list = projectList.toArray();
+    Object[] list = projectList.toArray();
+    for (Object obj : list) {
+      Project project = (Project) obj; //형변환 미리선언
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
           project.no, 
           project.title, 

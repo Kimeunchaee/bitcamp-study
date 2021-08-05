@@ -6,13 +6,20 @@ import com.eomcs.pms0805pm.util.Prompt;
 
 public class TaskHandler {
 
+  //기존
   //TaskList taskList = new TaskList();
-  TaskList2 taskList = new TaskList2();
 
-  MemberList2 memberList;
-  public TaskHandler(MemberList2 memberList) {
+  //1. 링크드리스트를 사용한 TaskList2로 바꿔주기
+  //TaskList2 taskList = new TaskList2();
+
+  //2. 상속을 적용한  TaskList3로 바꿔주기
+  TaskList3 taskList = new TaskList3();
+
+  MemberList3 memberList;
+  public TaskHandler(MemberList3 memberList) {
     this.memberList = memberList;
   }
+
 
   public void add() {
     System.out.println("[작업 등록]");
@@ -36,9 +43,11 @@ public class TaskHandler {
   public void list() {
     System.out.println("[작업 목록]");
 
-    Task[] list = taskList.toArray();
+    //Task[] list = taskList.toArray();
+    Object[] list = taskList.toArray();
 
-    for (Task task : list) {
+    for (Object obj : list) {
+      Task task = (Task) obj; //형변환 미리선언
       System.out.printf("%d, %s, %s, %s, %s\n",
           task.no, 
           task.content, 

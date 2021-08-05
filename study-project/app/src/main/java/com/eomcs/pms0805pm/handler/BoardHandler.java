@@ -6,12 +6,15 @@ import com.eomcs.pms0805pm.util.Prompt;
 
 public class BoardHandler {
 
-  //    BoardList는 배열로 작성한 코드들
+  //기존
   //BoardList boardList = new BoardList();
 
-  // BoardList2는 링크드리스트를 사용했다
+  // 1. 링크드리스트를 사용한 BoardList2로 바꿔주기
   //클래스명 바꿔주기 (교체가 쉽다)
-  BoardList2 boardList = new BoardList2();
+  // BoardList2 boardList = new BoardList2();
+
+  // 2. 상속을 적용한  BoardList3로 바꿔주기
+  BoardList3 boardList = new BoardList3();
 
   public void add() {
     System.out.println("[새 게시글]");
@@ -30,9 +33,14 @@ public class BoardHandler {
   public void list() {
     System.out.println("[게시글 목록]");
 
-    Board[] list = boardList.toArray();
+    // (Board[]) 강제 형변환을 하면 컴파일은 통과되지만 실행할때 오류가 생긴다
+    // 실제 toArray()가 리턴하는 값은 Object[]의 레퍼런스 배열이기때문에
+    // 기존코드 Board[] list = boardList.toArray();
+    // 강제형변환 Board[] list = (Board[]) boardList.toArray();
+    Object[] list = boardList.toArray();  //이렇게 수정해준다
 
-    for (Board board : list) {
+    for (Object obj : list) {
+      Board board = (Board) obj; //레퍼런스 변수 만들어서 미리 형변환해놓고 변수를 사용
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
           board.no, 
           board.title, 

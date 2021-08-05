@@ -6,10 +6,16 @@ import com.eomcs.pms0805pm.util.Prompt;
 
 public class MemberHandler {
 
+  //기존
   //MemberList memberList = new MemberList();
-  MemberList2 memberList = new MemberList2();
 
-  public MemberList2 getMemberList() {
+  //1. 링크드리스트를 사용한 MemberList2로 바꿔주기
+  //MemberList2 memberList = new MemberList2();
+
+  //2. 상속을 적용한  MemberList3로 바꿔주기
+  MemberList3 memberList = new MemberList3();
+
+  public MemberList3 getMemberList() {
     return memberList;
   }
 
@@ -32,9 +38,10 @@ public class MemberHandler {
   public void list() {
     System.out.println("[회원 목록]");
 
-    Member[] list = memberList.toArray();
-
-    for (Member member : list) {
+    //Member[] list = memberList.toArray();
+    Object[] list = memberList.toArray();
+    for (Object obj : list) {
+      Member member = (Member) obj; //형변환 미리선언
       System.out.printf("%d, %s, %s, %s, %s\n", 
           member.no, 
           member.name, 
