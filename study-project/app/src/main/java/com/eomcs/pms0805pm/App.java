@@ -1,40 +1,25 @@
-package com.eomcs.pms0805;
+package com.eomcs.pms0805pm;
 
-import com.eomcs.pms0805.handler.BoardHandler;
-import com.eomcs.pms0805.handler.MemberHandler;
-import com.eomcs.pms0805.handler.ProjectHandler;
-import com.eomcs.pms0805.handler.TaskHandler;
-import com.eomcs.pms0805.menu.Menu;
-import com.eomcs.pms0805.menu.MenuGroup;
-import com.eomcs.pms0805.util.Prompt;
-
-
-// 08-d 를 가지고 10-a로 수정
-// 핸들러를 역할별로 두개로 나눈다 (High Cohesion) 
-// 교체와 유지보수가 쉽다
-// **핸들러 : UI 처리
-// **리스트 : 데이터처리
-
-// GRASP : OOP기초 설계 패턴
-// 에 맞게 핸들러와 리스트를 수정해주고
-// APP에 와서 수정
+import com.eomcs.pms0805pm.handler.BoardHandler;
+import com.eomcs.pms0805pm.handler.MemberHandler;
+import com.eomcs.pms0805pm.handler.ProjectHandler;
+import com.eomcs.pms0805pm.handler.TaskHandler;
+import com.eomcs.pms0805pm.menu.Menu;
+import com.eomcs.pms0805pm.menu.MenuGroup;
+import com.eomcs.pms0805pm.util.Prompt;
 
 public class App {
 
+  // List2 를 새로 만들어줬지만
+  // List2를 핸들러에서만 사용하고
+  // App에서 핸들러를 불러온 코드들은 수정할 필요가 없다
+  // 이렇게 내용을 변경해도 다른것들을 수정해줄 필요가 없기때문에
+  // 간단하고 유지보수가 쉽다
+
   BoardHandler boardHandler = new BoardHandler();
   MemberHandler memberHandler = new MemberHandler();
-
-  //memberhandler.getMemberList(); 안됨
-  // 클래스에서는 선언만 할수 있기 때문에
-
-  // memberHandler 에서 호출했던걸 .getMemberList 메서드 호출로 바꿔줌
-  // 기존코드 ProjectHandler projectHandler = new ProjectHandler(memberHandler);
   ProjectHandler projectHandler = new ProjectHandler(memberHandler.getMemberList());
-
-  //memberHandler 에서 호출했던걸 .getMemberList 메서드 호출로 바꿔줌
-  // 기존코드 TaskHandler taskHandler = new TaskHandler(memberHandler);
   TaskHandler taskHandler = new TaskHandler(memberHandler.getMemberList());
-
 
   public static void main(String[] args) {
     App app = new App();
@@ -42,8 +27,6 @@ public class App {
   }
 
   void service() {
-    //    Menu mainMenu = createMenu();
-    //    mainMenu.execute();
     createMenu().execute();
     Prompt.close();
   }

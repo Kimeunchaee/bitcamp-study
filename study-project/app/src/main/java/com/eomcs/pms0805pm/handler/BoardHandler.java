@@ -1,26 +1,18 @@
-package com.eomcs.pms0802.handler;
+package com.eomcs.pms0805pm.handler;
 
 import java.sql.Date;
-import com.eomcs.pms0802.domain.Board;
-import com.eomcs.pms0802.util.Prompt;
+import com.eomcs.pms0805pm.domain.Board;
+import com.eomcs.pms0805pm.util.Prompt;
 
 public class BoardHandler {
 
-  static class Node {
-    Board board;
-    Node next;
-    public Node(Board board) {
-      this.board = board;
-    }
-  }
+  //    BoardList는 배열로 작성한 코드들
+  //BoardList boardList = new BoardList();
 
+  // BoardList2는 링크드리스트를 사용했다
+  //클래스명 바꿔주기 (교체가 쉽다)
+  BoardList2 boardList = new BoardList2();
 
-  int size = 0;
-  Node head;
-  Node tail;
-
-
-  //----------------------------------------------------------
   public void add() {
     System.out.println("[새 게시글]");
 
@@ -32,49 +24,30 @@ public class BoardHandler {
     board.writer = Prompt.inputString("작성자? ");
     board.registeredDate = new Date(System.currentTimeMillis());
 
-    Node node = new Node(board);
-
-    if (head == null) {
-      tail = head = node;
-    } else {
-      tail.next = node;
-      tail = node;
-    }
-
-    size++;
+    boardList.add(board);
   }
 
-
-  //----------------------------------------------------------
   public void list() {
     System.out.println("[게시글 목록]");
 
-    if (head == null) {
-      return;
-    }
+    Board[] list = boardList.toArray();
 
-    Node node = head;
-
-    do {
+    for (Board board : list) {
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
-          node.board.no, 
-          node.board.title, 
-          node.board.writer,
-          node.board.registeredDate,
-          node.board.viewCount, 
-          node.board.like);
-      node = node.next;
-    } while (node != null);
+          board.no, 
+          board.title, 
+          board.writer,
+          board.registeredDate,
+          board.viewCount, 
+          board.like);
+    }
   }
 
-
-  //----------------------------------------------------------
   public void detail() {
     System.out.println("[게시글 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
-
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -88,14 +61,11 @@ public class BoardHandler {
     System.out.printf("조회수: %d\n", ++board.viewCount);
   }
 
-
-
-  //----------------------------------------------------------
-  public void update() {        
+  public void update() {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -116,13 +86,11 @@ public class BoardHandler {
     System.out.println("게시글을 변경하였습니다.");
   }
 
-
-  //----------------------------------------------------------
   public void delete() {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -135,49 +103,10 @@ public class BoardHandler {
       return;
     }
 
+    boardList.remove(board);
 
-
-    Node node = head;
-    Node prev = null;
-
-    while (node != null) {
-      if(node.board == board) {
-        if(node == head) {     
-          head = node.next;  
-        } else {             
-          prev.next = node.next;   
-        }
-        node.next = null;
-
-        if(node == tail){ 
-          tail = prev; 
-        }
-        break;
-      }
-
-      prev = node;   
-      node = node.next; 
-    }
-    size--;
     System.out.println("게시글을 삭제하였습니다.");
   }
-
-
-
-  //-------------------------------------------------------
-
-  private Board findByNo(int no) {
-    Node node = head;
-    while (node != null) {
-      if(node.board.no == no) {
-        return node.board;
-      }
-      node = node.next;
-    } 
-    return null;
-  }
-
-
 }
 
 

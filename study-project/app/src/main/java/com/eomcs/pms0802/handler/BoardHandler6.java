@@ -183,16 +183,16 @@ public class BoardHandler6 {
 
 
       // 2단계 - 맨처음노드(헤드노드)를 삭제했을때 코드 작성
-      if(node.board == board) {
-        if(node == head) {      //노드가 헤드라면
-          head = node.next;     // 현재 노드를 헤드노드에 넣는다
-        } else {                // 그렇지 않으면
+      if(node.board == board) { //노드에 들어있는 개체와 같다면
+        if(node == head) {      //노드가 헤드라면 (첫번째 노드라면)
+          head = node.next;     // 헤드가 두번째 노드를 가리키게 한다
+        } else {                // 그렇지 않으면 (첫번째가 아니라면)
           prev.next = node.next;    // 이전노드를 다음 노드와 연결한다
         }
-        node.next = null;
+        node.next = null;   // 삭제할 노드가 더이상 다음 노드를 가리키지 않게 한다
 
-        if(node == tail){ 
-          tail = prev; 
+        if(node == tail){  //삭제할 노드가 마지막노드일때
+          tail = prev; // tail이 이전노드를 가리키게 한다
         }
         break;
       }
@@ -204,11 +204,12 @@ public class BoardHandler6 {
       // if(node == tail) 이 코드에서 걸러지기때문에
       // 따로 작성해줄 필요없음
 
-
-      prev = node;   
-      node = node.next; 
+      // 현재 노드가 아니라면
+      prev = node;          // 현재 노드는 prev에 저장하고
+      node = node.next;     // node는 다음 노드를 가리킨다
     }
-    size--;
+    size--;     // 삭제했으니까 size를 감소시킨다
+
     System.out.println("게시글을 삭제하였습니다.");
   }
 
