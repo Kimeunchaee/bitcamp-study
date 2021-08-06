@@ -33,11 +33,11 @@ public class MenuGroup extends Menu {
 
 
 
-  public void add (Menu child) {
+  public void add (Menu menu) {
     if (this.size == this.childs.length) {
       return;
     }
-    this.childs[this.size++] = child;
+    this.childs[this.size++] = menu;
   }
 
   public Menu remove (Menu child) {

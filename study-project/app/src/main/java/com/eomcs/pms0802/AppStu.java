@@ -31,8 +31,8 @@ public class AppStu {
     mainMenuGroup.add(boardMenu);
 
 
-
-    boardMenu.add(new Menu("등록") {
+    //boardMenu.add(new BoardAddMenu(boardHandler));
+    boardMenu.add(new Menu ("등록") {
       @Override
       public void execute() {
         boardHandler.add();
@@ -40,13 +40,29 @@ public class AppStu {
     });
 
 
-    boardMenu.add(new BoardListMenu(boardHandler));
-    boardMenu.add(new BoardDetailMenu(boardHandler));
-    boardMenu.add(new BoardUpdateMenu(boardHandler));
-    boardMenu.add(new BoardDeleteMenu(boardHandler));
+    //boardMenu.add(new BoardListMenu(boardHandler));
+    boardMenu.add(new Menu ("목록") {
+      @Override
+      public void execute() {
+        boardHandler.list();
+      }
+    });
 
+    //boardMenu.add(new BoardDetailMenu(boardHandler));
+    boardMenu.add(new Menu("상세보기") {
+      @Override
+      public void execute() {
+        boardHandler.detail();
+      }
+    });
 
-
+    //boardMenu.add(new BoardUpdateMenu(boardHandler));
+    boardMenu.add(new Menu("수정") {
+      @Override
+      public void execute() {
+        boardHandler.update();
+      }
+    });
 
 
 
