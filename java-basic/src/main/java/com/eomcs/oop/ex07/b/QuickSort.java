@@ -1,6 +1,7 @@
 package com.eomcs.oop.ex07.b;
 
 public class QuickSort {
+  // 버블소트보다 속도가 훨씬 빠르다
 
   int partition(int[] arr, int low, int high)
   {

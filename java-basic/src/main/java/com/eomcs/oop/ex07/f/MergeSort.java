@@ -1,23 +1,15 @@
-package com.eomcs.oop.ex07.d;
+package com.eomcs.oop.ex07.f;
 
-// 기존의 정렬 클래스처럼 동일한 방법으로 사용하려면
-// Sorter를 상속 받아 같은 타입으로 묶여야 한다.
-// 그래서 Sorter 를 상속 받았다.
-//
-public class MergeSort extends Sorter {
+public class MergeSort implements Sorter {
 
-  // Sorter 클래스를 상속 받았지만
-  // Sorter 클래스의 sort() 메서드를 재정의하지 않았다.
-  // 아래의 sort(int[], int, int) 메서드는
-  // 내부적으로 사용하기 위해 추가한 메서드이다.
-  // 이렇게 Sorter를 상속 받아 서브 클래스를 만드는 것에는 문제가 없지만,
-  // 이 클래스를 사용하는 쪽에서는 문제가 발생할 것이다!
-  // 왜?
-  // 이 클래스를 사용하는 쪽에서는 Sorter 에서 정의한
-  // sort()라는 메서드가 정렬을 수행할 것이라고 믿기 때문이다.
-  //
+  // 인터페이스의 추상 메서드를 구현하는 것도 
+  // "오버라이딩" 이라 부른다.
+  @Override
+  public void sort(int[] values) {
+    sort(values, 0, values.length - 1);
+  }
 
-  // Merges two subarrays of arr[].
+  //Merges two subarrays of arr[].
   // First subarray is arr[l..m]
   // Second subarray is arr[m+1..r]
   void merge(int arr[], int l, int m, int r)
@@ -78,11 +70,6 @@ public class MergeSort extends Sorter {
 
   // Main function that sorts arr[l..r] using
   // merge()
-
-  // @Override 하지 않았는데 왜 오류가 안뜰까?
-  // 메서드 추가했을 뿐
-  // sort는 추상클래스의 일반 메서드이기때문에
-  // 이런 일을 방지하기 위해 추상클래스에는 추상메서드로 만든다!!
   void sort(int arr[], int l, int r)
   {
     if (l < r)

@@ -2,7 +2,7 @@ package com.eomcs.oop.ex07.d;
 
 public class BubbleSort extends Sorter {
 
-  @Override
+  @Override // Sorter 상속받음
   public void sort(int[] values) {
     int size = values.length;
     for (int i = 0; i < size - 1; i++) {

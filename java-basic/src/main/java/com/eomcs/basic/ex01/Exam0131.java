@@ -4,7 +4,7 @@ package com.eomcs.basic.ex01;
 
 
 public class Exam0131 {
-  
+
   public static void main(String[] args) {
     My obj1 = new My();
     obj1.name = "홍길동";
@@ -13,7 +13,7 @@ public class Exam0131 {
     obj1.email = "hong@test.com";
     obj1.gender = 1;
     obj1.working = false;
-    
+
     My obj2 = new My();
     obj2.name = "홍길동";
     obj2.age = 20;
@@ -21,7 +21,7 @@ public class Exam0131 {
     obj2.email = "hong@test.com";
     obj2.gender = 1;
     obj2.working = false;
-    
+
     System.out.println(obj1 == obj2);
     System.out.println(obj1.equals(obj2));
 
@@ -31,7 +31,7 @@ public class Exam0131 {
     // => String와 wrapper 클래스는 equals() 오버라이딩 하였다.
     // => StringBuffer 클래스는 equals()를 오버라이딩 하지 않았다.
   }
-  
+
   static class My {
     String name;
     int age;
@@ -39,14 +39,17 @@ public class Exam0131 {
     String email;
     int gender;
     boolean working;
-    
-    @Override
+
+
+    @Override       // 상속하지 않아도 기본으로 Object가 수퍼클래스임
+    //기본 메서드인 equals를 재정의함
     public boolean equals(Object obj) {
       if (this == obj)
-        return true;
-      if (obj == null)
+        return true;    // 배열의 주소는 다르더라도 각각의 값은 같은 배열이기때문에
+      // 같은지를 비교해서 true를 리턴함
+      if (obj == null) //obj는 파라미터로 넘어온 값
         return false;
-      if (getClass() != obj.getClass())
+      if (getClass() != obj.getClass()) //
         return false;
       My other = (My) obj;
       if (age != other.age)
@@ -70,9 +73,9 @@ public class Exam0131 {
         return false;
       if (working != other.working)
         return false;
-      return true;
+      return true; //위에 if문을 다 통과했을때 true를 리턴
     }
-    
+
 
   }
 

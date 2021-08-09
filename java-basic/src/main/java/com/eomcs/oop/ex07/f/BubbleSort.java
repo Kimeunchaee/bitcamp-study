@@ -1,14 +1,12 @@
-package com.eomcs.oop.ex07.b;
+package com.eomcs.oop.ex07.f;
 
-public class BubbleSort {
-  public void run(int[] values) {
+public class BubbleSort implements Sorter {
 
-    //전채배열이 15개면
-    // 14번 반복시켜서 실행하면
-    // 원하는 결과값을 얻을수 있음
-
+  // 인터페이스의 추상 메서드를 구현하는 것도 
+  // "오버라이딩" 이라 부른다.
+  @Override
+  public void sort(int[] values) {
     int size = values.length;
-
     for (int i = 0; i < size - 1; i++) {
       for (int j = 0; j < size - i - 1; j++) {
         if (values[j] > values[j + 1]) {

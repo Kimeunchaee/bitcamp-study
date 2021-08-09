@@ -26,6 +26,10 @@ public class Exam01 {
 
     int[] values = createRandomNumbers(100000);
     int[] values2 = Arrays.copyOf(values, values.length);
+    // values.length 배열길이만큼 복제해서 , values 새로운 배열 넣겠다는 뜻
+    // copyOf() : 배열 복사 (기존배열보다 큰값을 주면 큰 배열을 만들고 배열을 복사한다
+    // 기존배열보다 작은 배열일경우 해당되는 인덱스값만 복제한다. 똑같은 크기의 배열는 그대로 복제된다)
+
 
     BubbleSort s1 = new BubbleSort();
     QuickSort s2 = new QuickSort();
