@@ -31,7 +31,8 @@ package com.eomcs.pms0806.handler;
 // 3. ArrayList3와 LinkedList3에서 구현(implements)한다
 public abstract interface List3 {
 
-  public abstract void add (Object item);
+  //public abstract void add (Object item);
+  void add (Object item);       // 타입 생략가능
   public abstract Object[] toArray(); 
   public abstract boolean remove(Object item);
 

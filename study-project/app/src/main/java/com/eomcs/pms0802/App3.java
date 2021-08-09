@@ -76,7 +76,7 @@ public class App3 {
           System.out.println();
         }
         // 3번을 입력하면 메인/프로젝트 가 출력됨
-      } else if (menuNo == 2) { 
+      } else if (menuNo == 3) { 
         LOOP : while(true) {   
           System.out.println("[메인/프로젝트]");
           System.out.println("1. 등록");

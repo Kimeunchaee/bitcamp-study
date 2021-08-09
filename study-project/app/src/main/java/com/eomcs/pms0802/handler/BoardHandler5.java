@@ -145,7 +145,7 @@ public class BoardHandler5 {
       //      }
       //
       //      //기존코드 수정 및 추가
-      //      if(node.next != null) {   //삭제할 노드의 다음 노드가 있다면
+      //      if(node.next != null) {   //현재노드가 null이 아니라면
       //        node.next = null;       // 다음 노드와의 연결을 끊는다
       //      } 
       //
@@ -162,6 +162,8 @@ public class BoardHandler5 {
       //      if(node.board == board) {
       //        prev.next = node.next; 
       //        node.next = null;
+
+
       //        //추가
       //        if(node == tail){ // 노드가 테일이라면
       //          tail = prev; //이전노드를 마지막노드로 설정한다
@@ -173,6 +175,7 @@ public class BoardHandler5 {
 
       // 2단계 - 맨처음노드(헤드노드)를 삭제했을때 코드 작성
       if(node.board == board) {
+
         if(node == head) {      //노드가 헤드라면
           head = node.next;     // 현재 노드를 헤드노드에 넣는다
         } else {                // 그렇지 않으면
@@ -183,11 +186,9 @@ public class BoardHandler5 {
         if(node == tail){ 
           tail = prev; 
         }
+
         break;
       }
-
-
-
       // 다음단계 - 헤드와 테일이 같을때 = 노드가 한개일때는
       // if(node == head) 이 코드에서 걸러지고
       // if(node == tail) 이 코드에서 걸러지기때문에
