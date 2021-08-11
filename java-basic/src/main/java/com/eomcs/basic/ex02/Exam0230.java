@@ -31,6 +31,7 @@ public class Exam0230 {
     Integer obj5 = Integer.valueOf(100);
     Integer obj6 = Integer.valueOf(100);
     System.out.println(obj5 == obj6); // true
+    // obj3,4,5,6 의 주소가 모두 같다
 
     // 다음과 같이 auto-boxing으로 생성된 객체와 valueOf()가 리턴한 객체를 비교해 보자!
     System.out.println(obj3 == obj5); // true
@@ -45,7 +46,7 @@ public class Exam0230 {
     // - 그러나 heap에 생성된 객체는 주소를 잃어 버리면 가비지가 되기 때문에
     //   메모리를 좀 더 효율적으로 사용할 수 있다.
     //
-    Integer obj7 = 128;
+    Integer obj7 = 128;     //heap영역에 각각 인스턴스로 만들어짐
     Integer obj8 = 128;
     Integer obj9 = 128;
     System.out.println(obj7 == obj8); // false
@@ -60,7 +61,7 @@ public class Exam0230 {
     // - wrapper 객체의 값을 비교할 때 == 연산자를 사용하지 말라!
     // - -128 ~ 127 범위 내의 값이라면 == 연산자를 사용하여 비교할 수도 있지만,
     //   매번 비교할 때 마다 범위의 유효성을 생각하는 것이 번거롭다.
-    // - 그냥 equals() 메서드를 사용하여 값을 비교하라!
+    // - 그냥 equals() 메서드를 사용하여 값을 비교하라
   }
 }
 
