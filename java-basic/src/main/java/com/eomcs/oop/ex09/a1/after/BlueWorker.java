@@ -17,4 +17,7 @@ public class BlueWorker implements Worker {
   public void execute() {
     System.out.println("육체 노동자가 일을 합니다!");
   }
+
+  // 오버라이딩 하지 않으면 무조건 abstract 추상클래스가 되어야한다
+  // public abstract class BlueWorker implements Worker {
 }

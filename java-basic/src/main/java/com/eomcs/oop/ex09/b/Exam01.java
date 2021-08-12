@@ -43,9 +43,19 @@ abstract class MyInterfaceImpl implements MyInterface {
   // 인터페이스의 모든 메서드를 구현해야 한다.
   // 한 개라도 빠뜨린다면 concrete 클래스가 될 수 없다.
   // 추상 클래스로 선언해야 한다.
+
+
+  // 구현하지 않은 나머지 메서드들(m3(), m4(), m5(), m6(), m7())은 추상메서드로 남아있기 때문에
+  // 추상클래스라고 구현해주지 않으면 컴파일 오류이다.
+
+  // 인터페이스에 선언된 메서드를 일부만 구현한 클래스는
+  // abstract 추상클래스이다
 }
 
 class MyInterfaceImpl2 implements MyInterface {
+
+  // 인터페이스에 선언된 메서드를 모두 구현한 클래스는
+  // concrete 콘크리트클래스이다
   @Override
   public void m1() {}
 

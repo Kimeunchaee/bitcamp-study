@@ -5,7 +5,7 @@ package com.eomcs.basic.ex01;
 
 public class Exam0120 {
 
-  static class My { //중첩클래스
+  static class My {
 
   }
 

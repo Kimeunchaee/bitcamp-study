@@ -7,12 +7,12 @@ public class Exam0162 {
 
     // 배열의 클래스 정보
     String[] obj2 = new String[10];
+
     Class classInfo = obj2.getClass();
     System.out.println(classInfo.getName()); //[Ljava.lang.String;
 
-    // 배열의 항목이 string인지를 찾고싶을때
     // 배열 항목의 타입 정보를 가져온다.
-    Class compTypeInfo = classInfo.getComponentType(); //getComponentType() 배열 항목의 타입정보를 리턴한다
+    Class compTypeInfo = classInfo.getComponentType();
     System.out.println(compTypeInfo.getName()); //java.lang.String
 
     // 값을 한 번 밖에 사용하지 않을 것이라면

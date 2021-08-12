@@ -10,8 +10,8 @@ public class Exam0220 {
     // 매우 불편한다.
 
     // int ==> Integer
-    int i1 = 100;       // 100 값이 i1에 들어가는것이 아니라 주소만 저장됨
-    Integer obj1 = Integer.valueOf(i1);     // 매번 직접 써주는것이 매우 불편하다
+    int i1 = 100;
+    Integer obj1 = Integer.valueOf(i1);
 
     // Integer ==> int
     Integer obj2 = Integer.valueOf(200);
