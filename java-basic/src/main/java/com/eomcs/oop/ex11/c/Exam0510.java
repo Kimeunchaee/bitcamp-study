@@ -1,12 +1,21 @@
 // inner class : 바깥 클래스의 인스턴스를 보관할 this 변수와 생성자
 package com.eomcs.oop.ex11.c;
 
+// 선언
+// 인스턴스 주소를 받을때
+// 보통 파라미터로 받은 것과는 다르게
+// 클래스명.this 로 받기때문에 
+// 바깥클래스명.this으로 선언해야한다
+
+
+// 호출
+// 
+
 class E {
 
   void m(int a) {
     int b = 100;
   }
-
   class X {
     // 인스턴스 메서드는 this 라는 내장 변수에 인스턴스 주소를 보관한다.
     // 그렇다면 inner class는 어디에 보관할까?

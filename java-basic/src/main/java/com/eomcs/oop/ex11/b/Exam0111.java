@@ -3,10 +3,12 @@ package com.eomcs.oop.ex11.b;
 
 class A2 {
   static class X {
+    // top lavel class처럼 스태틱 멤버 선언 가능
     static int v1;
     static void m1() {}
     static {}
 
+    // top lavel class처럼 인스턴스 멤버 선언 가능
     int v2;
     void m2() {}
     {}

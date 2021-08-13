@@ -2115,15 +2115,27 @@
             (주소값 비교 x)할때 사용
 
     - ## 32일차
-        - 
+        - 2021-08-10
+        - 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
+            - ex01: Object 클래스 사용법(계속)
+            - ex02: String 클래스 사용법
+        - 프로젝트 팀 결정 및 A/B 반 결정
 
     - ## 33일차
-        -
-        
+        - 2021-08-11
+        - 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
+            - ex02: Wrapper, Date, Calendar 클래스 사용법
+        - 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
+            - ex09(a1 ~ c): 인터페이스 문법
+    - ## 34일차
+        - 2021-08-12
+        - 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
+	        - ex09(d ~ h): 인터페이스와 추상 클래스의 협업, 인터페이스 활용
+
 
 
 
 - 오름차순 정렬, 내림차순 정렬
 - visualgo
-- 데이터를 관리하는 도메인클래스들은 실무에서 toString()을 항상9 오버라이딩 한다
+- 데이터를 관리하는 도메인클래스들은 실무에서 toString()을 항상 오버라이딩 한다
 - 직접하지 않고  그냥 둬라
