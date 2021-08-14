@@ -59,9 +59,13 @@ public class Exam0221 {
     //    다른 메서드를 통해 인스턴스를 생성하라는 의미다!
     //
     Car c2 = Car.create("티코"); // 팩토리 일을 하는 메서드를 통해 인스턴스를 생성한다. 
-
+    Car c3 = Car.create("소나타");
     System.out.printf("%s,%s,%d,%d\n",
         c2.model, c2.maker, c2.cc, c2.valve);
+
+    System.out.printf("%s,%s,%d,%d\n",
+        c3.model, c3.maker, c3.cc, c3.valve);
+
 
   }
 }
