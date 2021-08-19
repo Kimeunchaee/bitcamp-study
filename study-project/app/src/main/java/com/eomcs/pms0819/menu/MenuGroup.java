@@ -70,7 +70,7 @@ public class MenuGroup extends Menu {
   public void execute() {
 
     // 현재 실행하는 메뉴를 스택에 저장한다
-    breadCrumd.push(this);
+    breadCrumd.push(this);          // breadCrumd 자기자신의 주소
 
     while (true) {
       //System.out.printf("\n[%s]\n", this.title);

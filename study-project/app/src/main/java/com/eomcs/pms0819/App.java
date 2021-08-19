@@ -160,13 +160,13 @@ public class App {
 
 
 
-    MenuGroup mg1 = new MenuGroup("관리");
+    MenuGroup mg1 = new MenuGroup("관리1");
     mainMenuGroup.add(mg1);
 
-    MenuGroup mg2 = new MenuGroup("게시글 관리");
+    MenuGroup mg2 = new MenuGroup("관리2");
     mg1.add(mg2);
 
-    MenuGroup mg3 = new MenuGroup("관리");
+    MenuGroup mg3 = new MenuGroup("관리3");
     mg2.add(mg3);
 
     return mainMenuGroup;

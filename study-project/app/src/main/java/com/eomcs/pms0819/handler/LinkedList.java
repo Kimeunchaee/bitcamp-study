@@ -2,6 +2,7 @@ package com.eomcs.pms0819.handler;
 
 // public class LinkedList implements List {
 public class LinkedList extends AbstractList {
+
   static class Node {
     Object item;
     Node next;
@@ -111,12 +112,12 @@ public class LinkedList extends AbstractList {
 
     for (int i = 0; i <this.size; i++) {
 
-      if (i == index ) {        //삭제할 위치를 찾았다면
-        deleted = node.item;      // 삭제할 위치에 이쓴 값을 보관한다
+      if (i == index ) {            //삭제할 위치를 찾았다면
+        deleted = node.item;       // 삭제할 위치에 있는 값을 보관한다
 
-        if (node == head) {     //삭제할 노드가 첫번째면
-          head = node.next;     //head가 두번째노드를 가리키게 하고
-        } else {            // 삭제할 노드가 첫번쨰가 아니면
+        if (node == head) {      //삭제할 노드가 첫번째면
+          head = node.next;      //head가 두번째노드를 가리키게 하고
+        } else {                 // 삭제할 노드가 첫번쨰가 아니면
           prev.next = node.next;    // 이전 노드를 다음 노드와 연결한다
         }
 
@@ -138,6 +139,7 @@ public class LinkedList extends AbstractList {
       }
 
     }
+    return null;
 
 
   }
