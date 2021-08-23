@@ -21,9 +21,13 @@ public class Exam0110 {
     // 잘못된 형변환은 컴파일러는 속일 수 있을 지라도, runtime 에서는 오류를 발생시킨다.
     //Integer obj3 = (Integer) echo(new String("Hello")); // 실행 오류!
 
+
+
     Date obj4 = (Date) echo(new Date());
+    //new로 객체를 직접 생성
 
     Calendar obj5 = (Calendar) echo(Calendar.getInstance());
+    // getInstance() 스태틱메서드사용해서 객체를 간접 생성
   }
 
 }
