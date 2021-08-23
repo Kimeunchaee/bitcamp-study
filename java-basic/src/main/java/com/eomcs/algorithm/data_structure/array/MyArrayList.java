@@ -1,7 +1,6 @@
 package com.eomcs.algorithm.data_structure.array;
 
 import java.util.Arrays;
-
 //테스트1 - MyArrayListTest
 //1) 인스턴스/객체 (의 주소)를 담을 레퍼런스 배열을 준비한다.
 //2) 인스턴스를 추가하는 add(Object) 메서드 정의한다.
@@ -163,7 +162,7 @@ public class MyArrayList<E> {
       // 파라미터로 받은 배열이 작을 때는 새 배열을 만들어 리턴.
       // 방법1: 새 배열을 만들고 System.arraycopy()로 값을 복사한다.
       //arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), this.size);
-      
+
       // 방법2: 새 배열을 만들고 값을 복사하는 것도 함께 한다.
       return (E[]) Arrays.copyOf(this.elementData, this.size, arr.getClass());
     }
