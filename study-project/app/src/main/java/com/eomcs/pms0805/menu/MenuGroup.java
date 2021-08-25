@@ -1,6 +1,6 @@
-package com.eomcs.pms.menu;
+package com.eomcs.pms0805.menu;
 
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0805.util.Prompt;
 
 // 역할
 // - 다른 메뉴를 포함하는 컨테이너 역할을 수행한다.

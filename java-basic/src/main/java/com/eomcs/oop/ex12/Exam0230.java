@@ -6,13 +6,13 @@ public class Exam0230 {
   // 여러 개의 메서드가 있다 하더라도 추상 메서드가 한 개이면 된다.
   interface Player {
 
-    static String info() {
+    static String info() {         // 구현된 메서드1
       return "Player입니다.";
     }
 
-    default void stop() {}
+    default void stop() {}          // 구현된 메서드2
 
-    void play();
+    void play();                    // 구현되지 않은 추상메서드 한개
   }
 
   public static void main(String[] args) {

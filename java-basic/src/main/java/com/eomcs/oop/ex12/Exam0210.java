@@ -12,7 +12,7 @@ public class Exam0210 {
 
     // 추상 메서드를 한 개만 갖고 있는 인터페이스에 대해
     // 람다 문법으로 익명 클래스를 만들 수 있다.
-    Player p = () -> System.out.println("Player...");
+    Player p = () -> System.out.println("Player...");          // 앞부분만 확인하면 바로 인터페이스를 알수있다
     p.play();
   }
 }

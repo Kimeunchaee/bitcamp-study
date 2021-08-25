@@ -42,13 +42,17 @@ public class Exam0610 {
 
     System.out.println("[보통예금]");
     Interest i1 = 보통예금::year;
+
+    // 람다 문법 으로 표현하면
+    //  Interest i1 = money -> 보통예금.year(money);
+
     //    Interest i1 = new Interest() {
     //      @Override
     //      public double compute(int money) {
     //        return 보통예금.year(money);
     //      }
     //    };
-    System.out.printf("년 이자: %.1f\n", i1.compute(10_0000_0000));
+    System.out.printf("년 이자: %.1f\n", i1.compute(10_0000_0000));    // Interest객체에 year를 호출해서 실행하고 Interest클래스에서 메서드compute()를 실행한다.
 
     i1 = 보통예금::month;
     System.out.printf("월 이자: %.1f\n", i1.compute(10_0000_0000));

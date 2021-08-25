@@ -48,6 +48,7 @@ public class Exam0530 {
 
   public static void main(String[] args) {
 
+    // 암시적 형변환 가능한 타입
     // 리턴 타입 int ===> double
     Calculator1 c1 = MyCalculator::plus; // OK!
     // 위 문장은 다음 문장과 같다.
@@ -59,9 +60,14 @@ public class Exam0530 {
     //    };
     System.out.println(c1.compute(100, 200));
 
+
+    //암시적 형변환 가능한 타입
     // 리턴 타입 int ===> float
     Calculator2 c2 = MyCalculator::plus; // OK!
     System.out.println(c2.compute(100, 200));
+
+
+
 
     // 리턴 타입 int ===> short
     //    Calculator3 c3 = MyCalculator::plus; // 컴파일 오류!
@@ -74,6 +80,9 @@ public class Exam0530 {
     //    };
 
 
+
+
+    // 원래 메서드의 리턴타입(int)으로 실행한다음 void타입으로 리턴하기위해 리턴값이 버려진다.
     // 리턴 타입 int ===> void
     Calculator4 c4 = MyCalculator::plus; // OK!
     // 위 문장은 다음과 같다.
@@ -85,6 +94,9 @@ public class Exam0530 {
     //    };
     c4.compute(100, 200); // plus() 메서드의 리턴 값은 무시한다.
 
+
+
+    // auto-boxing 가능한 타입
     // 리턴 타입 int ===> Object
     Calculator5 c5 = MyCalculator::plus; // OK!
     // 위 문장은 다음과 같다.
@@ -96,6 +108,9 @@ public class Exam0530 {
     //      }
     //    };
     System.out.println(c5.compute(100, 200));
+
+
+
 
     // 리턴 타입 int ===> String
     // Calculator6 c6 = MyCalculator::plus; // 컴파일 오류!

@@ -17,8 +17,26 @@ public class Exam0510 {
 
   public static void main(String[] args) {
     // 메서드 한 개짜리 인터페이스의 구현체를 만들 때
-    // 기존 스태틱 메서드를 람다 구현체로 사용할 수 있다.
-    // => 단 인터페이스에 선언된 메서드의 규격과 일치해야 한다.
+
+    // 1. 익명클래스활용
+    Calculator obj1 = new Calculator() {
+      @Override
+      public int compute(int x, int y) {
+        return x * y;
+      }
+    };
+
+    // 2. 람다문법활용
+    Calculator obj2 = (x, y) -> x * y;
+
+
+    // 3. 기존에 작성한 클래스의 스태틱 메서드를 재활용하기
+    // => 인터페이스의 메서드 규격과 일치하는 메서드가 있다면 
+    //    그 메서드를 람다 구현체로 사용할 수 있다.
+
+    // => 새로 코드를 작성할 필요가 없어 매우 편리하다
+    //    단 인터페이스에 선언된 메서드의 규격과 일치해야 한다.
+
     // => 규격? 파라미터 타입 및 개수, 리턴 타입
     // => 문법:
     //    클래스명::메서드명
@@ -26,6 +44,9 @@ public class Exam0510 {
     Calculator c2 = MyCalculator::minus;
     Calculator c3 = MyCalculator::multiple;
     Calculator c4 = MyCalculator::divide;
+
+    // Calculator 메서드인 compute()의 데이터타입은 int , 파라미터도 int 2개
+    // MyCalculator 메서드인 plus(), minus() .... 의 데이터 타입은 int, 파라미터도 int 2개
 
     System.out.println(c1.compute(200, 17)); // compute() ==> plus()
     System.out.println(c2.compute(200, 17)); // compute() ==> minus()

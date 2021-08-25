@@ -60,6 +60,8 @@ public class Exam0540 {
 
   public static void main(String[] args) {
 
+    //byte > short > int > long > float > double
+
     // 파라미터 타입: byte, byte ===> int, int
     Calculator1 c1 = MyCalculator::plus; // OK!
     //
@@ -80,6 +82,9 @@ public class Exam0540 {
     //      }
     //    };
 
+
+
+    //
     // 파라미터 타입: long, long ===> int, int
     //    Calculator3 c3 = MyCalculator::plus; // 컴파일 오류!
     //

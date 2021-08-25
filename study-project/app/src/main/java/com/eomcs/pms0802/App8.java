@@ -60,7 +60,7 @@ public class App8 {
     // 1. BoardHandler boardhandler 패키지멤버일때 받은 값은 필요없으므로 지워준다
     // 2. 중첩클래스일 경우에는 이름이 필요없다(익명클래스로 바꿔줌) > public class extends 도 다 빼준다
     // 3. 익명클래스로 만들어짐과 동시에 생성자를 만들어줘야한다 Menu앞에 new넣기 
-    // Menu m = new Menu 으로 바꿔주는데 m 레퍼런슨를 딱 한번만 사용하므로
+    // Menu m = new Menu 으로 바꿔주는데 m 레퍼런를 딱 한번만 사용하므로
     // 지정해주지않고 (지정해줬던거 삭제) 바로 boardMenu.add()메서드안에 넣어줌
     // 4. 수퍼클래스의 생성자를 호출할수없으므로 삭제함, super("등록") 은 new Menu ("등록") 으로 바꿔줌
     // 5. 지금까지 수정한 값을 //boardMenu.add(new BoardAddMenu(boardHandler)); 이 코드에서
