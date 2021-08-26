@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Exam0230 {
   public static void main(String[] args) {
-
+    // - HashMap에서 key,value를 한쌍으로 꺼내기
     HashMap<String,Member> map = new HashMap<>();
     map.put("s01", new Member("홍길동", 20));
     map.put("s02", new Member("임꺽정", 30));

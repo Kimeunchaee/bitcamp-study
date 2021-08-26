@@ -20,6 +20,8 @@ public class Exam0120 {
       public String toString() {
         return "MyKey [major=" + major + ", no=" + no + "]";
       }
+
+      // equals 오버라이딩 안되어있음
     }
 
     MyKey k1 = new MyKey("컴공", 1);

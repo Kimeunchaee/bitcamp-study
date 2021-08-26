@@ -15,12 +15,12 @@ public class Exam0330 {
       this.age = age;
     }
 
-    @Override
+    @Override       // toString() 구현
     public String toString() {
       return "Member [name=" + name + ", age=" + age + "]";
     }
 
-    @Override
+    @Override       // hashCode() 구현
     public int hashCode() {
       final int prime = 31;
       int result = 1;
@@ -39,6 +39,14 @@ public class Exam0330 {
     Member v5 = new Member("유관순", 16);
 
     System.out.println(v3.equals(v5)); // true
+
+    //해시값 출력해서 확인해보기
+    System.out.println(v1.hashCode()); 
+    System.out.println(v2.hashCode());
+    System.out.println(v3.hashCode());  // 두번저장되어있음
+    System.out.println(v4.hashCode());
+    System.out.println(v5.hashCode());
+
 
     HashSet<Member> set = new HashSet<>();
     set.add(v1);
