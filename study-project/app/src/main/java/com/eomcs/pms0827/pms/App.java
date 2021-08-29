@@ -161,10 +161,10 @@ public class App {
         taskHandler.delete(); 
       }});
 
-    MenuGroup mg1 = new MenuGroup("관리1");
+    MenuGroup mg1 = new MenuGroup("관리자");
     mainMenuGroup.add(mg1);
 
-    MenuGroup mg2 = new MenuGroup("관리2");
+    MenuGroup mg2 = new MenuGroup("관리4");
     mg1.add(mg2);
 
     MenuGroup mg3 = new MenuGroup("관리3");

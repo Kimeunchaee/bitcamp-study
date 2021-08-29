@@ -2036,8 +2036,7 @@
             - 추상 메서드가 있든 없든 상관없이 추상 클래스를 만들 수 있다.
             - 서브 클래스들이 가져야할 공통 변수나 메서드를 제공하는 것이다.
             - 직접 사용하지 않고, 여러 클래스를 같은 타입으로 묶기 위함이다.
-            - 상속에서 generalization을 통해 수퍼 클래스를 정의하는 경우에
-        그 수퍼 클래스를 주로 추상 클래스로 만든다.
+            - 상속에서 generalization을 통해 수퍼 클래스를 정의하는 경우에 그 수퍼 클래스를 주로 추상 클래스로 만든다.
 
         - 추상 메서드
             - 메서드 선언부에 abstract를 붙인다.
@@ -2060,7 +2059,79 @@
         - 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
             - ex01: Object 클래스 사용법(계속)
             - ex02: String 클래스 사용법
-        - 프로젝트 팀 결정 및 A/B 반 결정
+
+        - <Object 클래스>
+        - 자바 최상위 클래스
+        - 클래스를 정의할 때 수퍼 클래스를 지정하지 않으면 컴파일러는 자동으로 Object를 상속 받는다.
+        -  Object obj = new My(); //가능!
+        - Object 클래스의 주요 메서드
+            - 1) toString()
+            -    => 클래스이름과 해시코드를 리턴한다. ("클래스명@해시값")
+            - 2) equals()
+            -    => 같은 인스턴스인지 검사한다.
+            -       (인스턴스 주소값을 비교) 
+            - 3) hashCode()
+            -    => 인스턴스를 식별하는 값을 리턴한다.
+            -       (인스턴스마다 hashCode()값이 다르다)
+            - 4) getClass()
+            -    => 인스턴스의 클래스 정보를 리턴한다.
+            - 5) clone()
+            -    => 인스턴스를 복제한 후 그 복제 인스턴스를 리턴한다.
+            - 6) finalize()
+            -    => 가비지 컬렉터에 의해 메모리에서 해제되기 직전에 호출된다.
+
+        - 오버라이딩(overriding)
+            - 상속 받은 기능을 자신의 역할에 맞게끔 재정의하는 것을 "오버라이딩(overriding)"이라 한다.
+
+        - <String 클래스>
+            - 재정의된 메서드
+            - 1) toString()
+            -   => this 주소를 그대로 리턴한다. (같은 문자열이 출력됨)
+            -      String x1 = (String) obj; / String x2 = obj.toString();
+            -      x1 과 x2는 같은 해시코드를 갖는다
+            - 2) equals()
+            -   => String의 equals()는 인스턴스의 내용물을 비교한다
+            - 3) hashCode()
+            -   => String의 hashCode()는 문자열이 같은 경우 같은 객체로 다루기 위해서
+            -      문자열이 같으면 같은 hashCode()를 리턴한다.
+            -      HashSet 에서 객체를 저장할 때 이 메서드의 리턴 값으로 저장 위치를 계산한다.
+            -      HashMap이나 Hashtable에서는 Key를 다룰 때 이 메서드의 리턴 값을 사용한다.
+            -      보통 equals()를 함께 오버라이딩 한다.
+
+
+
+
+        - <StringBuffer 클래스>
+            - tringBuffer는 Object에서 상속 받은 equals()를 오버라이딩 하지 않았다.
+            - Object의 equals()와 같은 기능을 한다 (인스턴스 주소값을 비교)
+            
+mutable vs immutable 객체
+String 객체는 immutable 객체이다.
+    // 즉 한 번 객체에 값을 담으면 변경할 수 없다.
+    // String 클래스의 메서드는 원본 인스턴스의 데이터를 변경하지 않는다. 
+    // 다만 새로 String 객체를 만들 뿐이다.
+
+    StringBuffer 객체는 mutable 객체이다.
+    // 인스턴스의 데이터를 변경할 수 있다.
+    // 원래의 문자열을 변경하고 싶을 때 사용하는 클래스이다.
+
+     StringBuffer buf = new StringBuffer("Hello");
+    buf.replace(2, 4, "xxxx");// 원본을 바꾼다.
+    System.out.println(buf);
+
+    // println() 메서드에 넘겨주는 파라미터 값이 String 타입이 아닐 경우,
+    // println() 메서드 내부에서 해당 값에 대해 toString() 호출하여
+    // 그 리턴 값(String)을 출력한다.
+    // 만약에 해당 클래스에 toString() 메서드가 없으면 어떡하나요?
+    // => 자바의 모든 클래스는 toString()이 있다.
+    // => 왜? 자바의 모든 클래스는 Object 클래스를 상속 받는다.
+    // => Object 클래스에 toString()이 정의되어 있다.
+
+
+
+
+
+
 
     - ## 33일차(2021-08-11,수)
         - 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
