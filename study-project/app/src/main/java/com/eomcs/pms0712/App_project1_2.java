@@ -2,6 +2,18 @@ package com.eomcs.pms0712;
 import java.sql.Date;
 import java.util.Scanner;
 
+
+while(true) {
+  System.out.println("종료하세요(exit/quit)");
+  String input = keyScan.nextLine();
+  if (input.equals("exit") || input.equals("quit")) {
+    break;
+  }
+  System.out.println(input);
+}
+
+
+
 // 06~08단계 작성해보기
 
 // 6)  `/member/add`, `/member/list` 명령을 구분한다
