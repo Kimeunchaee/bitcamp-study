@@ -8,6 +8,8 @@ public class Exam0110 {
 
   static Board read() {
     try (Scanner keyScan = new Scanner(System.in)) {
+      // 스캐너는 AutoCloseable 구현체이므로
+      //  try-with-resources 문법으로 작성한다
       Board board = new Board();
 
       System.out.print("번호> ");
@@ -22,7 +24,7 @@ public class Exam0110 {
       System.out.print("등록일> ");
       board.setCreatedDate(Date.valueOf(keyScan.nextLine()));
 
-      return board;
+      return board; //try블럭을 나가는 순간 Scanner객체에 대해 close()가 자동으로 호출되어 실행된다
     }
   }
 
