@@ -121,7 +121,7 @@ public class BoardHandler {
 
   //-------------------------------------------------
 
-  private Board findByNo(int no) {
+  private Board findByNo(int no) {          // 업데이트에서 사용 (배열중 번호객체만 바꿈)
     for (int i = 0; i < this.size; i++) {
       if (this.boards[i].no == no) {
         return this.boards[i];
@@ -132,7 +132,7 @@ public class BoardHandler {
 
 
   //-------------------------------------------------
-  private int indexOf(int no) {
+  private int indexOf(int no) {         //딜리트에서 사용 (배열객체 자체를 삭제하기 위해)
     for (int i = 0; i < this.size; i++) {
       if (this.boards[i].no == no) {
         return i;
