@@ -2,8 +2,8 @@ package com.eomcs.pms0831.pms.handler;
 
 import java.sql.Date;
 import java.util.List;
-import com.eomcs.pms0830.pms.domain.Member;
-import com.eomcs.pms0830.util.Prompt;
+import com.eomcs.pms0831.pms.domain.Member;
+import com.eomcs.pms0831.util.Prompt;
 
 public class AuthHandler {
 
@@ -13,7 +13,7 @@ public class AuthHandler {
   static Member loginUser;
 
 
-  public static Member getLoginUser() {
+  public static com.eomcs.pms0831.pms.domain.Member getLoginUser() {
     return loginUser;
   }
 

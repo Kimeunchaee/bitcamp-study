@@ -19,6 +19,14 @@ public class Board {
   // 게시글을 비교할 일이 없으면 해시코드와 이퀄스는 하지 않아도 된다!
   // 0831 추가
 
+  public Member getWriter() {
+    return writer;
+  }
+
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
+
   @Override
   public String toString() {
     return "Board [no=" + no + ", title=" + title + ", content=" + content + ", writer=" + writer
@@ -62,13 +70,6 @@ public class Board {
   }
   public void setLike(int like) {
     this.like = like;
-  }
-
-  public Member getWriter() {
-    return writer;
-  }
-  public void setWriter(Member writer) {
-    this.writer = writer;
   }
 
 }

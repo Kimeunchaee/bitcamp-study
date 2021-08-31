@@ -87,9 +87,6 @@ public class BoardHandler {
       return;
     }
 
-
-
-
     String title = Prompt.inputString(String.format("제목(%s)? ", board.getTitle()));
     String content = Prompt.inputString(String.format("내용(%s)? ", board.getContent()));
 

@@ -22,9 +22,8 @@ import com.eomcs.pms0830.util.Prompt;
 // App수정
 
 // 클래스간의 포함관계로 수정
-// 보드 도메인 수정
-// 멤버 도메인 수정
-// 보드핸들러 수정
+// 보드,멤버,프로젝트,테스크 도메인 수정
+// 보드,멤버,프로젝트,테스크 핸들러 수정
 public class App {
 
   List<Board> boardList = new ArrayList<>();      

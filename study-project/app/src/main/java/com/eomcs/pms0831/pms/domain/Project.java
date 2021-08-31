@@ -1,6 +1,7 @@
 package com.eomcs.pms0831.pms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Project {
   private int no;
@@ -8,8 +9,63 @@ public class Project {
   private String content;
   private Date startDate;
   private Date endDate;
-  private String owner;
-  private String members;
+
+  //private String owner;
+  private Member owner;
+
+  //private String members;
+  private List<Member> members;
+
+  private List<Task> tasks;
+
+
+
+  @Override
+  public String toString() {
+    return "Project [no=" + no + ", title=" + title + ", content=" + content + ", startDate="
+        + startDate + ", endDate=" + endDate + ", owner=" + owner + ", members=" + members
+        + ", tasks=" + tasks + "]";
+  }
+
+
+
+
+  public List<Task> getTasks() {
+    return tasks;
+  }
+
+
+
+
+  public void setTasks(List<Task> tasks) {
+    this.tasks = tasks;
+  }
+
+
+
+
+  public Member getOwner() {
+    return owner;
+  }
+
+
+  public void setOwner(Member owner) {
+    this.owner = owner;
+  }
+
+
+  public List<Member> getMembers() {
+    return members;
+  }
+
+
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
+
+
+
+
 
   public int getNo() {
     return no;
@@ -41,16 +97,5 @@ public class Project {
   public void setEndDate(Date endDate) {
     this.endDate = endDate;
   }
-  public String getOwner() {
-    return owner;
-  }
-  public void setOwner(String owner) {
-    this.owner = owner;
-  }
-  public String getMembers() {
-    return members;
-  }
-  public void setMembers(String members) {
-    this.members = members;
-  }
+
 }

@@ -2268,34 +2268,39 @@
         
         - 예외처리 종류
             - Throwable (2가지)
-                - Error (사용X)
+                - Error (에러)
                     - JVM에서 발생(시스템오류)
                     - 개발자가 처리해서는 안됨
                     - 간단한 조치 후 즉시 종료해야 한다 (간단한 조치 = 오류 내용출력)
                     - ex) 메모리 부족
-                - Exception
+                - Exception (예외)
                     - 애플리케이션에서 발생
                     - 개발자가 처리해야 한다
                     - 적절한 조치 후 계속 실행시켜야한다
                     - ex) 입력 형식 오류, 인덱스 범위 초과 오류
 
         - 예외처리 문법
+            - 예외 던지기
+                - throw 명령어를 사용하여 예외 정보를 호출자에게 던진다.
+                - throw [java.lang.Throwable 타입의 객체];
+
+            - 예외 받기
             - try{} catch(){} catch(){} catch(){}...
             - ( )에는 캐치블럭만 가능하다 (메서드X)
+            -   try { 
+                    실행문;
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
 
-        - 예외처리 사용법 (에러던지기 와 에러받기)
-            - 에러받기
-                -   try { 
-                        실행문;
-                    } catch (RuntimeException e) {
-                        System.out.println(e.getMessage());
-                    }
+            - 예외가 발생하면 catch 블록이 실행된다.
+            - 코드에서 던진 예외 객체는 catch의 파라미터가 받는다.
+            - catch 블록에는 예외에 대한 적절한 조치를 수행하는 코드를 둔다. 예) 예외가 발생된 이유를 간단히 출력
 
-                - 예외가 발생하면 catch 블록이 실행된다.
-                - 코드에서 던진 예외 객체는 catch의 파라미터가 받는다.
-                - catch 블록에는 예외에 대한 적절한 조치를 수행하는 코드를 둔다. 예) 예외가 발생된 이유를 간단히 출력
 
-            - 에러던지기 (예외상황을 호출자에게 알려주기)
+
+
+
                 - <Error 계열>
                     - 둘다 문법적으로 가능!
                     - 하지만 Error 계열의 예외는 아예 사용하지 않는다!!
@@ -2322,7 +2327,6 @@
                     -   static void m3() throws String {
                             throw new String();
                         }  // 컴파일 오류!
-
                 
                 - <RuntimeException 클래스> 는 Exception의 서브클래스
                     - RuntimeException 만 메서드 선언부에 표기하지 않아도 된다!!
@@ -2333,7 +2337,7 @@
                     -   static void m2() {
                             throw new RuntimeException();
                         }
-
+                        
         - 주의! (정리)
             - <catch (Throwable e) {}>
             - Throwable 변수로 선언하면 시스템 오류인 Error 까지 받기 때문에 JVM에서 발생된 오류에 대해서도 예외 처리를 하는 문제가 발생한다.
@@ -2355,7 +2359,7 @@
                 - 자원해제 코드 => close() 메서드, 자원을 사용한 후 해제시키는 것이다.
                 - 문제는 close()를 호출하기 전에 예외가 발생한다면, 제대로 자원을 해제시키지도 못하기 때문에,
                 - 정상적으로 실행되든 예외가 발생하든 상관없이 자원해제 같은 일은 반드시 실행해야 한다.
-                -   finally {}
+                -   finally {
                         keyScan.close();
                         System.out.println("스캐너 자원 해제!");
                     }
@@ -2370,9 +2374,6 @@
                 - 문법 : try (java.lang.AutoCloseable 구현체) {...}
                 - ex)  try (Scanner keyScan = new Scanner(System.in);
 
-        - 예외 던지고 받기
-            - 
-
         - 예외처리 후
             - RuntimeException 계열의 예외는 굳이 throws 문장을 선언하지 않아도 되지만, read()를 호출하는 개발자에게 어떤 예외가 발생할 수 있는지 명확하게 제시해주는 것이 유지보수에 도움이 되기 때문에 메서드 선언부에 발생되는 예외를 명시하는 것이 좋다.
             - 하지만, read()메서드를 사용하는 개발자가 이 메서드에 대해 RuntimeException을 던진다는 것을 직관적으로 이해하기는 어렵다.
@@ -2382,3 +2383,4 @@
             - 원본 예외를 그대로 던지지 말고, 예외를 직관적으로 알아볼 수 있는 예외 객체를 던진다.
             - 즉 게시물 관리 작업을 하다가 오류가 발생했음을 직관적으로 알게 한다.
       시물 예외를 직관적으로 알 수 있는 클래스를 만든다.(그 클래스가 클래스가 BoardException 이다.) 
+

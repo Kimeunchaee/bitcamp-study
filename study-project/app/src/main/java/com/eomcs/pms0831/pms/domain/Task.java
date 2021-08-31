@@ -9,6 +9,24 @@ public class Task {
   private String owner;
   private int status;
 
+  //추가
+  private Project project;
+
+
+
+  @Override
+  public String toString() {
+    return "Task [no=" + no + ", content=" + content + ", deadline=" + deadline + ", owner=" + owner
+        + ", status=" + status + ", project=" + project + "]";
+  }
+
+
+  public Project getProject() {
+    return project;
+  }
+  public void setProject(Project project) {
+    this.project = project;
+  }
   public int getNo() {
     return no;
   }
