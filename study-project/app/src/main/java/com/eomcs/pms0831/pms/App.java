@@ -1,4 +1,4 @@
-package com.eomcs.pms0830.pms;
+package com.eomcs.pms0831.pms;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,13 +16,15 @@ import com.eomcs.pms0830.pms.handler.ProjectHandler;
 import com.eomcs.pms0830.pms.handler.TaskHandler;
 import com.eomcs.pms0830.util.Prompt;
 
-// 0830
-// 로그인 추가
-// 내정보 추가
-// 로그아웃 추가
-// Menu와 MenuGroup에 로그인유무 확인하는 기능추가
+// 0831
+// 메뉴 그룹 리팩토링
+// AuthHandler 수정
 // App수정
 
+// 클래스간의 포함관계로 수정
+// 보드 도메인 수정
+// 멤버 도메인 수정
+// 보드핸들러 수정
 public class App {
 
   List<Board> boardList = new ArrayList<>();      

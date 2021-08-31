@@ -1,5 +1,6 @@
-package com.eomcs.pms0830.pms.handler;
+package com.eomcs.pms0831.pms.handler;
 
+import java.sql.Date;
 import java.util.List;
 import com.eomcs.pms0830.pms.domain.Member;
 import com.eomcs.pms0830.util.Prompt;
@@ -17,13 +18,22 @@ public class AuthHandler {
   }
 
 
-  // 0830 추가
+  // 0831 추가
   public AuthHandler(List<Member> memberList) {
     this.memberList = memberList;
+
+    Member testUser = new Member();
+    testUser.setNo(1);
+    testUser.setName("aaa");
+    testUser.setEmail("aaa@test.com");
+    testUser.setPassword("1111");
+    testUser.setPhoto("aaa.gif");
+    testUser.setTel("010-1111-1111");
+    testUser.setRegisteredDate(new Date(System.currentTimeMillis()));
+
+    memberList.add(testUser);
   }
 
-
-  // 로그인 추가
   public void login() {
     System.out.println("[로그인]");
     String email = Prompt.inputString("이메일? ");
@@ -40,7 +50,6 @@ public class AuthHandler {
   }
 
 
-  // 내 정보 보기 추가
   public void displayLoginUser() {
     System.out.println("[내 정보]");
 
@@ -57,7 +66,6 @@ public class AuthHandler {
   }
 
 
-  // 로그아웃 추가
   public void logout() { 
     System.out.println("[로그아웃]");
 
@@ -68,13 +76,6 @@ public class AuthHandler {
 
 
   private Member findByEmailPassword(String email, String password) {
-    // 기존
-    //Member[] list = memberList.toArray(new Member[0]);
-    // 이제 배열 뽑아내지 마세요~
-
-    // memberList를 자바의 List로 만들었다 >  memberList가 Iterable객체이기 때문에
-    // 배열로 복사하지 않고, 향상된 for문에서 바로 뽑아낼수있다
-
     for (Member member : memberList) {      
       if (member.getEmail().equalsIgnoreCase(email) &&
           member.getPassword().equals(password)) {
