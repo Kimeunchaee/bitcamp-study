@@ -46,7 +46,6 @@ public class TaskHandler {
     System.out.println("작업을 등록했습니다.");
   }
 
-  //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[작업 목록]");
 

@@ -2,8 +2,8 @@ package com.eomcs.pms0901.pms.handler;
 
 import java.sql.Date;
 import java.util.List;
-import com.eomcs.pms0831.pms.domain.Board;
-import com.eomcs.pms0831.util.Prompt;
+import com.eomcs.pms0901.pms.domain.Board;
+import com.eomcs.pms0901.util.Prompt;
 
 public class BoardHandler {
 
@@ -128,6 +128,30 @@ public class BoardHandler {
 
     System.out.println("게시글을 삭제하였습니다.");
   }
+
+  // 게시판 검색 기능 메서드 추가
+  public void search() {
+    System.out.println("[게시글 검색]");
+
+    String input = Prompt.inputString("검색? ");
+
+    for (Board board : boardList) {
+      if (!board.getTitle().contains(input) &&
+          !board.getContent().contains(input) &&
+          !board.getWriter().getName().contains(input)) {
+        continue;
+      }
+      System.out.printf("%d, %s, %s, %s, %d, %d\n", 
+          board.getNo(), 
+          board.getTitle(), 
+          board.getWriter().getName(),
+          board.getRegisteredDate(),
+          board.getViewCount(), 
+          board.getLike());
+    }
+  }
+
+
 
   private Board findByNo(int no) {
     Board[] arr = boardList.toArray(new Board[0]);

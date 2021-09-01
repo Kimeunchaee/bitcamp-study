@@ -8,7 +8,7 @@ import com.eomcs.pms0831.util.Prompt;
 
 public class MemberHandler {
 
-  List<Member> memberList;
+  static List<Member> memberList;
 
   public MemberHandler(List<Member> memberList) {
     this.memberList = memberList;

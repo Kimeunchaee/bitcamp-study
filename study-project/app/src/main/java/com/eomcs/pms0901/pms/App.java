@@ -3,26 +3,22 @@ package com.eomcs.pms0901.pms;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import com.eomcs.pms0831.menu.Menu;
-import com.eomcs.pms0831.menu.MenuGroup;
-import com.eomcs.pms0831.pms.domain.Board;
-import com.eomcs.pms0831.pms.domain.Member;
-import com.eomcs.pms0831.pms.domain.Project;
-import com.eomcs.pms0831.pms.handler.AuthHandler;
-import com.eomcs.pms0831.pms.handler.BoardHandler;
-import com.eomcs.pms0831.pms.handler.MemberHandler;
-import com.eomcs.pms0831.pms.handler.ProjectHandler;
-import com.eomcs.pms0831.pms.handler.TaskHandler;
-import com.eomcs.pms0831.util.Prompt;
+import com.eomcs.pms0901.menu.Menu;
+import com.eomcs.pms0901.menu.MenuGroup;
+import com.eomcs.pms0901.pms.domain.Board;
+import com.eomcs.pms0901.pms.domain.Member;
+import com.eomcs.pms0901.pms.domain.Project;
+import com.eomcs.pms0901.pms.handler.AuthHandler;
+import com.eomcs.pms0901.pms.handler.BoardHandler;
+import com.eomcs.pms0901.pms.handler.MemberHandler;
+import com.eomcs.pms0901.pms.handler.ProjectHandler;
+import com.eomcs.pms0901.pms.handler.TaskHandler;
+import com.eomcs.pms0901.util.Prompt;
 
-//0831
-//메뉴 그룹 리팩토링
-//AuthHandler 수정
-//App수정
+//0901
+// App - 게시판메뉴 하위에 검색 메뉴 추가
+// BoardHandler - search() 메서드 추가 (`게시글 검색` 명령을 처리)
 
-//클래스간의 포함관계로 수정
-//보드,멤버,프로젝트,테스크 도메인 수정
-//보드,멤버,프로젝트,테스크 핸들러 수정
 
 public class App {
   List<Board> boardList = new ArrayList<>();
@@ -102,6 +98,12 @@ public class App {
       public void execute() {
         boardHandler.delete(); 
       }});
+    boardMenu.add(new Menu("검색") {
+      @Override
+      public void execute() {
+        boardHandler.search(); 
+      }});
+
 
     MenuGroup memberMenu = new MenuGroup("회원");
     mainMenuGroup.add(memberMenu);
