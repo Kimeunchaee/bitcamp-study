@@ -1,4 +1,4 @@
-package com.eomcs.pms0831.pms.handler;
+package com.eomcs.pms0901.pms.handler;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import com.eomcs.pms0831.util.Prompt;
 
 public class MemberHandler {
 
-  List<Member> memberList;
+  static List<Member> memberList;
 
   public MemberHandler(List<Member> memberList) {
     this.memberList = memberList;
@@ -159,7 +159,7 @@ public class MemberHandler {
   //    return false;
   //  }
 
-  public static Member promptMember(String label) {
+  public static Member promptMember(String label, List<Member> list) {
     while (true) {
       String memberName = Prompt.inputString(label);
       if (memberName.length() == 0) {
