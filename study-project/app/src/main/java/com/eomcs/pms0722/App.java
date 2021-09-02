@@ -1,10 +1,10 @@
 package com.eomcs.pms0722;
 
-import com.eomcs.pms.pms0722.handler.BoardHandler1;
-import com.eomcs.pms.pms0722.handler.MemberHandler;
-import com.eomcs.pms.pms0722.handler.ProjectHandler;
-import com.eomcs.pms.pms0722.handler.TaskHandler;
-import com.eomcs.pms.pms0722.util.Prompt;
+import com.eomcs.pms0722.handler.BoardHandler1;
+import com.eomcs.pms0722.handler.MemberHandler;
+import com.eomcs.pms0722.handler.ProjectHandler;
+import com.eomcs.pms0722.handler.TaskHandler;
+import com.eomcs.pms0722.util.Prompt;
 
 public class App {
 
