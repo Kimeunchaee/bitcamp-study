@@ -9,15 +9,7 @@ public class AuthHandler {
 
   List<Member> memberList;
 
-
-  // 로그인정보를 담을 필드 추가
-  // 이 변수를 가지고 계속 쓸꺼니까 인스턴스 객체로 추가함
-  static Member loginUser;
-  public static Member getLoginUser() {
-    return loginUser;
-  }
-
-  // 생성자에 testUser 추가
+  //생성자에 testUser 추가
   public AuthHandler(List<Member> memberList) {
     this.memberList = memberList;
 
@@ -31,6 +23,14 @@ public class AuthHandler {
     testUser.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     memberList.add(testUser);
+  }
+
+  // 로그인정보를 담을 필드 추가
+  // 이 변수를 가지고 계속 쓸꺼니까 인스턴스 객체로 추가함
+  static Member loginUser;
+
+  public static Member getLoginUser() {
+    return loginUser;
   }
 
   public void login() {

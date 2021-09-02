@@ -25,20 +25,23 @@ public class Exam0112 {
 
   public static void main(String[] args) {
     Scanner keyScan = new Scanner(System.in);
+
     System.out.print("밑변의 길이? ");
+
     int len = keyScan.nextInt();
+
     keyScan.close();
 
     int starLen = 1;
-    for (starLen <= len) {
-      printSpaces((len - starLen) / 2);
 
-      // 별 출력
-      printStars(starLen);
+    //for (starLen <= len;) {
+    printSpaces((len - starLen) / 2);
 
-      // 출력 줄 바꾸기
-      System.out.println();
-      starLen += 2;
-    }
+    // 별 출력
+    printStars(starLen);
+
+    // 출력 줄 바꾸기
+    System.out.println();
+    starLen += 2;
   }
 }

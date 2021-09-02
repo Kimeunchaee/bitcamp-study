@@ -18,11 +18,11 @@ public class Project {
   private List<Member> members;
 
   //추가
-  private List<Task> tasks = new ArrayList<>();
   // task를 등록할 때마다 한 개씩 한 개씩 add 시킨다는 의미
-  // 그래서 빈 프로젝트라도 가지고 있어야 함
-  // 그래야 하나씩 add 할 수 있으니까
+  // 그래서 빈 프로젝트라도 가지고 있어야 함 그래야 하나씩 add 할 수 있으니까
   // ArrayList와 LinkedList 둘 다 쓸 수 있고 어떤 걸 쓸지 모르기 때문
+  private List<Task> tasks = new ArrayList<>();
+
 
 
   public List<Task> getTasks() {

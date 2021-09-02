@@ -8,7 +8,7 @@ import com.eomcs.pms0831.util.Prompt;
 
 public class MemberHandler {
 
-  static List<Member> memberList;
+  List<Member> memberList;
 
   public MemberHandler(List<Member> memberList) {
     this.memberList = memberList;
@@ -117,7 +117,6 @@ public class MemberHandler {
     System.out.println("회원을 삭제하였습니다.");
   }
 
-  // 번호찾기
   private Member findByNo(int no) {
     Member[] arr = memberList.toArray(new Member[0]);
     for (Member member : arr) {
@@ -128,8 +127,22 @@ public class MemberHandler {
     return null;
   }
 
-  // 이름찾기 (파라미터 1개)
-  private Member findByName(String name) {
+
+  //---------------------------------외부핸들러에서 사용----------------------------------------
+
+  // 파라미터 1개 받는 findByName (ProjectHandler에서 사용)
+  protected Member findByName(String name) {
+    for (Member member : memberList) {  //인스턴스 변수를 사용해서 스태틱을 붙힐 수 없다
+      if (member.getName().equalsIgnoreCase(name)) {
+        return member;
+      }
+    }
+    return null;
+  }
+
+  // 파라미터 2개 받는 findByName (TaskHandler에서 사용)
+  // 인스턴스 멤버를 사용하지 않는 메서드를 스태틱 메서드로 전환.
+  protected static Member findByName(String name, List<Member> memberList) {
     for (Member member : memberList) {
       if (member.getName().equalsIgnoreCase(name)) {
         return member;
@@ -138,15 +151,9 @@ public class MemberHandler {
     return null;
   }
 
-  // 이름찾기 (파라미터 2개)
-  private static Member findByName(String name, List<Member> memberList) {
-    for (Member member : memberList) {
-      if (member.getName().equalsIgnoreCase(name)) {
-        return member;
-      }
-    }
-    return null;
-  }
+  // 메서드 내에서 인스턴수 변수를 사용하지 않는다면 static을 붙이는 것을 고려한다
+  // 메서드의 작업내용 중에 인스턴스 변수를 필요로 한다면, static을 붙일 수 없다.
+  // 반대로 인스턴스 변수를 필요로 하지않는다면 static을 붙이자. (메서드 호출시간 짧아지기 때문에 효율 증가)
 
 
   //  public boolean exist(String name) {
@@ -159,15 +166,17 @@ public class MemberHandler {
   //    return false;
   //  }
 
-  public static Member promptMember(String label) {
+
+  // 파라미터 1개 받는 promptMember (ProjectHandler에서 사용)
+  public Member promptMember(String label) {
     while (true) {
       String memberName = Prompt.inputString(label);
       if (memberName.length() == 0) {
         return null;
       }
 
-      Member member = findByName(memberName, memberList);
-      if(member != null) {
+      Member member = findByName(memberName);
+      if (member != null) {
         return member;
       }
 
@@ -175,8 +184,27 @@ public class MemberHandler {
     }
   }
 
-  public ArrayList<Member> promptMembers(String label) {
-    ArrayList<Member> members = new ArrayList<>();    
+  // 파라미터 2개 받는 promptMember (TaskHandler에서 사용)
+  public static Member promptMember (String label, List<Member> memberList) {
+    while (true) {
+      String memberName = Prompt.inputString(label);
+      if (memberName.length() == 0) {
+        return null;
+      }
+
+      Member member = findByName(memberName, memberList);
+      if (member != null) {
+        return member;
+      }
+
+      System.out.println("등록된 회원이 아닙니다.");
+    }
+  }
+
+  // 파라미터 1개 받는 promptMembers , 팀원 확인
+  public List<Member> promptMembers(String label) {
+    ArrayList<Member> members = new ArrayList<>();
+
     while (true) {
       String memberName = Prompt.inputString(label);
       Member member = findByName(memberName);
@@ -190,6 +218,7 @@ public class MemberHandler {
     }
     return members;
   }
+
 }
 
 

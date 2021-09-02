@@ -1,8 +1,8 @@
 package com.eomcs.pms0721.handler;
 
 import java.sql.Date;
-import com.eomcs.pms.pms0719.domain.Board;
-import com.eomcs.pms.pms0719.util.Prompt;
+import com.eomcs.pms0721.domain.Board;
+import com.eomcs.pms0721.util.Prompt;
 
 public class BoardHandler {
 

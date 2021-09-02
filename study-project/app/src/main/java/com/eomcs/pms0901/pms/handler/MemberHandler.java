@@ -117,7 +117,6 @@ public class MemberHandler {
     System.out.println("회원을 삭제하였습니다.");
   }
 
-  // 번호찾기
   private Member findByNo(int no) {
     Member[] arr = memberList.toArray(new Member[0]);
     for (Member member : arr) {
@@ -128,8 +127,7 @@ public class MemberHandler {
     return null;
   }
 
-  // 이름찾기 (파라미터 1개)
-  private Member findByName(String name) {
+  protected /*static*/ Member findByName(String name) {
     for (Member member : memberList) {
       if (member.getName().equalsIgnoreCase(name)) {
         return member;
@@ -138,8 +136,8 @@ public class MemberHandler {
     return null;
   }
 
-  // 이름찾기 (파라미터 2개)
-  private static Member findByName(String name, List<Member> memberList) {
+  // static
+  protected static Member findByName(String name, List<Member> memberList) {
     for (Member member : memberList) {
       if (member.getName().equalsIgnoreCase(name)) {
         return member;
@@ -159,7 +157,9 @@ public class MemberHandler {
   //    return false;
   //  }
 
-  public static Member promptMember(String label, List<Member> list) {
+
+  //static
+  public static Member promptMember(String label, List<Member> memberList) {
     while (true) {
       String memberName = Prompt.inputString(label);
       if (memberName.length() == 0) {
@@ -175,7 +175,7 @@ public class MemberHandler {
     }
   }
 
-  public ArrayList<Member> promptMembers(String label) {
+  public /*static*/ ArrayList<Member> promptMembers(String label) {
     ArrayList<Member> members = new ArrayList<>();    
     while (true) {
       String memberName = Prompt.inputString(label);

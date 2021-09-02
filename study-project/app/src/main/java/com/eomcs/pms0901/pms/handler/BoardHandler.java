@@ -21,10 +21,6 @@ public class BoardHandler {
     board.setNo(Prompt.inputInt("번호? "));
     board.setTitle(Prompt.inputString("제목? "));
     board.setContent(Prompt.inputString("내용? "));
-    // 기존
-    //board.setWriter(Prompt.inputString("작성자? "));
-    // 작성자를 직접 입력하는 것이 아니라
-    // 로그인된 정보에서 가지고 오도록 수정함
     board.setWriter(AuthHandler.getLoginUser());
     board.setRegisteredDate(new Date(System.currentTimeMillis()));
 
@@ -80,7 +76,6 @@ public class BoardHandler {
       return;
     }
 
-    // 권한 유무 확인하는 기능 추가
     if(board.getWriter().getNo() != AuthHandler.getLoginUser().getNo()) {
       System.out.println("변경 권한이 없습니다");
       return;
@@ -112,7 +107,6 @@ public class BoardHandler {
       return;
     }
 
-    // 권한 유무 확인하는 기능 추가
     if(board.getWriter().getNo() != AuthHandler.getLoginUser().getNo()) {
       System.out.println("삭제 권한이 없습니다");
       return;
@@ -130,29 +124,34 @@ public class BoardHandler {
   }
 
   // 게시판 검색 기능 메서드 추가
-  public void search() {
-    System.out.println("[게시글 검색]");
+  //  public void search() {
+  //    System.out.println("[게시글 검색]");
+  //
+  //    String input = Prompt.inputString("검색? ");
+  //
+  //    for (Board board : boardList) {
+  //      if (!board.getTitle().contains(input) &&
+  //          !board.getContent().contains(input) &&
+  //          !board.getWriter().getName().contains(input)) {
+  //        continue;
+  //      }
+  //      System.out.printf("%d, %s, %s, %s, %d, %d\n", 
+  //          board.getNo(), 
+  //          board.getTitle(), 
+  //          board.getWriter().getName(),
+  //          board.getRegisteredDate(),
+  //          board.getViewCount(), 
+  //          board.getLike());
+  //    }
+  //  }
 
-    String input = Prompt.inputString("검색? ");
 
-    for (Board board : boardList) {
-      if (!board.getTitle().contains(input) &&
-          !board.getContent().contains(input) &&
-          !board.getWriter().getName().contains(input)) {
-        continue;
-      }
-      System.out.printf("%d, %s, %s, %s, %d, %d\n", 
-          board.getNo(), 
-          board.getTitle(), 
-          board.getWriter().getName(),
-          board.getRegisteredDate(),
-          board.getViewCount(), 
-          board.getLike());
-    }
-  }
-
-
-
+  // findByNo 메서드에서 향상된 for문
+  //내부적으로 Iterator를 호출한다
+  //      Iterator<Board> boards = boardList.iterator();
+  //      whiel(boards.hasNext()){
+  //        Board board = boards.next()
+  //      }
   private Board findByNo(int no) {
     Board[] arr = boardList.toArray(new Board[0]);
     for (Board board : arr) {

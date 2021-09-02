@@ -78,7 +78,7 @@ public class App {
     loop:
       while (true) {
 
-        switch (command) {
+        //switch (command) {
           case "/member/add":
             addMember();
 

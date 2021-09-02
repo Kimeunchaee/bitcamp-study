@@ -28,10 +28,13 @@ public class App {
   List<Board> boardList = new ArrayList<>();
   List<Member> memberList = new LinkedList<>();
   List<Project> projectList = new ArrayList<>();
+  // 삭제
+  // List<Task> taskList = new ArrayList<>();
 
   BoardHandler boardHandler = new BoardHandler(boardList);
   MemberHandler memberHandler = new MemberHandler(memberList);
   ProjectHandler projectHandler = new ProjectHandler(projectList, memberHandler);
+  // 수정 TaskHandler (projectHandler)
   TaskHandler taskHandler = new TaskHandler(projectHandler);
   // AuthHandler 추가
   AuthHandler authHandler = new AuthHandler(memberList);

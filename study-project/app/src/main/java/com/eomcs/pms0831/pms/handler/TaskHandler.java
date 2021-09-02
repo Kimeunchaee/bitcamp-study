@@ -17,6 +17,7 @@ public class TaskHandler {
   public void add() {
     System.out.println("[작업 등록]");
 
+    // 작업을 등록하기전에 프로젝트가 하나라도 있는지 유무 확인
     Project project = projectHandler.promptProject();
     if(project == null) {
       System.out.println("작업 등록을 취소합니다");
@@ -25,7 +26,7 @@ public class TaskHandler {
 
     // 권한 유무 확인하는 기능 추가
     // 프로젝트를 생성한 관리자만 작업을 추가할 수 있다
-    if(project.getOwner().getNo() != AuthHandler.getLoginUser().getNo()) {
+    if (project.getOwner().getNo() != AuthHandler.getLoginUser().getNo()) {
       System.out.println("이 프로젝트의 관리자가 아닙니다.");
       return;
     }
@@ -36,21 +37,36 @@ public class TaskHandler {
     task.setContent(Prompt.inputString("내용? "));
     task.setDeadline(Prompt.inputDate("마감일? "));
     task.setStatus(promptStatus());
-    task.setOwner(MemberHandler.promptMember("담당자?(취소: 빈 문자열) "));
+    // 회원중에서 프로젝트를 등록한 담당자인지를 확인하는 기능이 필요하다
+    // MemberHandler에서 findByName()에 파라미터 2개받는거를 하나 더 만든다
+    task.setOwner(MemberHandler.promptMember("담당자?(취소: 빈 문자열) " , project.getMembers()));
     if (task.getOwner() == null) {
       System.out.println("작업 등록을 취소합니다.");
       return; 
     }
 
     project.getTasks().add(task);
+
+    System.out.println("작업을 등록했습니다");
   }
+
 
   public void list() {
     System.out.println("[작업 목록]");
+
+    // 작업을 등록하기전에 프로젝트가 하나라도 있는지 유무 확인
+    Project project = projectHandler.promptProject();
+    if(project == null) {
+      System.out.println("프로젝트를 먼저 등록해주세요");
+      return;
+    }
+
+    printTasks(project);
   }
 
   private void printTasks(Project project) {
-    for (Task task : list) {
+    System.out.printf("%s:\n\n", project.getTitle());
+    for (Task task : project.getTasks()) {
       System.out.printf("%d, %s, %s, %s, %s\n",
           task.getNo(), 
           task.getContent(), 
@@ -62,9 +78,22 @@ public class TaskHandler {
 
   public void detail() {
     System.out.println("[작업 상세보기]");
-    int no = Prompt.inputInt("번호? ");
 
-    Task task = findByNo(project, taskNo);
+    // 작업을 등록하기전에 프로젝트가 하나라도 있는지 유무 확인
+    Project project = projectHandler.promptProject();
+    if (project == null) {
+      System.out.println("작업 조회를 취소합니다.");
+      return;
+    }
+
+    // 프로젝트가 하나라도 있으면 출력
+    printTasks(project);
+
+    System.out.println("-------------------------------------");
+
+    int no = Prompt.inputInt("작업 번호? ");
+
+    Task task = findByNo(project, no);
     if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
@@ -78,9 +107,30 @@ public class TaskHandler {
 
   public void update() {
     System.out.println("[작업 변경]");
-    int no = Prompt.inputInt("번호? ");
 
-    Task task = findByNo(project, taskNo);
+    // 작업을 등록하기전에 프로젝트가 하나라도 있는지 유무 확인
+    Project project = projectHandler.promptProject();
+    if (project == null) {
+      System.out.println("작업 변경을 취소합니다.");
+      return;
+    }
+
+    // 권한 유무 확인하는 기능 추가
+    // 프로젝트를 생성한 관리자만 작업을 변경할 수 있다
+    if (project.getOwner().getNo() != AuthHandler.getLoginUser().getNo()) {
+      System.out.println("이 프로젝트의 관리자가 아닙니다.");
+      return;
+    }
+
+    // 프로젝트가 하나라도 있으면 출력
+    printTasks(project);
+
+    System.out.println("-------------------------------------");
+
+    int no = Prompt.inputInt("작업 번호? ");
+
+    Task task = findByNo(project, no);
+
     if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
@@ -89,10 +139,10 @@ public class TaskHandler {
     String content = Prompt.inputString(String.format("내용(%s)? ", task.getContent()));
     Date deadline = Prompt.inputDate(String.format("마감일(%s)? ", task.getDeadline()));
     int status = promptStatus(task.getStatus());
-    String owner = memberHandler.promptMember(String.format(
-        "담당자(%s)?(취소: 빈 문자열) ", task.getOwner()));
+    Member owner = MemberHandler.promptMember(String.format(
+        "담당자(%s)?(취소: 빈 문자열) ", task.getOwner().getName()) ,  project.getMembers());
     if (owner == null) {
-      System.out.println("작업 변경을 취소합니다.");
+      System.out.println("등록된 담당자가 없으므로 작업 변경을 취소합니다.");
       return;
     }
 
@@ -112,9 +162,29 @@ public class TaskHandler {
 
   public void delete() {
     System.out.println("[작업 삭제]");
+
+    // 작업을 등록하기전에 프로젝트가 하나라도 있는지 유무 확인
+    Project project = projectHandler.promptProject();
+    if (project == null) {
+      System.out.println("작업 변경을 취소합니다.");
+      return;
+    }
+
+    // 권한 유무 확인하는 기능 추가
+    // 프로젝트를 생성한 관리자만 작업을 변경할 수 있다
+    if (project.getOwner().getNo() != AuthHandler.getLoginUser().getNo()) {
+      System.out.println("이 프로젝트의 관리자가 아닙니다.");
+      return;
+    }
+
+    // 프로젝트가 하나라도 있으면 출력
+    printTasks(project);
+
+    System.out.println("-------------------------------------");
+
     int no = Prompt.inputInt("번호? ");
 
-    Task task = findByNo(project, taskNo);
+    Task task = findByNo(project, no);
 
     if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
@@ -127,7 +197,7 @@ public class TaskHandler {
       return;
     }
 
-    taskList.remove(task);
+    project.getTasks().remove(task);
 
     System.out.println("작업를 삭제하였습니다.");
   }

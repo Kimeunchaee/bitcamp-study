@@ -13,6 +13,7 @@ public class Task {
   private Member owner;
 
   //추가
+  //작업이 소속된 프로젝트 정보를 저장할 수 있도록
   private Project projet;
 
 

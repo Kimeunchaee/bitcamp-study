@@ -1,0 +1,62 @@
+package com.eomcs.pms0901.pms.handler;
+
+import com.eomcs.pms0901.pms.domain.Project;
+import com.eomcs.pms0901.pms.domain.Task;
+import com.eomcs.pms0901.util.Prompt;
+
+// 상속 추가
+public class TaskDeleteHandler extends AbstractTaskHandler {
+
+  //기존
+  //  ProjectHandler projectHandler;
+  //
+  //  public TaskDeleteHandler(ProjectHandler projectHandler) {
+  //    this.projectHandler = projectHandler;
+  //  }
+
+  // 수정
+  // AbstractTaskHandler에는 기본생성자가 없고
+  // ProjectHandler를 받는 생성자만 있다
+  AbstractProjectHandler projectHandler; // 생략가능
+
+  public TaskDeleteHandler(AbstractProjectHandler projectHandler) {
+    super(projectHandler);
+  }
+
+  public void delete() {
+    System.out.println("[작업 삭제]");
+
+    Project project = projectHandler.promptProject();
+    if (project == null) {
+      System.out.println("작업 삭제를 취소합니다.");
+      return;
+    }
+
+    if (project.getOwner().getNo() != AuthHandler.getLoginUser().getNo()) {
+      System.out.println("이 프로젝트의 관리자가 아닙니다.");
+      return;
+    }
+
+    printTasks(project);
+
+    System.out.println("-------------------------------------");
+
+    int taskNo = Prompt.inputInt("삭제할 작업 번호? ");
+
+    Task task = findByNo(project, taskNo);
+    if (task == null) {
+      System.out.println("해당 번호의 작업이 없습니다.");
+      return;
+    }
+
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+      System.out.println("작업 삭제를 취소하였습니다.");
+      return;
+    }
+
+    project.getTasks().remove(task);
+
+    System.out.println("작업를 삭제하였습니다.");
+  }
+}
