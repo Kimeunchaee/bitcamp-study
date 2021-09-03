@@ -151,11 +151,6 @@ public class MemberHandler {
     return null;
   }
 
-  // 메서드 내에서 인스턴수 변수를 사용하지 않는다면 static을 붙이는 것을 고려한다
-  // 메서드의 작업내용 중에 인스턴스 변수를 필요로 한다면, static을 붙일 수 없다.
-  // 반대로 인스턴스 변수를 필요로 하지않는다면 static을 붙이자. (메서드 호출시간 짧아지기 때문에 효율 증가)
-
-
   //  public boolean exist(String name) {
   //    Member[] arr = memberList.toArray(new Member[0]);
   //    for (Member member : arr) {
@@ -183,6 +178,10 @@ public class MemberHandler {
       System.out.println("등록된 회원이 아닙니다.");
     }
   }
+
+  // 메서드 내에서 인스턴수 변수를 사용하지 않는다면 static을 붙이는 것을 고려한다
+  // 메서드의 작업내용 중에 인스턴스 변수를 필요로 한다면, static을 붙일 수 없다.
+  // 반대로 인스턴스 변수를 필요로 하지않는다면 static을 붙이자. (메서드 호출시간 짧아지기 때문에 효율 증가)
 
   // 파라미터 2개 받는 promptMember (TaskHandler에서 사용)
   public static Member promptMember (String label, List<Member> memberList) {
