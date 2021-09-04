@@ -1,14 +1,16 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Member;
+import com.eomcs.pms0903.pms.domain.Member;
 
-public class MemberListHandler extends AbstractMemberHandler {
+
+public class MemberListHandler extends AbstractMemberHandler implements Command {
 
   public MemberListHandler(List<Member> memberList) {
     super(memberList);
   }
 
+  //  public void list() {
   @Override
   public void execute() {
     System.out.println("[회원 목록]");

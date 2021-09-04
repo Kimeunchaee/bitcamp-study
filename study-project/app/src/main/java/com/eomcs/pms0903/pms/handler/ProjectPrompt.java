@@ -1,17 +1,19 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Project;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.util.Prompt;
 
 public class ProjectPrompt {
 
+  //생성자 만들기
   protected List<Project> projectList;
 
   public ProjectPrompt(List<Project> projectList) {
     this.projectList = projectList;
   }
 
+  // AbstractProjectHandler클래스에서 promptProject() 메서드 가지고오기 
   public Project promptProject() {
     System.out.println("프로젝트:");
     for (Project project : projectList) {
@@ -38,4 +40,5 @@ public class ProjectPrompt {
     }
     return null;
   }
+
 }

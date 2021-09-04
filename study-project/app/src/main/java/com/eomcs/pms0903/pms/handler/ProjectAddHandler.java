@@ -1,12 +1,13 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import com.eomcs.pms.domain.Project;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.util.Prompt;
 
-public class ProjectAddHandler extends AbstractProjectHandler {
+// 인터페이스 구현 (커맨드 규칙에 따라 작성해야한다 = 커맨드의 메서드를 구현해야한다)
+public class ProjectAddHandler extends AbstractProjectHandler implements Command {
 
   MemberPrompt memberPrompt;
 
@@ -49,8 +50,9 @@ public class ProjectAddHandler extends AbstractProjectHandler {
 
   }
 
+  //public void add() {
   @Override
-  public void execute() {
+  public void execute () {
     System.out.println("[프로젝트 등록]");
 
     Project project = new Project();

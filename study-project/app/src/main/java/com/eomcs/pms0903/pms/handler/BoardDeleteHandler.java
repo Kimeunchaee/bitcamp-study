@@ -1,15 +1,16 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Board;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Board;
+import com.eomcs.pms0903.util.Prompt;
 
-public class BoardDeleteHandler extends AbstractBoardHandler {
+public class BoardDeleteHandler extends AbstractBoardHandler implements Command {
 
   public BoardDeleteHandler(List<Board> boardList) {
     super(boardList);
   }
 
+  //public void delete() {
   @Override
   public void execute() {
     System.out.println("[게시글 삭제]");

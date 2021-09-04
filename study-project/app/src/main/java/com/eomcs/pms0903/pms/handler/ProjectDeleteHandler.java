@@ -1,17 +1,18 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Project;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.util.Prompt;
 
-public class ProjectDeleteHandler extends AbstractProjectHandler {
+public class ProjectDeleteHandler extends AbstractProjectHandler implements Command {
 
   public ProjectDeleteHandler(List<Project> projectList) {
     super(projectList);
   }
 
+  //public void delete() {
   @Override
-  public void execute() {
+  public void execute () {  
     System.out.println("[프로젝트 삭제]");
     int no = Prompt.inputInt("번호? ");
 

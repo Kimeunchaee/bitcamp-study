@@ -1,20 +1,18 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.menu.Menu;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Board;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.util.Prompt;
 
 public class AuthLoginHandler implements Command {
 
   List<Member> memberList;
-
   static Member loginUser;
-  static int userAccessLevel = Menu.ACCESS_LOGOUT; // 기본은 로그아웃 된 상태이다.
 
-  public static Member getLoginUser() {
-    return loginUser;
-  }
+  // 0903 추가
+  //기본은(처음 / 시작) 로그아웃 된 상태이다.
+  static int userAccessLevel = 0x01; 
   public static int getUserAccessLevel() {
     return userAccessLevel;
   }
@@ -23,21 +21,13 @@ public class AuthLoginHandler implements Command {
     this.memberList = memberList;
   }
 
+
   @Override
   public void execute() {
     System.out.println("[로그인]");
 
     String email = Prompt.inputString("이메일? ");
     String password = Prompt.inputString("암호? ");
-
-    if (email.equals("root") && password.equals("0000")) {
-      Member root = new Member();
-      root.setName("관리자");
-      root.setEmail("admin@test.com");
-      loginUser = root;
-      userAccessLevel = Menu.ACCESS_ADMIN | Menu.ACCESS_GENERAL;
-      return;
-    } 
 
     Member member = findByEmailPassword(email, password);
 
@@ -46,10 +36,10 @@ public class AuthLoginHandler implements Command {
     } else {
       System.out.printf("%s님 환영합니다!\n", member.getName());
       loginUser = member;
-      userAccessLevel = Menu.ACCESS_GENERAL;
     }
   }
 
+  // 해당 클래스에서만 사용할 것이기 때문에 해당 클래스의 자리에 적용해 주었다
   private Member findByEmailPassword(String email, String password) {
     for (Member member : memberList) {
       if (member.getEmail().equalsIgnoreCase(email) &&
@@ -57,6 +47,11 @@ public class AuthLoginHandler implements Command {
         return member;
       }
     }
+    return null;
+  }
+
+  public static Board getLoginUser() {
+    // TODO Auto-generated method stub
     return null;
   }
 

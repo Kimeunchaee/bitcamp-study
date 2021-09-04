@@ -1,11 +1,11 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.sql.Date;
 import java.util.List;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.util.Prompt;
 
-public class MemberAddHandler extends AbstractMemberHandler {
+public class MemberAddHandler extends AbstractMemberHandler implements Command {
 
   public MemberAddHandler(List<Member> memberList) {
     super(memberList);
@@ -55,6 +55,7 @@ public class MemberAddHandler extends AbstractMemberHandler {
     memberList.add(testUser);
   }
 
+  //  public void add() {
   @Override
   public void execute() {
     System.out.println("[회원 등록]");

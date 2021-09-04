@@ -1,9 +1,9 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Board;
+import com.eomcs.pms0903.pms.domain.Board;
 
-public abstract class AbstractBoardHandler implements Command {
+public abstract class AbstractBoardHandler {
 
   protected List<Board> boardList;
 

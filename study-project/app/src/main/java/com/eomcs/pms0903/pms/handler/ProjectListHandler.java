@@ -1,16 +1,17 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Project;
+import com.eomcs.pms0903.pms.domain.Project;
 
-public class ProjectListHandler extends AbstractProjectHandler {
+public class ProjectListHandler extends AbstractProjectHandler implements Command {
 
   public ProjectListHandler(List<Project> projectList) {
     super(projectList);
   }
 
+  //  public void list() {
   @Override
-  public void execute() {
+  public void execute () {
     System.out.println("[프로젝트 목록]");
 
     for (Project project : projectList) {

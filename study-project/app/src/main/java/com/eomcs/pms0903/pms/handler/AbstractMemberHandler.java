@@ -1,9 +1,9 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Member;
+import com.eomcs.pms0903.pms.domain.Member;
 
-public abstract class AbstractMemberHandler implements Command {
+public abstract class AbstractMemberHandler {
 
   protected List<Member> memberList;
 

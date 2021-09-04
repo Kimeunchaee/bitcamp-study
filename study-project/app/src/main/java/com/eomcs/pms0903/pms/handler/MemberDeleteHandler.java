@@ -1,15 +1,17 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.util.Prompt;
 
-public class MemberDeleteHandler extends AbstractMemberHandler {
+
+public class MemberDeleteHandler extends AbstractMemberHandler implements Command {
 
   public MemberDeleteHandler(List<Member> memberList) {
     super(memberList);
   }
 
+  //  public void delete() {
   @Override
   public void execute() {
     System.out.println("[회원 삭제]");

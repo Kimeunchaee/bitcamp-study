@@ -1,12 +1,12 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.sql.Date;
 import java.util.List;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.pms.domain.Project;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.util.Prompt;
 
-public class ProjectUpdateHandler extends AbstractProjectHandler {
+public class ProjectUpdateHandler extends AbstractProjectHandler implements Command {
 
   MemberPrompt memberPrompt;
 
@@ -15,8 +15,9 @@ public class ProjectUpdateHandler extends AbstractProjectHandler {
     this.memberPrompt = memberPrompt;
   }
 
+  //  public void update() {
   @Override
-  public void execute() {
+  public void execute () {
     System.out.println("[프로젝트 변경]");
     int no = Prompt.inputInt("번호? ");
 

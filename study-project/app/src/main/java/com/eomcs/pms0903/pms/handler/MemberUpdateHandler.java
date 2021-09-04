@@ -1,15 +1,16 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.List;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.util.Prompt;
 
-public class MemberUpdateHandler extends AbstractMemberHandler {
+public class MemberUpdateHandler extends AbstractMemberHandler implements Command {
 
   public MemberUpdateHandler(List<Member> memberList) {
     super(memberList);
   }
 
+  //public void update() {
   @Override
   public void execute() {
     System.out.println("[회원 변경]");

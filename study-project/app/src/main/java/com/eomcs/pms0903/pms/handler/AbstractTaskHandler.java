@@ -1,13 +1,23 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
-import com.eomcs.pms.domain.Project;
-import com.eomcs.pms.domain.Task;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.pms.domain.Task;
+import com.eomcs.pms0903.util.Prompt;
 
+// 구현체 추가
 public abstract class AbstractTaskHandler implements Command {
 
+  // 기존
+  //  protected AbstractProjectHandler projectHandler;
+  //
+  //  public AbstractTaskHandler(AbstractProjectHandler projectHandler) {
+  //    this.projectHandler = projectHandler;
+  //  }
+
+  // 필드 추가
   protected ProjectPrompt projectPrompt;
 
+  //셍장자 수정
   public AbstractTaskHandler(ProjectPrompt projectPrompt) {
     this.projectPrompt = projectPrompt;
   }

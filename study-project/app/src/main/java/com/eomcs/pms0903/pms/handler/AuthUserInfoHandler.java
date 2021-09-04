@@ -1,9 +1,10 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
-import com.eomcs.pms.domain.Member;
+import com.eomcs.pms0903.pms.domain.Member;
 
-public class AuthUserInfoHandler implements Command {
+public class AuthUserInfoHandler implements Command  {
 
+  //  public void displayLoginUser() {
   @Override
   public void execute() {
     System.out.println("[내정보]");

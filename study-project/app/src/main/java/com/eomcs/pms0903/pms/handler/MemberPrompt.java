@@ -1,16 +1,15 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Member;
+import com.eomcs.pms0903.util.Prompt;
 
-public class MemberPrompt {
-
-  List<Member> memberList;
+// MemberPromptHandler 기존이름에서 리팩토링한다
+public class MemberPrompt extends AbstractMemberHandler {
 
   public MemberPrompt(List<Member> memberList) {
-    this.memberList = memberList;
+    super(memberList);
   }
 
   protected Member findByName(String name) {

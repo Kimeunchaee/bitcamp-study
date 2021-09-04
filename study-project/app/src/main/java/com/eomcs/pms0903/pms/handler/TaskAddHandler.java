@@ -1,20 +1,26 @@
-package com.eomcs.pms.handler;
+package com.eomcs.pms0903.pms.handler;
 
-import com.eomcs.pms.domain.Project;
-import com.eomcs.pms.domain.Task;
-import com.eomcs.util.Prompt;
+import com.eomcs.pms0903.pms.domain.Project;
+import com.eomcs.pms0903.pms.domain.Task;
+import com.eomcs.pms0903.util.Prompt;
 
+//public class TaskAddHandler extends AbstractTaskHandler implements Command {
+// AbstractTaskHandler 가 Command를 구현하고 있으니 상속만 해주면 된다
 public class TaskAddHandler extends AbstractTaskHandler {
 
+  // 생성자 수정
   public TaskAddHandler(ProjectPrompt projectPrompt) {
     super(projectPrompt);
   }
 
+  //  public void add() {
   @Override
-  public void execute() {
+  public void execute () {
     System.out.println("[작업 등록]");
 
+    //Project project = projectHandler.promptProject();
     Project project = projectPrompt.promptProject();
+
     if (project == null) {
       System.out.println("작업 등록을 취소합니다.");
       return;
