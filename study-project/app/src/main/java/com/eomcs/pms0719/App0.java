@@ -1,9 +1,6 @@
 package com.eomcs.pms0719;
 
 import com.eomcs.pms0719.handler.BoardHandler;
-import com.eomcs.pms0719.handler.MemberHandler;
-import com.eomcs.pms0719.handler.ProjectHandler;
-import com.eomcs.pms0719.handler.TaskHandler;
 import com.eomcs.pms0719.util.Prompt;
 
 
@@ -25,52 +22,52 @@ public class App0 {
         break;
 
       } else if (str.equals("/member/add")) {
-        MemberHandler.add();
+        //MemberHandler.add();
 
       } else if(str.equals("/member/list")) {
-        MemberHandler.list();
+        //MemberHandler.list();
 
       } else if(str.equals("/project/add")) { 
-        ProjectHandler.add();
+        //ProjectHandler.add();
 
       } else if (str.equals("/project/list")) {
-        ProjectHandler.list();
+        //ProjectHandler.list();
 
       } else if (str.equals("/task/add")) {
-        TaskHandler.add();
+        //TaskHandler.add();
 
       } else if (str.equals("/task/list")) {
-        TaskHandler.list();
+        //TaskHandler.list();
 
 
 
       } else if (str.equals("/board/add")) {
-        BoardHandler.add(boardHandler);
+        //BoardHandler.add(boardHandler);
 
       } else if (str.equals("/board/list")) {
-        BoardHandler.list(boardHandler);
+        //BoardHandler.list(boardHandler);
 
 
       } else if (str.equals("/board2/add")) {
-        BoardHandler.add(boardHandler2);
+        //BoardHandler.add(boardHandler2);
       } else if (str.equals("/board2/list")) {
-        BoardHandler.list(boardHandler2);
+        //BoardHandler.list(boardHandler2);
 
       } else if (str.equals("/board3/add")) {
-        BoardHandler.add(boardHandler3);
+        //BoardHandler.add(boardHandler3);
       } else if (str.equals("/board3/list")) {
-        BoardHandler.list(boardHandler3);
+        //BoardHandler.list(boardHandler3);
 
       } else if (str.equals("/board4/add")) {
-        BoardHandler.add(boardHandler4);
+        //BoardHandler.add(boardHandler4);
       } else if (str.equals("/board4/list")) {
-        BoardHandler.list(boardHandler4);
+        //BoardHandler.list(boardHandler4);
 
       } else if (str.equals("/board5/add")) {
-        BoardHandler.add(boardHandler5);
+        //BoardHandler.add(boardHandler5);
 
       } else if (str.equals("/board5/list")) {
-        BoardHandler.list(boardHandler5);
+        //BoardHandler.list(boardHandler5);
 
 
       } else {
@@ -78,6 +75,6 @@ public class App0 {
       }
       System.out.println();
     }
-    Prompt.keyboardScan.close();
+    //Prompt.keyboardScan.close();
   }
 }

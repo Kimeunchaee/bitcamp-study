@@ -9,7 +9,7 @@ public class AuthUserInfoHandler implements Command  {
   public void execute() {
     System.out.println("[내정보]");
 
-    Member loginUser = AuthLoginHandler.getLoginUser();
+    Member loginUser = AuthLoginHandler.getUserAccessLevel();
 
     if (loginUser == null) {
       System.out.println("로그인 하지 않았습니다.");

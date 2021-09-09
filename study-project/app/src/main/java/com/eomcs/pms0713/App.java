@@ -75,47 +75,47 @@ public class App {
 
   public static void main(String[] args) {
 
-    loop:
-      while (true) {
+    //loop:
+    // while (true) {
 
-        //switch (command) {
-          case "/member/add":
-            addMember();
-
-            break;
-          case "/member/list":
-            listMember();
-
-            break;
-          case "/project/add":
-            addProject();
-
-            break;
-          case "/project/list":
-            listProject();
-
-            break;
-          case "/task/add":
-            addTask();
-
-            break;
-          case "/task/list":
-            listTask();
-
-            break;
-          case "quit":
-          case "exit":
-            promptString("안녕!");
-            break loop;
-          default:
-            promptString("실행할 수 없는 명령입니다.");
-        }
-        System.out.println(); // 이전 명령의 실행을 구분하기 위해 빈 줄 출력
-      }
-
-    keyboardScan.close();
+    //switch (command) {
+    //          case "/member/add":
+    //            addMember();
+    //
+    //            break;
+    //          case "/member/list":
+    //            listMember();
+    //
+    //            break;
+    //          case "/project/add":
+    //            addProject();
+    //
+    //            break;
+    //          case "/project/list":
+    //            listProject();
+    //
+    //            break;
+    //          case "/task/add":
+    //            addTask();
+    //
+    //            break;
+    //          case "/task/list":
+    //            listTask();
+    //
+    //            break;
+    //          case "quit":
+    //          case "exit":
+    //            promptString("안녕!");
+    //            break loop;
+    //          default:
+    //            promptString("실행할 수 없는 명령입니다.");
+    //        }
+    //        System.out.println(); // 이전 명령의 실행을 구분하기 위해 빈 줄 출력
+    //      }
+    //
+    //    keyboardScan.close();
+    //  }
   }
-
   static String promptString (String command) {
     System.out.print(command);
     return keyboardScan.nextLine();

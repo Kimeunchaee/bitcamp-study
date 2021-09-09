@@ -2260,6 +2260,7 @@
         - 팀 프로젝트 
             - 3차: 중간 구현 점검
 
+- ## 2021.08.30 ~ 2021.09.03
     - ## 45일차(2021-08-30,월)
         - 예외처리 등장이유
             - 리턴 값을 검사하여 오류 여부를 처리하는 것은 희귀한 리턴값 또한 정상 값일 경우가 있다
@@ -2403,24 +2404,298 @@
             - Key : 문자열을 이용하여 메뉴 아이디를 저장한다
             - Value : Command 구현체이다
 
-## 49일차(2021-09-03,금)
+    - ## 49일차(2021-09-03,금)
+        - 실전 프로젝트(eomcs-java-project)
+            - 15. 비트 연산자 활용: 메뉴 권한 관리
+        - 팀 프로젝트 
+            - 4차: 중간 구현 점검
 
-- 실전 프로젝트(eomcs-java-project)
-	- 15. 비트 연산자 활용: 메뉴 권한 관리
-- 팀 프로젝트 
-	- 4차: 중간 구현 점검
-		- 발표 순서
-			- 반계령,배서연,하선영,김제이,김주창
-				- 스터디위더스
-			- 변민성,위정욱,박성준,구백연,이지호
-				- 행복하share
-			- 김은채,송다혜,조솔,우형민
-				- 오늘의 공부
-			- 김태호,조주리,신현지,김진현
-				- APUJIMA
-			- 윤수민,이용진,홍지현,문세철
-				- 주류파인더
-			- 최보균,이혜연,방우주,이서은,조대희
-				- MySeoul
+- ## 2021.09.06 ~ 2021.09.10
+    - ## 50일차(2021-09-06,월)
+
+    - ## 51일차(2021-09-07,화)
+        - 바이너리 파일 : .pdf / .doc / .xls / .ppt / .git / .jpg / .mp3 / .hwp 등
+            - 사람이 직접 읽을 수 없다. 전용 App을 사용해야만 읽고 쓸 수 있다
+        - 텍스트 파일 : .java / .txt / .md / .html / .css / .js / .c / .xml / .docx / .pptx / .properties 등
+            - 사람이직접 읽을 수 있다. 전용 App없이 일반 텍스트 에디터로 읽고 쓸수 있다.
+
+        - 갖고있는 값을 파일로 호출할때
+        - FileOutputStream 사용
+
+        - 저장된 값을 읽을때
+        - FileInputStream
+
+        - 출력하는 메서드 wirte() 
+
+        - 번호, 숫자 출력 : 비트연산자 사용
+        - 내용, 문자열 출력 : 배열사용 > 문자열을 저장할때 구분해서 출력하지 않으면
+        - 데이터 파일을 읽기가 어렵다
+
+        - 구분해서 출력하는 법 : 바이트 개수를 2바이트로 먼저 출력한다
+
+        - Stream API 읽고 쓰기
+            - read() 메서드
+                - byte() / byte[] 를 읽는다
+            - write() 메서드
+                - 1) byte() 를 쓴다
+                - write(원하는 값) > byte만 출력한다 int값은 날라감
+                - ex ) 1000 = 000003E8 인데 / write(1000) 1000번을 쓰면 > E8만 출력된다
+                - 00 00 03 E8 을 모두 출력하고 싶으면 비트연산자를 사용해라
+                - >>24 (24비트 이동) = 00 / >>16 (16비트 이동) = 00 00 / >>8 (8비트 이동) = 00 00 03
+
+                - 2) byte[] 를 쓴다
+                - 문자열일때
+
+        - Date Stream API
+            - 장비와 연결된 파일을 통해 I/O를 수행
+            - 개발자 입장에서는 장비에 대해 I/O를 할때 파일로 다룬다는 점이 프로그래밍을 편하게 한다
+            - 장비의 유형에 대해 고민할 필요 없다.
+
+
+        - 데코레이터 패턴이란(Decorator)
+            - 기능 확장을 쉽게 할 수 있다
+            - 기존 기능에 새 기능을 덧 붙히기,뺴기 쉽다
+            - 자바의 Stream API는 Decorator 설계 기법에 따라 만들어져 있다
+            - 생성자의 다른 파라미를 ///////////////////
+
+            - 정의 : 객체의 결합 을 통해 기능을 동적으로 유연하게 확장 할 수 있게 해주는 패턴
+            - 즉, 기본 기능에 추가할 수 있는 기능의 종류가 많은 경우에 각 추가 기능을 Decorator 클래스로 정의 한 후
+            - 필요한 Decorator 객체를 조합함으로써 추가 기능의 조합을 설계 하는 방식이다.
+
+
+            - Component
+                - 기본 기능을 뜻하는 ConcreteComponent와 추가 기능을 뜻하는 Decorator의 공통 기능을 정의
+                - 즉, 클라이언트는 Component를 통해 실제 객체를 사용함
+
+            - ConcreteComponent
+                - 기본 기능을 구현하는 클래스
+                
+            - Decorator
+                - 많은 수가 존재하는 구체적인 Decorator의 공통 기능을 제공
+                - 중간에서 기능을 덧붙히는 일만 한다
+
+            - ConcreteDecoratorA, ConcreteDecoratorB
+                - Decorator의 하위 클래스로 기본 기능에 추가되는 개별적인 기능을 뜻함
+                - ConcreteDecorator 클래스는 ConcreteComponent 객체에 대한 참조가 필요한데, 이는 Decorator 클래스에서 Component 클래스로의 ‘합성(composition) 관계’를 통해 표현됨
+
+            - File 클래스
+                - => 디렉토리나 파일을 다룰 때 사용하는 클래스이다.
+                - => 디렉토리나 파일을 생성, 삭제, 변경할 수 있다.
+
+                - 현재 디렉토리를 조회
+                - => '.' 으로 표현한다.
+                - => JVM을 실행하는 위치가 현재 폴더이다.
+                - => 이클립스 : 프로젝트 디렉토리를 가리킨다.
+                - => 콘솔 : 현재 명령어를 실행하는 위치를 가리킨다.
+
+                    - File currentDir = new File("./src/main/java");
+                    - System.out.printf("폴더명: %s\n", currentDir.getName());
+                    - System.out.printf("경로: %s\n", currentDir.getPath());
+                    - System.out.printf("절대경로: %s\n", currentDir.getAbsolutePath());
+                    - System.out.printf("계산된 절대경로: %s\n", currentDir.getCanonicalPath());
+
+                    - System.out.printf("총크기: %d\n", currentDir.getTotalSpace());
+                    - System.out.printf("남은크기: %d\n", currentDir.getFreeSpace());
+                    - System.out.printf("가용크기: %d\n", currentDir.getUsableSpace());
+
+                    - System.out.printf("디렉토리여부: %b\n", currentDir.isDirectory());
+                    - System.out.printf("파일여부: %b\n", currentDir.isFile());
+                    - System.out.printf("감춤폴더: %b\n", currentDir.isHidden());
+                    - System.out.printf("존재여부: %b\n", currentDir.exists());
+                    - System.out.printf("실행가능여부: %b\n", currentDir.canExecute());
+
+
+    - ## 51일차(2021-09-08,수)        
+        - 상위 폴더 정보 조회
+            - ".." 으로 경로를 표시한다.
+            - File currentDir = new File("./src/main/java/../../test/java");
+
+        - 존재하지 않는 폴더
+            - 존재하지 않는 폴더인 경우 크기는 0이다.
+            - 존재하지 않는 폴더인 경우 정보를 알아낼 수 없다. 모두 false
+        
+        
+        - 1) 생성할 디렉토리 경로 설정
+            - 폴더 경로를 지정하지 않으면 현재 폴더를 의미한다.
+            - File dir = new File("temp");
+            - if (dir.mkdir()) { // 디렉토리 생성
+                System.out.println("temp 디렉토리를 생성하였습니다.");
+                }
+
+        - 2) 하위 디렉토리 생성하기
+            - 존재하는 폴더 아래에 새폴더 생성 가능
+            - File dir = new File("temp/a");
+            - if (dir.mkdir()) {
+                System.out.println("temp/a 디렉토리를 생성하였습니다.");
+                }
+        - 2-1) 존재하지 않는 폴더 아래에 새 폴더를 만들 때
+            - => 존재하지 않는 폴더가 자동 생성되지 않는다.
+            - => 따라서 그 하위 폴더를 생성할 수 없다.
+
+
+        - 3) 존재하지 않는 중간 디렉토리 만들기
+            - File dir = new File("temp2/a");
+            - 디렉토리를 생성할 때 존재하지 않는 중간 디렉토리도 만들고 싶다면, mkdirs()를 호출하라.
+            - mkdirs()
+            - 지정된 경로에 디렉토리가 존재하지 않으면 그 디렉토리도 만든다.
+            - if (dir.mkdirs()) {
+                System.out.println("temp2/a 디렉토리를 생성하였습니다.");
+                }
+
+        - 4) 디렉토리 안에 파일이나 다른 하위 디렉토리가 있다면 삭제할 수 없다.
+            - 또한 존재하지 않는 디렉토리도 삭제할 수 없다.
+            - File dir = new File("temp");
+            - if (dir.delete())
+
+        - 5) 파일 생성
+            - 생성할 파일의 경로 설정
+            - File file = new File("temp2/a/test.txt");
+            - if (file.createNewFile()) { // 파일 생성
+                System.out.println("test.txt 파일을 생성하였습니다.");
+                }   
+
+        - 5-1 )존재하지 않는 폴더에 파일을 생성할 때
+            - 해당 경로에 디렉토리가 없다면 파일을 생성할 수 없다.
+            - 예외 발생! File file = new File("temp2/b/test.txt");
+
+            - if (file.createNewFile()) { // 파일 생성
+                System.out.println("test.txt 파일을 생성하였습니다.");
+                } else {
+                // 이미 파일이 있다면 다시 생성할 수 없다.
+                System.out.println("test.txt 파일을 생성할 수 없습니다.");
+                }
+
+        - 6) 삭제
+            - 삭제할 파일의 경로 설정
+            - File file = new File("temp2/a/test.txt");
+
+            - if (file.delete()) { // 파일 삭제
+                System.out.println("test.txt 파일을 삭제하였습니다.");
+                } else {
+                존재하지 않는 파일은 삭제할 수 없다.
+                경로가 존재하지 않으면 당연히 그 경로에 파일이 없으니까 삭제할 수 없다.
+                }
+
+        - pdf  필기 중
+            - *자바 I/O 스트림 클래스 표
+            - 프로세스 = 다른 실행중인 프로그램
+            - 다른 실행중인 프로그램으로 바로 출력하는 역할
+            - 다른 실행중인 프로그램에서 바로 읽어들이는 역할
+            - 메모리는 배열에서 읽어들이고, 배열에서 출력함
+
+    - ## 53일차(2021-09-09,목)
+        - 싱크 스트림 클래스
+            - 
+
+        - 나노 에디터 설치
+            - https://nano-editor.org/dist/win32-support/ 여기서 다운로드
+            - c드라이브 > programFiles > git > cmd 에 파일넣기
+            - 나노는 설치 파일이 아니라 실행 파일이다 (바로 실행됨)
+            - 명령어를 입력하기 쉬운 에디터 프로그램이다
+
+
+        - String 객체의 데이터를 출력하려면 문자열을 담은 byte[] 배열을 리턴 받아야 한다.
+            - byte[] bytes = str.getBytes("EUC-KR"); // UCS2 ==> EUC-KR
+            - JVM 환경 변수 'file.encoding'에 설정된 문자표에 상관없이 
+            - String 객체를 만들 때 바이트 배열의 인코딩 문자 집합을 정확하게 알려준다면,
+            - UCS2 코드 값으로 정확하게 변환해 줄 것이다.
+            - 따라서, String str = new String(buf, 0, count, "UTF-8");
+            - 정확하게 표기해준다
+
+        - FileOutputStream 과 같은 바이트 스트림 클래스를 사용하면 문자집합을 지정해야 하는 번거로움이 있었다.
+        - 이런 번거로움을 해결하기 위해 만든 스트림 클래스가 있으니, 문자 스트림 클래스이다.
+        - 즉 Reader/Writer 계열의 클래스이다.
+
+        - <byte Stream Class>
+            - FileOutputStream 은 뒤에 2바이트만 변환 작업 없이 그대로 출력한다
+        
+        - <char Stream Class>
+            - 1) FileWriter
+                - 뒤에 4바이트를 UTF-16 에서 UTF-8 로 변환해서 출력한다
+                - .writer() : UTF-16 으로 넘어오고 앞에 2바이트는 버린다 > 뒤에 2바이트는 UTF-8 코드 값으로 변환되어 파일에 출력된다.
+                - .read()
+
+            - 2) FileReader
+                - 파일의 데이터를 읽는 일을 하는 객체를 준비한다.
+                - .read() : UTF-8 로 넘어오고 UTF-16으로 변환하여 리턴한다.
+                - 영어는 1byte씩 읽는다.
+                - 한글은 3byte씩 읽는다. (char Stream인 FileReader를 사용해야 한글이 깨지지 않고 출력된다.)
+                - FileReader in = new FileReader("sample/utf8.txt");
+
+        - <getProperty>
+            - 현재 JVM 환경 변수 값 알아내기
+            - System.getProperty(찾아볼 파일);
+             - ex) 'file.encoding' 파일의 값(환경변수) 알아내기
+                    System.out.printf("file.encoding=%s\n", System.getProperty("file.encoding"));
+
+        - <isSupported>
+            - 해당 문자집합을 다룰 수 있는지 물어본다
+            - System.out.println(Charset.isSupported("EUC-KR"));
+
+        - <forName()>
+            - Charset 객체를 만들때 문자집합을 지정하는 방법 : forName() 메서드 사용
+            - Charset은 추상클래스여서 new 로 바로 인스턴스를 생성하지 못한다
+            - Charset charset = Charset.forName("EUC-KR");
+
+        - <Character Stream - 텍스트 읽기>
+            - 1) char[] => String 변환하기
+                - package com.eomcs.io.ex03.Exam0221
+                    - 캐릭터 배열에 받고 > 스트링 타입으로 변환한다
+                        - FileReader in = new FileReader("temp/test2.txt");
+                        - char[] buf = new char[100];
+                        - int count = in.read(buf);
+                            - char 배열에 담을 때 UTF-16BE 코드 값으로 변환한다.
+                        - String str = new String(buf, 0, count);
+                            - 그래서 String 객체를 만들 때 문자집합을 지정할 필요가 없다.
+
+            - 2) String 객체 바로 주기
+                - package com.eomcs.io.ex03.Exam0410
+                    - 스트링 객체를 변환하지 않고 바로 줄 수 있다!
+                        - FileWriter out = new FileWriter("temp/test2.txt");
+                        - String str = new String("AB가각");
+                        - out.write(str); 
+
+            - 3) CharBuffer 사용하기
+                - package com.eomcs.io.ex03.Exam0420
+                    - 캐릭터 버퍼 클래스를 사용한다!
+
+                    - FileReader in = new FileReader("temp/test2.txt");
+                        - FileReader 객체가 읽을 데이터를 저장할 메모리를 준비한다.
+
+                    - CharBuffer charBuf = CharBuffer.allocate(100);
+                        - 읽은 데이터를 CharBuffer 에 저장한다.
+
+                    - int count = in.read(charBuf);
+                    - in.close();
+                    - System.out.printf("%d\n", count);
+                    
+                    - charBuf.flip();
+                        - 버퍼의 데이터를 꺼내기 전에 읽은 위치를 0으로 초기화시킨다.
+                        - read() 메서드가 파일에서 데이터를 읽어서 버퍼에 채울 때 마다 커서의 위치를 이동시킨다.
+                        - 버퍼의 데이터를 읽으려면 커서의 위치를 처음으로 되돌려야 한다.
+                        - flip() 메서드를 호출하여 버퍼의 커서를 처음으로 위치시킨다.
+                    
+                    - System.out.printf("[%s]\n", charBuf.toString());
+
+                
+                - package com.eomcs.io.ex03.Exam0430
+                    - 버퍼 기능과 한 줄 읽기를 한번에 할 수 있다
+                    - 데코레이터를 붇인다
+                        - BufferedReader in2 = new BufferedReader(in);
+                        - System.out.println(in2.readLine());
+                        - in.close();
 
         
+
+        - 인코딩 / 디코딩
+            - InCoding
+                - original Data > 가공 > new Data
+                - ~화 한다 / 코드화 한다 / 특정 규칙에 따라 특정 값(code)으로 변환
+                - 예시)
+                    - data > 압축 > .zip
+                    - 비트맵 > 인코딩 > .gif
+                    - data > 인코딩 > Base64 혁식의 data
+                    - '가' : AC00 (UTF-16) > 인코딩 > EA B0 80 (UTF-8)
+                    - 음성 > 인코딩 > .mp3 
+            - DeCoding
+                - new Date > 원래 데이터로 복원 > original Data
