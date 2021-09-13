@@ -4,6 +4,8 @@ package com.eomcs.io.ex07;
 public class Exam0210 {
 
   public static void main(String[] args) throws Exception {
+
+    // 시간이 오래 걸린다
     DataFileInputStream in = new DataFileInputStream("temp/members.data");
 
     Member member = null;

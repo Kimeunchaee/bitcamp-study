@@ -4,6 +4,9 @@ package com.eomcs.io.ex07;
 public class Exam0120 {
 
   public static void main(String[] args) throws Exception {
+
+    // 버퍼기능이 들어간 스트림
+    // 속도가 약 400배 빠르다
     DataBufferedFileOutputStream out = new DataBufferedFileOutputStream("temp/members.data");
 
     Member member = new Member();

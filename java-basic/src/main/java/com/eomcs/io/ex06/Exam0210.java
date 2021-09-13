@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 
 public class Exam0210 {
   public static void main(String[] args) throws Exception {
+
+    // 1바이트씩 쓸때마다 데이터 위치를 찾는데 오래걸림
     FileOutputStream out = new FileOutputStream("temp/data.bin");
 
     System.out.println("데이터 쓰는 중...");

@@ -2,6 +2,10 @@ package com.eomcs.io.ex07;
 
 import java.io.ByteArrayInputStream;
 
+// 상속의 한계
+// 기능이 같은 서브클래스를 여러개 만들어야 한다
+// (DataByteArrayInputStream 와 DataFileInputStream 는 같은 기능을 함)
+
 public class DataByteArrayInputStream extends ByteArrayInputStream {
 
   public DataByteArrayInputStream(byte[] buf) {

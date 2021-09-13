@@ -4,6 +4,8 @@ package com.eomcs.io.ex06;
 public class Exam0330 {
 
   public static void main(String[] args) throws Exception {
+
+    // 출력하면 복사된 파일이 생김 (jls11_4 가 생겼다)
     BufferedFileInputStream in = new BufferedFileInputStream("temp/jls11.pdf");
     BufferedFileOutputStream out = new BufferedFileOutputStream("temp/jls11_4.pdf");
 
@@ -11,9 +13,13 @@ public class Exam0330 {
 
     long startTime = System.currentTimeMillis(); // 밀리초
 
-    while ((b = in.read()) != -1)
-      out.write(b);
+    // 카운트 코드 추가
+    int count = 0;
 
+    while ((b = in.read()) != -1) {
+      out.write(b);
+      count++;
+    }
     // 아직 파일로 출력되지 않고 버퍼 남아 있는 데이터를
     // 마무리로 출력한다.
     // out.flush();
@@ -21,6 +27,7 @@ public class Exam0330 {
     long endTime = System.currentTimeMillis();
 
     System.out.println(endTime - startTime);
+    System.out.println(count);
 
     in.close();
     out.close();

@@ -4,6 +4,9 @@ package com.eomcs.io.ex07;
 public class Exam0110 {
 
   public static void main(String[] args) throws Exception {
+
+    // 버퍼기능 사용 X
+    // 시간이 올래걸림
     DataFileOutputStream out = new DataFileOutputStream("temp/members.data");
 
     Member member = new Member();

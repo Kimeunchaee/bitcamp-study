@@ -30,6 +30,7 @@ public class BufferedFileOutputStream extends FileOutputStream {
   }
 
 
+  // close() 는 필수적이다 
   @Override
   public void close() throws IOException {
     this.flush();
@@ -37,6 +38,10 @@ public class BufferedFileOutputStream extends FileOutputStream {
   }
 
 
+  // 모든 출력 클래스는 flush() 메서드를 가지고 있다
+  // 남은 바이트를 커서만큼 즉시 출력하라
+  // ex) 데이터 크기가 320일때 100,100,100크기의 버퍼로 3벌 출력되고
+  //     나머지 20은 flush()로 인해 출력된다
   @Override
   public void flush() throws IOException {
     if (cursor > 0) {

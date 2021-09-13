@@ -11,6 +11,8 @@ public class Exam0330 {
 
     Member member = new Member();
 
+    // 320번처럼 직접 작성하기 보다는
+    // 이렇게 호출해서 사용하는것이 편하다
     member.name = in.readUTF();
     member.age = in.readInt();
     member.gender = in.readBoolean();

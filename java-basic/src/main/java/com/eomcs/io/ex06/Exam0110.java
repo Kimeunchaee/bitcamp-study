@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 public class Exam0110 {
 
   public static void main(String[] args) throws Exception {
+
+    // 1바이트씩 파일을 읽는데 걸리는 시간
     FileInputStream in = new FileInputStream("temp/jls11.pdf");
 
     int b;
@@ -19,8 +21,8 @@ public class Exam0110 {
 
     long endTime = System.currentTimeMillis();
 
-    System.out.println(endTime - startTime);
-    System.out.println(callCount);
+    System.out.println(endTime - startTime);        // 걸리는 시간
+    System.out.println(callCount);                  // 몇번 읽었는지
 
     in.close();
   }

@@ -3,6 +3,11 @@ package com.eomcs.io.ex07;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+
+// BufferedFileInputStream 와 DateFileInputStream 은 FileInputStream을 상속받는다
+// 상속으로 기능을 확장할때 문제점
+// 기능을 임의로 넣었다 뺐다가 선택적으로 구현할 수 없다
+
 public class BufferedFileInputStream extends FileInputStream {
   byte[] buf = new byte[8192];
   int size; // 배열에 저장되어 있는 바이트의 수

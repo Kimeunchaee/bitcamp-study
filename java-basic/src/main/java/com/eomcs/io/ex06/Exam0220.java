@@ -10,6 +10,7 @@ public class Exam0220 {
 
     long start = System.currentTimeMillis();
 
+    // 배열에 한번에 담고
     byte[] buf = new byte[8192];
     int size = 0;
 

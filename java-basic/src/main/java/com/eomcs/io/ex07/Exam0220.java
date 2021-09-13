@@ -4,6 +4,8 @@ package com.eomcs.io.ex07;
 public class Exam0220 {
 
   public static void main(String[] args) throws Exception {
+
+    // 버퍼 기능이 추가됨
     DataBufferedFileInputStream in = new DataBufferedFileInputStream("temp/members.data");
 
     Member member = null;

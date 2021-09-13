@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 public class Exam0320 {
 
   public static void main(String[] args) throws Exception {
+
+    // 출력하면 복사된 파일이 생김 (jls11_3 이 생겼다)
     FileInputStream in = new FileInputStream("temp/jls11.pdf");
     FileOutputStream out = new FileOutputStream("temp/jls11_3.pdf");
 
@@ -15,12 +17,17 @@ public class Exam0320 {
 
     long startTime = System.currentTimeMillis(); // 밀리초
 
-    while ((len = in.read(buf)) != -1)
-      out.write(buf, 0, len);
+    // 카운트 코드 추가
+    int count = 0;
 
+    while ((len = in.read(buf)) != -1) {
+      out.write(buf, 0, len);
+      count++;
+    }
     long endTime = System.currentTimeMillis();
 
     System.out.println(endTime - startTime);
+    System.out.println(count);
 
     in.close();
     out.close();
