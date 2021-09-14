@@ -16,6 +16,9 @@ public class Exam0210 {
     // - FileOutputStream 객체에 타입에 맞춰 데이터를 읽는 기능을 덧붙인다.
     DataOutputStream out2 = new DataOutputStream(out1);
 
+    // writeUTF, writeInt, writeBoolean 등의 기능을 사용하기 위해
+    // DataOutputStream 를 호출하고 파일을 읽는 FileOutputStream을 상속이 아닌 포함관계로 한다
+
     Member member = new Member();
     member.name = "AB가각간";
     member.age = 27;

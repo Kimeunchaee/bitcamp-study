@@ -16,6 +16,9 @@ public class Exam0110 {
     // 즉 파일에서 데이터를 읽을 때 FileInputStream을 사용한다.
     BufferedInputStream in2 = new BufferedInputStream(in);
 
+    // BufferedInputStream 를 읽어달라고 in2를 호출하면
+    // BufferedInputStream(in) 가 실행되어 FileInputStream이 읽어진다
+
     int b;
 
     long startTime = System.currentTimeMillis(); // 밀리초

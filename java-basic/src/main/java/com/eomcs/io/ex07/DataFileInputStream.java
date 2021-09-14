@@ -2,10 +2,15 @@ package com.eomcs.io.ex07;
 
 import java.io.FileInputStream;
 
+// FileInputStream 은 문자열, int 값, long 값, boolean 값을 읽는 기능이 없기때문에
+// FileInputStream을 상속받아서
+// 직접 BufferedFileInputStream 와 DateFileInputStream 을 구현했다
 
-//BufferedFileInputStream 와 DateFileInputStream 은 FileInputStream을 상속받는다
-//상속으로 기능을 확장할때 문제점
-//기능을 임의로 넣었다 뺐다가 선택적으로 구현할 수 없다
+// 상속으로 기능을 확장할때 문제점, 한계
+// 기능을 임의로 넣었다 뺐다가 선택적으로 구현할 수 없다
+
+// ex07 에서는 상속을 통한 기능확장의 한계를 느낄 수 있고,
+// 이 문제점을 보안하는 방법으로는 Decorator 패턴을 사용해 기능확장을 하는 것이다.
 
 public class DataFileInputStream extends FileInputStream {
 

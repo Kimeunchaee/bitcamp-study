@@ -20,6 +20,7 @@ public class Exam0410 {
     // - 문자열이나 자바 기본 타입의 데이터를 좀 더 쉽게 출력하기
     // - 그러나 안타깝게도 이런 식으로 기능을 확장할 수 없다.
     //   왜?
+
     //   - DataOutputStream 생성자에는 InputStream 객체만 넘겨줄 수 있다.
     //   - 즉 DataOutputStream은 OutputStream 객체에만 연결할 수 있다.
     //   - BufferedOutputStream은 OutputStream 의 자식이 아니기 때문에

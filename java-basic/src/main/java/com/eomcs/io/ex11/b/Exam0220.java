@@ -6,7 +6,7 @@ import java.io.ObjectInputStream; // Data Processing Stream Class = Decorator
 
 public class Exam0220 {
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args)  throws Exception  {
     // ObjectInputStream
     // => DataInputStream의 기능을 포함한다.
     // => ObjectOutputStream.writeObject()로 출력한 바이트 배열을 읽어

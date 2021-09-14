@@ -8,7 +8,12 @@ public class Exam0310 {
   public static void main(String[] args) throws Exception {
 
     FileOutputStream fileOut = new FileOutputStream("temp/test7.data");
-    DataOutputStream out = new DataOutputStream(fileOut);
+    DataOutputStream out = new DataOutputStream(fileOut);   // 장치 연결 (버퍼가 없어서 오래걸림)
+
+    // 버퍼 연결
+    // 창치를 연결할때 순서도 중요함, DataOutputStream의 메서드를 사용해야하기때문에
+    // DataOutputStream 앞부분에 Buffered 를 추가해줘야한다
+    // > 410
 
     Member member = new Member();
     member.name = "AB가각간";

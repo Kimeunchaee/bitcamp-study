@@ -1,4 +1,5 @@
 // 인스턴스 입출력 - 'transient' modifier
+// modifier = 변경자, 성질을 바꾸는것
 package com.eomcs.io.ex11.e;
 
 import java.io.FileOutputStream;

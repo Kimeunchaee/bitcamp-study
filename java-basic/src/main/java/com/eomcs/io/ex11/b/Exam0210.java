@@ -23,7 +23,7 @@ public class Exam0210 {
     // ObjectOutputStream에는 인스턴스의 값을 바이트 배열로 만들어 출력하는 기능이 있다.
     //
     // writeObject()
-    // - java.io.Serializable 이 선언된 클래스의 객체만 출력할 수 있다.
+    // - java.io.Serializable 이 선언된 클래스의 객체만 출력할 수 있다.**********
     // - 인스턴스의 필드 값을 바이트 배열로 만들어(직렬화) 출력한다.
     // - 인스턴스의 필드의 값만 출력하는 것이 아니다.
     // - 클래스 이름과 인스턴 변수의 정보도 함께 출력한다.
@@ -32,7 +32,7 @@ public class Exam0210 {
     out.writeObject(member);
     // 그러나 실행하면 오류가 발생한다.
     // => java.io.NotSerializableException
-    // => 인스턴스의 값을 자동으로 바이트 배열로 만들 수 있도록 허락하지 않아서
+    // => 인스턴스의 값을 자동으로 바이트 배열로 만들 수 있도록 허락되지 않아서
     //    발생한 실행 오류이다.
     //
     // Member 클래스가 java.io.Serializable을 구현하면

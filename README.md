@@ -2676,7 +2676,6 @@
                         - flip() 메서드를 호출하여 버퍼의 커서를 처음으로 위치시킨다.
                     
                     - System.out.printf("[%s]\n", charBuf.toString());
-
                 
                 - package com.eomcs.io.ex03.Exam0430
                     - 버퍼 기능과 한 줄 읽기를 한번에 할 수 있다
@@ -2684,8 +2683,6 @@
                         - BufferedReader in2 = new BufferedReader(in);
                         - System.out.println(in2.readLine());
                         - in.close();
-
-        
 
         - 인코딩 / 디코딩
             - InCoding
@@ -2699,3 +2696,92 @@
                     - 음성 > 인코딩 > .mp3 
             - DeCoding
                 - new Date > 원래 데이터로 복원 > original Data
+
+    - ## 54일차(2021-09-10,금)
+
+
+- ## 2021.09.13 ~ 2021.09.17
+    - ## 55일차(2021-09-13,월)
+        - com.eomcs.io.ex06
+
+        - 파일을 읽은(Input) 후 출력(Output)한다 (= 복사된 파일이 생김)
+        - jls11_4 가 생겼다
+        - BufferedFileInputStream in = new BufferedFileInputStream("temp/jls11.pdf");
+        - BufferedFileOutputStream out = new BufferedFileOutputStream("temp/jls11_4.pdf");
+
+        - BufferedFileInputStream
+            - 버퍼크기만큼 데이터를 읽는다
+            - 1바이트를 읽어서 파라미터로 받은 바이트 배열에 채운다.
+            - 바이트 배열을 다 채우기도 전에 읽을 데이터가 없다면 읽기를 멈춘다.
+            - 지금까지 읽은 데이터의 수를 리턴한다.
+
+        - BufferedFileOutputStream
+            - 버퍼가 다차면 버퍼에 들어있는 데이터를 한 번에 출력한다.
+            - 다시 커서를 초기화시킨다.
+            - 모든 출력 클래스는 flush() 메서드를 가지고 있다
+                - 남은 바이트를 커서만큼 즉시 출력하라
+                - ex) 데이터 크기가 320일때 100,100,100크기의 버퍼로 3벌 출력되고 나머지 20은 flush()로 인해 출력된다
+
+
+        - 기능을 확장하는 방법
+            - <상속>
+                - com.eomcs.io.ex07
+                - FileInputStream 을 상속 (파일에서 데이터를 읽는 기능)
+                - 1. 직접 DataFileInputStream 을 구현했다 (문자열, int, long, boolean 등의 단위로 데이터를 읽을 수 있는 기능)
+                - 2. 직접 BufferedFileInputStream 을 구현했다 (버퍼에 왕창 데이터 읽어오고 읽기 속도 개선 기능)
+                - 상속으로 기능을 확장할때 문제점, 한계
+                    - 기능을 임의로 넣었다 뺐다가 선택적으로 구현할 수 없다
+                    - 기능이 같은 서브클래스가 여러개 만들어지게 된다
+            - <포함>
+                - - com.eomcs.io.ex08
+                - FileInputStream 을 포함하는 클래스를 구현 (파일에서 데이터를 읽는 기능)
+                - 1. DataInputStream 이 FileInputStream을 포함한다 (문자열, int, long, boolean 등의 단위로 데이터를 읽을 수 있는 기능)
+                - 2. BufferedFileInputStream 도 FileInputStream을 포함한다 (버퍼에 왕창 데이터 읽어오고 읽기 속도 개선 기능)
+                - 포함으로 기능을 확장할때 장점
+                    - 원하는 기능을 붙혔다 땠다 할 수 있다
+
+                - 주의점
+                - FileOutputStream + BufferedOutputStream + DataOutputStream
+                    - FileOutputStream out1 = new FileOutputStream("temp/members.data");    // 가능
+                    - BufferedOutputStream out2 = new BufferedOutputStream(out1);           //가능
+                    - DataOutputStream out3 = new DataOutputStream(out2);                   // 컴파일 오류!
+                - 3개를 연결할때 안타깝게도 이런 식으로 기능을 확장할 수 없다.
+                - 왜?
+                - DataOutputStream 생성자에는 InputStream 객체만 넘겨줄 수 있다.
+                - 즉 DataOutputStream은 OutputStream 객체에만 연결할 수 있다.
+                - BufferedOutputStream은 OutputStream 의 자식이 아니기 때문에  DataOutputStream에 연결할 수 없다.
+                - 해결책 Decorator패턴을 사용해라
+
+            - <Decorator 패턴>
+                - Output Stream 을 상속받아 FileOutputstream, ByteArrayInputStream 를 만든다
+                - 데코레이터인 BufferedInputStream 을 연결시킨다
+                    - // FileInputStream
+                    - // - 파일 저장소에서 데이터를 읽는 일을 한다.
+                    - FileInputStream in = new FileInputStream("temp/test4.data");
+
+                    - // FileInputStream + BufferedInputStream
+                    - // - 버퍼를 이용하여 일정량의 데이터를 왕창 읽어온 다음에 바이트를 꺼낸다.
+                    - // - 읽기 속도를 높이는 일을 한다.
+                    - BufferedInputStream in2 = new BufferedInputStream(in);
+
+                    - // FileInputStream + BufferedInputStream + DataInputStream
+                    - // - 문자열이나 자바 기본 타입의 데이터를 좀 더 쉽게 읽기
+                    - // - 이제 BufferedInputStream과 DataInputStream도 
+                    - //   InputStream의 자식이기 때문에 
+                    - //   다른 객체에 연결할 수 있다.
+                    - DataInputStream in3 = new DataInputStream(in2); // OK!
+
+        - 자바 기본제공 클래스
+        - 자바 스트링 API 는 내부적으로 데코레이터 설계패턴에 따라 만들어져있다.
+        - OutputStream
+            - Compoment : 데이터가 저장 될 장소에서 직접 데이터를 작성하는것
+            - Data sink Stream class
+                - FileOutputStream
+                - ByteArrayOutputStream
+                - PipedOutputStream
+            - 데코레이터 Decorator
+                - FilterOutputStream 를 상속
+                    - DataOutputStream (int,문자열 등 출력)
+                    - BufferedOutputStream  (버퍼단위)
+                    - CipherOutputStream (암호화)
+                    - ObjectOutputstream (Filter 상속X, 별도)

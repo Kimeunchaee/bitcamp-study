@@ -10,6 +10,7 @@ public class Exam0210 {
     //    FileInputStream fileIn = new FileInputStream("temp/jls11.pdf");
     //    BufferedInputStream in = new BufferedInputStream(fileIn);
 
+    // 실무에서는 생성자에 바로 집어넣는 코드를 사용한다
     BufferedInputStream in = new BufferedInputStream(
         new FileInputStream("temp/jls11.pdf"));
 

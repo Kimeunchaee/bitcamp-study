@@ -16,6 +16,11 @@ public class Exam0230 {
     // =>ByteArrayInputStream에  DataInputStream 기능을 덧붙인다.
     DataInputStream in2 = new DataInputStream(in1);
 
+
+    // DataInputStream 을 ByteArrayInputStream와 연결시켜 포함관계로 정의했다.
+    // 이때 포함관계의 장점은
+    // DataInputStream 을 FileInputStream 에도 붙힐 수 있다는 것이다
+
     Member member = new Member();
 
     member.name = in2.readUTF();

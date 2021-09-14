@@ -2,9 +2,16 @@ package com.eomcs.io.ex07;
 
 import java.io.ByteArrayInputStream;
 
+// ByteArrayInputStream는 배열을 다루는 스트림이다
+// 문자열, int 값, long 값, boolean 값을 읽는 기능이 없기때문에
+// ByteArrayInputStream 을 상속받아서
+// 직접 DataByteArrayInputStream을 구현했다
+
 // 상속의 한계
-// 기능이 같은 서브클래스를 여러개 만들어야 한다
-// (DataByteArrayInputStream 와 DataFileInputStream 는 같은 기능을 함)
+// 이때 기능이 같은 서브클래스가 여러개 만들어지게 된다 (DataFileInputStream)
+
+//ex07 에서는 상속을 통한 기능확장의 한계를 느낄 수 있고,
+//이 문제점을 보안하는 방법으로는 Decorator 패턴을 사용해 기능확장을 하는 것이다.
 
 public class DataByteArrayInputStream extends ByteArrayInputStream {
 

@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class BufferedInputStream {
+
+  //필드에 선언해서 생성자를 통해 사용한다 (포함관계)
+
   InputStream in;
 
   byte[] buf = new byte[8192];

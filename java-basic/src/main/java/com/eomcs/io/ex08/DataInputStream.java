@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class DataInputStream {
+
+  // 필드에 선언해서 생성자를 통해 사용한다 (포함관계)
+
   // FileInputStream 이나 ByteArrayInputStream 을 포함하는 레퍼런스
   InputStream in;
 
