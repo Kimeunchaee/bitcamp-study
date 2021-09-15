@@ -3,14 +3,17 @@ package com.eomcs.pms;
 import static com.eomcs.menu.Menu.ACCESS_ADMIN;
 import static com.eomcs.menu.Menu.ACCESS_GENERAL;
 import static com.eomcs.menu.Menu.ACCESS_LOGOUT;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import com.eomcs.csv.CsvValue;
 import com.eomcs.menu.Menu;
 import com.eomcs.menu.MenuGroup;
 import com.eomcs.pms.domain.Board;
@@ -46,7 +49,7 @@ import com.eomcs.pms.handler.TaskUpdateHandler;
 import com.eomcs.util.Prompt;
 
 
-public class App {
+public class App2 {
   List<Board> boardList = new ArrayList<>();
   List<Member> memberList = new LinkedList<>();
   List<Project> projectList = new ArrayList<>();
@@ -77,11 +80,11 @@ public class App {
   }
 
   public static void main(String[] args) {
-    App app = new App(); 
+    App2 app = new App2(); 
     app.service();
   }
 
-  public App() {
+  public App2() {
     commandMap.put("/board/add", new BoardAddHandler(boardList));
     commandMap.put("/board/list", new BoardListHandler(boardList));
     commandMap.put("/board/detail", new BoardDetailHandler(boardList));
@@ -113,42 +116,80 @@ public class App {
   }
 
   void service() {
-    loadBoards();
+
+    // 여러 타입의 CSV 데이터를 로딩하는 메서드
+    loadObjects("board.csv", boardList, Board.class);
+    loadObjects("member.csv", memberList, Member.class);
+    loadObjects("project.csv", projectList, Project.class);
 
     createMainMenu().execute();
     Prompt.close();
 
-    saveBoards();
+    // 여러 타입의 객체를 CSV 데이터로 출력하는 메서드
+    saveObjects("board.csv", boardList);
+    saveObjects("member.csv", memberList);
+    saveObjects("project.csv", projectList);
+
   }
 
-  @SuppressWarnings("unchecked")
-  private void loadBoards() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("board.data3"))) {
+  //private void loadBoards() {
+  private <E extends CsvValue > void loadObjects(
+      String filepath,                      // 데이터를 읽어 올 파일 경로
+      List<E> list,                         // 로딩한 데이터를 객체로 만든 후 저장할 목록
+      Class<E> domainType                   // 생성할 객체의 타입
+      ) {
+    try (BufferedReader in = new BufferedReader(
+        new FileReader(filepath, Charset.forName("UTF-8")))) {
 
-      boardList.addAll((List<Board>) in.readObject());
+      String csvStr = null;
+      while ((csvStr = in.readLine()) != null) {
 
-      System.out.println("게시글 로딩 완료!");
+        // 1) CSV 값을 저장할 객체를 준비한다.
+        E obj = domainType.getConstructor().newInstance();
 
-    } catch (Exception e) {
-      System.out.println("파일에서 게시글을 읽어 오는 중 오류 발생!");
+        // 2) 생성한 객체에 대해 CSV 값을 전달하여 필드에 저장시킨다.
+        obj.loadCsv(csvStr);
+
+        // 3) CSV 값으로 만든 객체를 목록에 추가한다.
+        list.add(obj);
+      }
+
+      System.out.printf("%s 데이터 로딩 완료!\n" , filepath);
+
+    }
+    catch(Exception e) {
+      System.out.printf("%s 데이터 로딩 오류!\n" , filepath);
+    }
+  }
+
+  // 이전의 svaBoards() 는 오직 Board 객체의 데이터만 CSV 형식으로 출력할 수 있었다.
+  //private <E> void saveObjects(String filepath, List<E> list) {  //엘리먼트 타입 파라미터
+
+  // 다음의 saveObjects()는 Board 타입 외에 다른 타입의 객체도 CSV 형식으로 출력할 수 있다
+  // 단 List에 저장되어 있는 객체가 CsvValue 규칙에 따라 만든 객체여야 한다
+  // => 어찌되었든 다음과 같이 제네릭 문법을 사용하면
+  private void saveObjects(String filepath, List<? extends CsvValue> list) {  //CsvValue를 구현한 인터페이스나 상속받은 것만 오도록 한다
+    try (PrintWriter out = new PrintWriter(
+        new BufferedWriter(
+            new FileWriter(filepath, Charset.forName("UTF-8"))))) {
+      //for (Board board : boardList) { 
+      //      for (E obj : list) {
+
+      // 파라미터 list에 들어있는 객체는 최소한 CsvValue 라는 클래스 또는 인터페이스를 구현
+      for (CsvValue obj : list) {   
+        // 따라서 list 객체에서 꺼낸 값은 CsvValue 타입의 객체이다
+        // 그래서 다음과 같이 CsvValue 에 선언된 메서드를 호출할 수 있는 것이다
+        //out.println(board.toCsvString());
+        out.println(obj.toCsvString());
+      }
+      System.out.printf("%s 데이터 출력 완료!\n" , filepath);
+
+    } catch(Exception e) {
+      System.out.printf("%s 데이터 출력 오류!\n" , filepath);
       e.printStackTrace();
     }
   }
 
-  private void saveBoards() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("board.data3"))) {
-
-      out.writeObject(boardList);
-
-      System.out.println("게시글 저장 완료!");
-
-    } catch (Exception e) {
-      System.out.println("게시글을 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
 
   Menu createMainMenu() {
     MenuGroup mainMenuGroup = new MenuGroup("메인");
