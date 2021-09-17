@@ -2785,3 +2785,23 @@
                     - BufferedOutputStream  (버퍼단위)
                     - CipherOutputStream (암호화)
                     - ObjectOutputstream (Filter 상속X, 별도)
+
+    - ## 56일차(2021-09-14,화)
+    - ## 57일차(2021-09-15,수)
+        - Information Expert 적용
+            - Text 파일로 변경 , CSV 형식의 문자열로 정보를 갖도록 (에디터에서 바로 확인하기 좋다)
+            - GRASP 패턴
+                - 도메인객체에서 필드값을 CSV 문자열로 출력하도록 한다
+                    - toCsvString() 메서드
+                - CSV 문자열을 만드는 객체가 인스턴스를 초기화한다
+                    - valueOfCsv() 메서드
+
+        - 리팩토링 : 메서드 추출
+
+    - ## 57일차(2021-09-15,수)
+        - JSON
+            - JavaScript Object notation
+            - prototype 방식으로 객체 생성
+            - 설계도 방식이다
+        
+                
