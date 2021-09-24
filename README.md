@@ -2802,6 +2802,5 @@
         - JSON
             - JavaScript Object notation
             - prototype 방식으로 객체 생성
-            - 설계도 방식이다
-        
+            - 설계도 방식이다 
                 
