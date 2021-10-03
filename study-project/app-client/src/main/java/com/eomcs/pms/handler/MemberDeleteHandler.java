@@ -15,12 +15,11 @@ public class MemberDeleteHandler implements Command {
   @Override
   public void execute(CommandRequest request) throws Exception {
     System.out.println("[회원 삭제]");
+
     int no = (int) request.getAttribute("no");
 
     HashMap<String,String> params = new HashMap<>();
-    params.put("no", String.valueOf(no));
-
-    requestAgent.request("member.selectOne", params);
+    params.put("no", String.valueOf(no));    
 
     if (requestAgent.getStatus().equals(RequestAgent.FAIL)) {
       System.out.println("해당 번호의 회원이 없습니다.");
@@ -37,14 +36,13 @@ public class MemberDeleteHandler implements Command {
 
     if (requestAgent.getStatus().equals(RequestAgent.FAIL)) {
       System.out.println("회원 삭제 실패!");
-      System.out.println(requestAgent.getObject(String.class));
+      requestAgent.getObject(String.class);
       return;
     }
 
     System.out.println("회원을 삭제하였습니다.");
   }
 }
-
 
 
 

@@ -24,7 +24,6 @@ public class MemberListHandler implements Command {
     }
 
     Collection<Member> memberList = requestAgent.getObjects(Member.class);
-
     for (Member member : memberList) {
       System.out.printf("%d, %s, %s, %s, %s\n", 
           member.getNo(), 

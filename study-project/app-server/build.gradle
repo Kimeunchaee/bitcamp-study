@@ -29,16 +29,16 @@ repositories {
 //    등록한 라이브러를 자동으로 다운로드 받는다.
 // => 이렇게 다운로드 받은 라이브러리는 컴파일하거나 실행할 때 사용된다.
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.8' //0916 gson추가
-    testImplementation 'junit:junit:4.13.2'
-    implementation 'com.google.guava:guava:30.1-jre'
+  // Google JSON 라이브러리
+  implementation 'com.google.code.gson:gson:2.8.8'
+  
+  implementation 'com.google.guava:guava:30.1-jre'
+  testImplementation 'junit:junit:4.13.2'
 }
 
 // 'application' 플러그인에서 run 작업을 수행할 때 사용할 
 // 클래스 이름을 지정한다.
 application {
-    mainClass = 'com.eomcs.pms.Server.App'
+    mainClass = 'com.eomcs.pms.App'
 }
 
-
-// gradle 도구에 추가할 작업이 있으면 플러그인을 장착하라!

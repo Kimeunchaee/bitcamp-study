@@ -1,16 +1,16 @@
 package com.eomcs.pms.handler;
 
 import java.sql.Date;
-import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
+import com.eomcs.request.RequestAgent;
 import com.eomcs.util.Prompt;
 
 public class BoardAddHandler implements Command {
 
-  BoardDao boardDao;
+  RequestAgent requestAgent;
 
-  public BoardAddHandler(BoardDao boardDao) {
-    this.boardDao = boardDao;
+  public BoardAddHandler(RequestAgent requestAgent) {
+    this.requestAgent = requestAgent;
   }
 
   @Override
@@ -26,15 +26,15 @@ public class BoardAddHandler implements Command {
     board.setWriter(AuthLoginHandler.getLoginUser());
     board.setRegisteredDate(new Date(System.currentTimeMillis()));
 
-    //    requestAgent.request("board.insert", board);
-    //    if (requestAgent.getStatus().equals(RequestAgent.FAIL)) {
-    //      System.out.println("게시글 저장 실패!");
-    //      return;
-    //    }
+    //boardList.add(board);
+    requestAgent.request("board.insert", board);
 
-    boardDao.insert(board);
+    if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
+      System.out.println("게시글 저장 성공!");
+    } else {
+      System.out.println("게시글 저장 실패!");
+    }
 
-    System.out.println("게시글을 저장했습니다.");
   }
 }
 

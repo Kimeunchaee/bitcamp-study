@@ -18,7 +18,7 @@ public class MemberDetailHandler implements Command {
     System.out.println("[회원 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    HashMap<String,String> params = new HashMap<>();
+    HashMap<String, String> params = new HashMap<>();
     params.put("no", String.valueOf(no));
 
     requestAgent.request("member.selectOne", params);
@@ -37,10 +37,10 @@ public class MemberDetailHandler implements Command {
     System.out.printf("등록일: %s\n", member.getRegisteredDate());
     System.out.println();
 
-    //    Member loginUser = AuthLoginHandler.getLoginUser(); 
-    //    if (loginUser == null || (member.getNo() != loginUser.getNo() && !loginUser.getEmail().equals("root@test.com"))) {
-    //      return;
-    //    }
+    Member loginUser = AuthLoginHandler.getLoginUser(); 
+    if (loginUser == null || (member.getNo() != loginUser.getNo() && !loginUser.getEmail().equals("root@test.com"))) {
+      return;
+    }
 
     request.setAttribute("no", no);
 
