@@ -1,0 +1,15 @@
+ create table test01 (
+    no int,
+    name varchar(50)
+  );
+
+   insert into test01(no, name) values(1, 'aaa');
+
+   select * from test01;   /*  * = 모든 컬럽 */
+
+insert into test01(no, name) values(null, 'bbb');
+insert into test01(no, name) values(3, null);
+insert into test01(no, name) values(null, null);
+
+
+select 
