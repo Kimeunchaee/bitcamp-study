@@ -1,21 +1,27 @@
 package com.eomcs.pms.handler;
 
-import java.util.List;
+import java.util.HashMap;
+import com.eomcs.pms.dao.MemberDao;
 import com.eomcs.pms.domain.Member;
 import com.eomcs.util.Prompt;
 
-public class MemberUpdateHandler extends AbstractMemberHandler {
+public class MemberUpdateHandler implements Command {
 
-  public MemberUpdateHandler(List<Member> memberList) {
-    super(memberList);
+  MemberDao memberDao;
+
+  public MemberUpdateHandler(MemberDao memberDao) {
+    this.memberDao = memberDao;
   }
 
   @Override
-  public void execute(CommandRequest request) {
+  public void execute(CommandRequest request) throws Exception {
     System.out.println("[회원 변경]");
     int no = (int) request.getAttribute("no");
 
-    Member member = findByNo(no);
+    HashMap<String,String> params = new HashMap<>();
+    params.put("no", String.valueOf(no));
+
+    Member member = memberDao.findByNo(no);
 
     if (member == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
@@ -39,6 +45,7 @@ public class MemberUpdateHandler extends AbstractMemberHandler {
     member.setPassword(password);
     member.setPhoto(photo);
     member.setTel(tel);
+    memberDao.update(member);
 
     System.out.println("회원을 변경하였습니다.");
   }

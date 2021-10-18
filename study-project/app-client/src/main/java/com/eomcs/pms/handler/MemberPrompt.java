@@ -2,24 +2,16 @@ package com.eomcs.pms.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.eomcs.pms.dao.MemberDao;
 import com.eomcs.pms.domain.Member;
 import com.eomcs.util.Prompt;
 
 public class MemberPrompt {
 
-  List<Member> memberList;
+  MemberDao memberDao;
 
-  public MemberPrompt(List<Member> memberList) {
-    this.memberList = memberList;
-  }
-
-  protected Member findByName(String name) {
-    for (Member member : memberList) {
-      if (member.getName().equalsIgnoreCase(name)) {
-        return member;
-      }
-    }
-    return null;
+  public MemberPrompt(MemberDao memberDao) {
+    this.memberDao = memberDao;
   }
 
   protected static Member findByName(String name, List<Member> memberList) {
@@ -31,14 +23,14 @@ public class MemberPrompt {
     return null;
   }
 
-  public Member promptMember(String label) {
+  public Member promptMember(String label) throws Exception {
     while (true) {
       String memberName = Prompt.inputString(label);
       if (memberName.length() == 0) {
         return null;
       }
 
-      Member member = findByName(memberName);
+      Member member = memberDao.findByName(memberName);
       if (member != null) {
         return member;
       }
@@ -63,12 +55,12 @@ public class MemberPrompt {
     }
   }
 
-  public List<Member> promptMembers(String label) {
+  public List<Member> promptMembers(String label) throws Exception {
     ArrayList<Member> members = new ArrayList<>();
 
     while (true) {
       String memberName = Prompt.inputString(label);
-      Member member = findByName(memberName);
+      Member member = memberDao.findByName(memberName);
       if (member != null) {
         members.add(member);
         continue;
