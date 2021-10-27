@@ -1,3 +1,60 @@
+
+select
+   s.study_no,
+   s.name study_title,
+   ss.subject_no subject_no,
+   ss.name subject_name,
+   s.area,
+   s.no_people,
+   sfs.face_no face_no,
+   sfs.name face_name,
+   s.introduction,
+   s.created_dt,
+   s.score study_score,
+   s.member_no owner_no,
+   m.nickname owner_name,
+   (select count(*) from study_guilder where study_no=s.study_no) guilder,
+   (select count(*) from study_bookmark where study_no=s.study_no) bookmark
+   from study s
+   left outer join study_subject ss on s.subject_no=ss.subject_no
+   left outer join study_face_status sfs on s.face_no=sfs.face_no
+   left outer join member m on s.member_no=m.member_no
+   left outer join study_guilder sg on s.study_no=sg.study_no
+   left outer join member m2 on sg.member_no=m2.member_no
+   left outer join study_bookmark sb on s.study_no=sb.study_no
+   order by s.study_no
+
+
+   sg.status guilder_status,
+   sg.member_no guilder_no,
+   m2.nickname guilder_nickname,
+
+   sb.member_no book_member_no
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 mysql -u root -p
 
 create user 'chae'@'localhost' identified by '1111';

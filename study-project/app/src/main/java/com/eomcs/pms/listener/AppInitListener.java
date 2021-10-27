@@ -4,9 +4,9 @@ import java.sql.Date;
 import java.util.Map;
 import com.eomcs.context.ApplicationContextListener;
 
-//애플리케이션이 시작하거나 종료할 때 보고를 받는 객체
-//=> ApplicationContextListener 규칙에 따라 클래스를 정의한다.
-//
+// 애플리케이션이 시작하거나 종료할 때 보고를 받는 객체
+// => ApplicationContextListener 규칙에 따라 클래스를 정의한다.
+// 
 public class AppInitListener implements ApplicationContextListener {
   @Override
   public void contextInitialized(Map<String,Object> params) {
@@ -26,3 +26,9 @@ public class AppInitListener implements ApplicationContextListener {
     System.out.println("****************************************");
   }
 }
+
+
+
+
+
+

@@ -45,9 +45,9 @@ import com.eomcs.pms.listener.AppInitListener;
 import com.eomcs.pms.listener.FileListener;
 import com.eomcs.util.Prompt;
 
-// 게시글 상세보기에서 > 변경,삭제 수행하기
 
 public class App {
+
   List<Board> boardList = new ArrayList<>();
   List<Member> memberList = new LinkedList<>();
   List<Project> projectList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class App {
   MemberPrompt memberPrompt = new MemberPrompt(memberList);
   ProjectPrompt projectPrompt = new ProjectPrompt(projectList);
 
-  //옵저버 관련 필드와 메서드
+  // 옵저버 관련 필드와 메서드
   // => 옵저버(리스너) 목록
   List<ApplicationContextListener> listeners = new ArrayList<>();
 
@@ -70,8 +70,6 @@ public class App {
   public void removeApplicationContextListener(ApplicationContextListener listener) {
     this.listeners.remove(listener);
   }
-
-
 
   class MenuItem extends Menu {
     String menuId;
@@ -86,7 +84,6 @@ public class App {
       this.menuId = menuId;
     }
 
-
     @Override
     public void execute() {
       Command command = commandMap.get(menuId);
@@ -94,6 +91,7 @@ public class App {
         command.execute(new CommandRequest(commandMap));
       } catch (Exception e) {
         System.out.printf("%s 명령을 실행하는 중 오류 발생!\n", menuId);
+        e.printStackTrace();
       }
     }
   }
@@ -113,15 +111,11 @@ public class App {
 
   public App() {
 
-    //    BoardUpdateHandler boardUpdateHanlder = new BoardUpdateHandler(boardList);
-    //    BoardDeleteHandler boardDeleteHandler = new BoardDeleteHandler(boardList);
-
     commandMap.put("/board/add", new BoardAddHandler(boardList));
     commandMap.put("/board/list", new BoardListHandler(boardList));
     commandMap.put("/board/update", new BoardUpdateHandler(boardList));
     commandMap.put("/board/delete", new BoardDeleteHandler(boardList));
     commandMap.put("/board/detail", new BoardDetailHandler(boardList));
-
     commandMap.put("/board/search", new BoardSearchHandler(boardList));
 
     commandMap.put("/member/add", new MemberAddHandler(memberList));
@@ -180,7 +174,6 @@ public class App {
   }
 
 
-
   Menu createMainMenu() {
     MenuGroup mainMenuGroup = new MenuGroup("메인");
     mainMenuGroup.setPrevMenuTitle("종료");
@@ -214,8 +207,8 @@ public class App {
     memberMenu.add(new MenuItem("등록", ACCESS_GENERAL, "/member/add"));
     memberMenu.add(new MenuItem("목록", "/member/list"));
     memberMenu.add(new MenuItem("상세보기", "/member/detail"));
-    memberMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/member/update"));
-    memberMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/member/delete"));
+    //    memberMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/member/update"));
+    //    memberMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/member/delete"));
     return memberMenu;
   }
 
@@ -224,8 +217,8 @@ public class App {
     projectMenu.add(new MenuItem("등록", ACCESS_GENERAL, "/project/add"));
     projectMenu.add(new MenuItem("목록", "/project/list"));
     projectMenu.add(new MenuItem("상세보기", "/project/detail"));
-    projectMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/project/update"));
-    projectMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/project/delete"));
+    //    projectMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/project/update"));
+    //    projectMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/project/delete"));
     return projectMenu;
   }
 
@@ -234,8 +227,8 @@ public class App {
     taskMenu.add(new MenuItem("등록", ACCESS_GENERAL, "/task/add"));
     taskMenu.add(new MenuItem("목록", "/task/list"));
     taskMenu.add(new MenuItem("상세보기", "/task/detail"));
-    taskMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/task/update"));
-    taskMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/task/delete"));
+    //    taskMenu.add(new MenuItem("변경", ACCESS_GENERAL, "/task/update"));
+    //    taskMenu.add(new MenuItem("삭제", ACCESS_GENERAL, "/task/delete"));
     return taskMenu;
   }
 
@@ -248,3 +241,15 @@ public class App {
     return adminMenu;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
