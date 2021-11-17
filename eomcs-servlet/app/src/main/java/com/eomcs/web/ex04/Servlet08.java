@@ -60,6 +60,7 @@ public class Servlet08 extends GenericServlet {
       // 파일을 선택해서 업로드 했다면,
       filename = UUID.randomUUID().toString();
       photoPart.write(this.uploadDir + "/" + filename);
+      return;
     }
 
     // 원본 사진을 가지고 특정 크기의 썸네일 이미지를 만들기
