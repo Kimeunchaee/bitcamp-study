@@ -31,7 +31,7 @@
             - 서버저장소에서 변경사항이 생긴 후 파일 가져오기
                 `$ git pull`
             - 로컬저장소에서 서버저장소로 백업
-                `$ git config --global user.email "email.@"` / `$ git config --global user.name "name"` :사용자 계정과 로컬저장소를 연결
+                `$ git config --global user.email "email@주소"` / `$ git config --global user.name "name"` :사용자 계정과 로컬저장소를 연결
                 `$ git add .` : 수정,삭제 등 변경된 내용을 찾아서 백업할 명단이 작성됨
                 `$ git commit -m "백업설명"` : 백업내용과 함께 파일 백업
                 `$ git push` / `username : 이름입력` / `token : 암호입력` : 백업 내용을 서버에 업로드
